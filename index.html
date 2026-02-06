@@ -1,0 +1,1528 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Painel — Engenharia de Software</title>
+
+<style>
+  /* ========== VARIÁVEIS DE TEMA ========== */
+  :root{
+    --bg:#0b1120;
+    --sidebar:#0f172a;
+    --card:#111829;
+    --text:#e6eef6;
+    --muted:#94a3b8;
+    --accent:#6ee7b7;
+    --accent-2:#7dd3fc;
+    --glass: rgba(255,255,255,0.03);
+    --radius:14px;
+    --gap:18px;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* ========== RESET & LAYOUT ========= */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    min-height:100vh;
+    overflow:hidden;
+  }
+
+  /* ========== SIDEBAR (desktop) ========== */
+  .sidebar{
+    width:260px;
+    background:var(--sidebar);
+    padding:28px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    border-right:1px solid rgba(255,255,255,0.04);
+    min-height:100vh;
+  }
+
+  .logo{font-size:18px;font-weight:700;letter-spacing:-0.4px}
+  .nav{display:flex;flex-direction:column;gap:8px}
+  .nav button{
+    background:none;border:0;color:var(--muted);text-align:left;padding:10px 12px;border-radius:10px;
+    cursor:pointer;font-size:15px;display:flex;gap:10px;align-items:center;transition:all .18s;
+  }
+  .nav button:hover{background:var(--glass);color:var(--accent)}
+  .nav button.active{background:rgba(255,255,255,0.07);color:var(--accent)}
+
+  /* ========== HEADER (top bar for mobile + title) ========= */
+  .topbar{
+    display:none; /* shown on mobile */
+    width:100%;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 18px;
+    border-bottom:1px solid rgba(255,255,255,0.03);
+    gap:12px;
+  }
+  .topbar .title{font-weight:700}
+  .hamburger{
+    width:44px;height:44px;border-radius:10px;background:var(--card);display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03);cursor:pointer;
+  }
+
+  /* ========== MAIN ========= */
+  main{
+    flex:1;
+    padding:28px;
+    overflow:auto;
+    height:100vh;
+  }
+  .container{max-width:1200px;margin:0 auto}
+
+  /* ========== SECTIONS (SPA) ========= */
+  .section{display:none}
+  .section.active{display:block;animation:fade .28s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* ========== CARDS & DASHBOARD ========== */
+  .home-header h1{margin:0;font-size:26px}
+  .home-header p{margin:6px 0 18px;color:var(--muted)}
+
+  .dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:var(--gap);
+  }
+
+  .card{
+    background:var(--card);
+    padding:18px;border-radius:var(--radius);
+    display:flex;flex-direction:column;gap:10px;border:1px solid rgba(255,255,255,0.03);
+    transition:transform .18s, box-shadow .18s;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+  .card.big{grid-column:span 2}
+  .card.wide{grid-column:span 2}
+
+  .progress-main{width:100%;height:12px;background:#0f1622;border-radius:8px;overflow:hidden}
+  .progress-main > div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .6s ease}
+
+  .percent-main{font-size:14px;color:var(--muted)}
+  .list{margin:0;padding-left:16px;color:var(--muted)}
+  .big-number{font-size:26px;font-weight:700}
+
+  .tags{display:flex;gap:8px;flex-wrap:wrap}
+  .tags span{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:10px;font-size:13px;color:var(--text)}
+
+  /* ---------- HOME CARDS REFINED ---------- */
+.home-card{
+  padding:25px;
+  border-radius:18px;
+  background:var(--card);
+  box-shadow:0 4px 18px rgba(0,0,0,.15);
+  transition:.25s;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.home-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 24px rgba(0,0,0,0.22);
+}
+
+.card-header h2{
+  font-size:20px;
+  margin:0;
+}
+
+.card-header .sub{
+  font-size:13px;
+  color:var(--muted);
+  display:block;
+  margin-top:4px;
+}
+
+/* Lista refinada */
+.modern-list{
+  margin-top:18px;
+  list-style:none;
+  padding:0;
+}
+
+.modern-list li{
+  padding:10px 14px;
+  margin-bottom:8px;
+  background:rgba(255,255,255,0.03);
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.06);
+  font-size:15px;
+  transition:.22s;
+}
+
+.modern-list li:hover{
+  background:rgba(255,255,255,0.07);
+}
+
+/* Tags de Disciplina */
+.active-tags{
+  margin-top:16px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.active-tags span{
+  padding:8px 14px;
+  background:rgba(37,99,235,0.18);
+  border-radius:12px;
+  color:#90b4ff;
+  border:1px solid rgba(37,99,235,0.4);
+  font-size:14px;
+}
+
+
+  /* ========== DISCIPLINAS GRID (reutiliza seu estilo) ========== */
+  .modulos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+  .mod-card{background:var(--card);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:var(--text);transition:.25s;border:1px solid rgba(255,255,255,0.05)}
+  .mod-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 0 18px rgba(110,231,183,0.06)}
+  .mod-card img{width:100%;height:120px;object-fit:cover}
+  .mod-card span{padding:10px;font-size:14px;text-align:center;color:var(--text)}
+
+  /* ========== SEMESTRE TITLE ========== */
+  .semestre-title{margin:30px 0 8px;font-size:18px;color:var(--text);font-weight:600}
+
+  /* ========== MODAL MENU (FULLSCREEN) ========== */
+  .menu-modal{
+    position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.96), rgba(2,6,23,0.98));
+    display:none;align-items:center;justify-content:center;z-index:60;padding:32px;
+  }
+  .menu-modal.open{display:flex}
+  .menu-inner{max-width:520px;width:100%;background:transparent;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px}
+  .menu-inner button{font-size:20px;padding:16px;border-radius:12px;text-align:left;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--text)}
+  .menu-inner button.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#03221a}
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width:1000px){
+    .sidebar{display:none}
+    .topbar{display:flex}
+    main{padding:16px}
+  }
+
+  @media (max-width:520px){
+    .home-header h1{font-size:20px}
+    .card.big,.card.wide{grid-column:span 1}
+    .menu-inner button{font-size:18px;padding:12px}
+    .container{padding:0 6px}
+  }
+
+  /* accessibility focus */
+  button:focus, a:focus{outline:2px dashed rgba(110,231,183,0.35);outline-offset:2px}
+</style>
+</head>
+<body>
+
+  <!-- SIDEBAR (desktop) -->
+  <aside class="sidebar" aria-label="Navegação principal">
+    <div class="logo">Engenharia</div>
+
+    <nav class="nav" role="navigation" aria-label="Menu">
+      <button class="nav-btn active" data-page="home">🏠 Home</button>
+      <button class="nav-btn" data-page="disciplinas">📘 Minhas Disciplinas</button>
+      <button class="nav-btn" data-page="cursos">🎓 Cursos Complementares</button>
+      <button class="nav-btn" data-page="exercicios">📝 Exercícios</button>
+      <button class="nav-btn" data-page="avaliacoes">📊 Avaliações</button>
+      <button class="nav-btn" data-page="calendario">📆 Calendário Acadêmico</button>
+      <button class="nav-btn" data-page="biblioteca">📚 Biblioteca</button>
+      <button class="nav-btn" data-page="projetos">💡 Projetos</button>
+      <button class="nav-btn" data-page="progresso">📈 Progresso</button>
+      <button onclick="window.location.href='painel_dev.html'" class="menu-item">🧩 Painel Dev</button>
+
+      <button onclick="window.location.href='tcc_generator.html'">Gerador de TCC</button>
+    </nav>
+
+    <div style="margin-top:auto;color:var(--muted);font-size:13px">v1.0 • Personal</div>
+  </aside>
+
+  <!-- TOPBAR (mobile) -->
+  <header class="topbar" role="banner">
+    <div style="display:flex;gap:12px;align-items:center">
+      <div class="hamburger" id="hamburger" aria-label="Abrir menu" role="button" tabindex="0">☰</div>
+      <div class="title">Engenharia — Painel</div>
+    </div>
+    <div class="small-stats" style="color:var(--muted);font-size:13px">Progresso: <span id="top-progress">0%</span></div>
+  </header>
+
+  <!-- MODAL MENU (fullscreen) -->
+  <div class="menu-modal" id="menuModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="menu-inner" role="menu" aria-label="Menu principal">
+      <button data-page="home" class="menu-item active">🏠 Home</button>
+      <button data-page="disciplinas" class="menu-item">📘 Minhas Disciplinas</button>
+      <button data-page="cursos" class="menu-item">🎓 Cursos Complementares</button>
+      <button data-page="exercicios" class="menu-item">📝 Exercícios</button>
+      <button data-page="avaliacoes" class="menu-item">📊 Avaliações</button>
+      <button data-page="calendario" class="menu-item">📆 Calendário Acadêmico</button>
+      <button data-page="biblioteca" class="menu-item">📚 Biblioteca</button>
+      <button data-page="projetos" class="menu-item">💡 Projetos</button>
+      <button data-page="progresso" class="menu-item">📈 Progresso</button>
+      <button data-page="painel-dev" class="menu-item">🧩 Painel Dev</button>
+      <button onclick="window.location.href='tcc_generator.html'">Gerador de TCC</button>
+
+
+      <div style="height:8px"></div>
+      <button id="closeMenu" style="background:transparent;color:var(--muted);font-size:14px">Fechar ✕</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="container">
+
+      <!-- HOME -->
+      <section id="home" class="section active" aria-labelledby="homeTitle">
+        <div class="home-header">
+          <h1 id="homeTitle">👋 Olá, Engenheiro!</h1>
+          <p>Bem-vindo ao seu painel geral de aprendizado</p>
+        </div>
+
+        <div class="dashboard" aria-live="polite">
+
+          <!-- Progresso Geral -->
+          <div class="card big" aria-hidden="false">
+            <h2>📈 Progresso Geral</h2>
+            <div class="progress-main" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div></div>
+            </div>
+            <span class="percent-main">0% concluído</span>
+          </div>
+
+<!-- Metas da Semana -->
+<div class="card home-card">
+  <div class="card-header">
+    <h2>🎯 Meta da Semana</h2>
+    <span class="sub">Organize seus objetivos do período</span>
+  </div>
+
+  <ul class="list modern-list" id="metasList">
+    <li>Defina suas metas</li>
+  </ul>
+</div>
+
+<!-- Próximos Estudos -->
+<div class="card home-card">
+  <div class="card-header">
+    <h2>📅 Próximos Estudos</h2>
+    <span class="sub">Planeje o que irá estudar em seguida</span>
+  </div>
+
+  <ul class="list modern-list" id="proxList">
+    <li>Nenhuma próxima aula definida</li>
+  </ul>
+</div>
+
+          <!-- Tempo de Estudo -->
+          <div class="card">
+            <h2>⏳ Tempo de Estudo</h2>
+            <p class="big-number" id="tempoEstudo">0h</p>
+            <span class="muted">esta semana</span>
+          </div>
+
+<!-- Disciplinas Ativas -->
+<div class="card home-card wide">
+  <div class="card-header">
+    <h2>📘 Disciplinas em andamento</h2>
+    <span class="sub">Seu progresso atual</span>
+  </div>
+
+  <div class="tags active-tags" id="activeTags">
+    <span>Nenhuma disciplina ativa</span>
+  </div>
+</div>
+
+        </div>
+
+      </section>
+
+      <!-- DISCIPLINAS -->
+      <section id="disciplinas" class="section" aria-labelledby="discTitle">
+        <h1 id="discTitle">📘 Minhas Disciplinas</h1>
+        <p style="color:var(--muted);margin-top:6px">Clique em uma disciplina para abrir (página separada/placeholder).</p>
+
+        <!-- 8 Semestres -->
+        <h3 class="semestre-title">1º Semestre</h3>
+        <div class="modulos-grid" id="sem1"></div>
+
+        <h3 class="semestre-title">2º Semestre</h3>
+        <div class="modulos-grid" id="sem2"></div>
+
+        <h3 class="semestre-title">3º Semestre</h3>
+        <div class="modulos-grid" id="sem3"></div>
+
+        <h3 class="semestre-title">4º Semestre</h3>
+        <div class="modulos-grid" id="sem4"></div>
+
+        <h3 class="semestre-title">5º Semestre</h3>
+        <div class="modulos-grid" id="sem5"></div>
+
+        <h3 class="semestre-title">6º Semestre</h3>
+        <div class="modulos-grid" id="sem6"></div>
+
+        <h3 class="semestre-title">7º Semestre</h3>
+        <div class="modulos-grid" id="sem7"></div>
+
+        <h3 class="semestre-title">8º Semestre</h3>
+        <div class="modulos-grid" id="sem8"></div>
+
+      </section>
+
+<!-- CURSOS COMPLEMENTARES (PAINEL) -->
+<section id="cursos" class="section">
+  <h1>🎓 Cursos Complementares — Painel</h1>
+  <p style="color:var(--muted)">Acompanhe seu progresso em cursos extras.</p>
+
+  <!-- BOTÃO PARA ABRIR A PÁGINA COMPLETA cursos.html -->
+  <div class="card" style="margin-top:18px">
+    <button onclick="window.open('cursos.html','_blank')" 
+      style="padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#03221a;font-weight:600;cursor:pointer;width:100%">
+      ➜ Abrir página completa de Cursos Complementares
+    </button>
+  </div>
+
+  <!-- RESUMO DO PAINEL -->
+  <div class="dashboard" style="margin-top:22px">
+
+    <div class="card">
+      <h2>📚 Cursos Iniciados</h2>
+      <p class="big-number" id="cc_total_iniciados">0</p>
+    </div>
+
+    <div class="card">
+      <h2>⏳ Horas Concluídas</h2>
+      <p class="big-number" id="cc_total_horas">0h</p>
+    </div>
+
+    <div class="card wide">
+      <h2>🗂️ Cursos em Andamento</h2>
+      <div id="cc_mini_cards" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+        <span style="color:var(--muted)">Nenhum curso iniciado ainda</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+      <!-- EXERCÍCIOS -->
+      <section id="exercicios" class="section">
+        <h1>📝 Exercícios</h1>
+        <p style="color:var(--muted)">Organize listas de exercícios por disciplina.</p>
+        <div style="margin-top:12px"><small style="color:var(--muted)">Placeholder.</small></div>
+      </section>
+
+      <!-- AVALIAÇÕES -->
+      <section id="avaliacoes" class="section">
+        <h1>📊 Avaliações</h1>
+        <p style="color:var(--muted)">Registre notas e veja médias por disciplina.</p>
+        <div style="margin-top:12px"><small style="color:var(--muted)">Placeholder.</small></div>
+      </section>
+
+<!-- CALENDÁRIO ACADÊMICO -->
+<section id="calendario" class="section">
+  <h1>📅 Calendário Acadêmico</h1>
+  <p style="color:var(--muted)">Organize prazos, eventos, provas e atividades importantes.</p>
+
+  <!-- CONTROLES -->
+  <div style="margin-top:22px;display:flex;gap:14px;flex-wrap:wrap">
+
+    <select id="calFiltroMes"
+      style="padding:10px;border-radius:10px;border:0;background:var(--glass);color:var(--text)">
+      <option value="all">Todos os meses</option>
+    </select>
+
+    <button id="calAddOpen"
+      style="padding:12px 18px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#03221a;font-weight:600;cursor:pointer">
+      ➕ Novo Evento
+    </button>
+
+  </div>
+
+  <!-- LISTA DE EVENTOS -->
+  <div id="calEventos" style="margin-top:26px;display:flex;flex-direction:column;gap:18px;"></div>
+
+  <!-- Estado vazio -->
+  <p id="calEmpty" style="color:var(--muted);display:none;margin-top:20px;text-align:center">
+    Nenhum evento cadastrado.
+  </p>
+
+  <!-- MODAL PREMIUM -->
+  <div id="calAddModal"
+    style="
+      display:none;position:fixed;inset:0;
+      background:rgba(0,0,0,0.55);backdrop-filter:blur(12px);
+      align-items:center;justify-content:center;z-index:220;
+      animation:fadeIn .25s ease;">
+      
+    <div style="
+      width:92%;max-width:520px;background:rgba(255,255,255,0.06);
+      border-radius:20px;padding:28px;border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 0 50px rgba(0,0,0,0.45);
+      transform:translateY(25px);opacity:0;animation:slideUp .35s ease forwards;">
+      
+      <h2 style="margin-top:0">📌 Adicionar Evento</h2>
+      <p style="color:var(--muted);margin-top:-6px;margin-bottom:18px">
+        Registre provas, entregas, datas importantes e compromissos acadêmicos.
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+
+        <div>
+          <label style="color:var(--muted)">Título</label>
+          <input id="calTitulo" type="text" placeholder="Ex.: Prova de Algoritmos"
+            style="width:100%;margin-top:4px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);
+            background:rgba(255,255,255,0.08);color:var(--text);outline:none"
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+        </div>
+
+        <div>
+          <label style="color:var(--muted)">Data</label>
+          <input id="calData" type="date"
+            style="width:100%;margin-top:4px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);
+            background:rgba(255,255,255,0.08);color:var(--text);outline:none"
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+        </div>
+
+        <div>
+          <label style="color:var(--muted)">Descrição (opcional)</label>
+          <textarea id="calDesc" placeholder="Detalhes do evento..."
+            style="width:100%;margin-top:4px;padding:12px;border-radius:14px;height:90px;
+            border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);
+            color:var(--text);outline:none"
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+        </div>
+
+      </div>
+
+      <!-- Botões -->
+      <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:24px">
+
+        <button id="calAddCancel"
+          style="padding:10px 16px;border-radius:12px;
+          background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);
+          color:var(--text);cursor:pointer">
+          Cancelar
+        </button>
+
+        <button id="calAddSave"
+          style="padding:10px 18px;border-radius:12px;
+          background:linear-gradient(90deg,var(--accent),var(--accent-2));
+          border:0;color:#03221a;font-weight:700;cursor:pointer">
+          Salvar
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes slideUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+  </style>
+
+</section>
+
+
+<!-- BIBLIOTECA -->
+<section id="biblioteca" class="section">
+  <h1>📚 Biblioteca</h1>
+  <p style="color:var(--muted)">Materiais de estudo organizados em um só lugar.</p>
+
+  <!-- CONTROLES -->
+  <div style="margin-top:22px;display:flex;gap:14px;flex-wrap:wrap">
+
+    <input id="bibSearch" type="text" placeholder="Buscar material..."
+      style="padding:10px;border-radius:10px;border:0;background:var(--glass);color:var(--text);flex:1;min-width:240px">
+
+    <select id="bibFilter"
+      style="padding:10px;border-radius:10px;border:0;background:var(--glass);color:var(--text)">
+      <option value="all">Todas as categorias</option>
+    </select>
+
+    <button id="bibAddOpen"
+      style="padding:12px 18px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#03221a;font-weight:600;cursor:pointer">
+      ➕ Adicionar Material
+    </button>
+
+  </div>
+
+  <!-- GRID -->
+  <div id="bibGrid" class="dashboard" style="margin-top:22px"></div>
+
+  <!-- Estado vazio -->
+  <p id="bibEmpty" style="color:var(--muted);display:none;margin-top:20px;text-align:center">
+    Nenhum material encontrado.
+  </p>
+
+  <!-- MODAL DE VISUALIZAÇÃO -->
+  <div id="bibModal"
+    style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;z-index:200">
+    <div style="background:var(--card);padding:24px;border-radius:14px;max-width:520px;width:90%">
+      <h2 id="bibModalTitle"></h2>
+      <p id="bibModalCat" style="color:var(--muted);margin-bottom:10px"></p>
+      <p id="bibModalDesc"></p>
+      <a id="bibModalLink" href="#" target="_blank"
+        style="display:inline-block;margin-top:16px;color:var(--accent)">Abrir Material ↗</a>
+
+      <div style="display:flex;justify-content:flex-end;margin-top:20px">
+        <button id="bibModalClose"
+          style="padding:10px 18px;border-radius:10px;border:0;background:#333a50;color:var(--text);cursor:pointer">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PREMIUM DE ADICIONAR MATERIAL -->
+  <div id="bibAddModal"
+    style="
+      display:none;position:fixed;inset:0;
+      background:rgba(0,0,0,0.55);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      align-items:center;justify-content:center;z-index:220;
+      animation:fadeIn .25s ease;
+    ">
+
+    <div id="bibAddCard"
+      style="
+        width:92%;max-width:520px;
+        background:rgba(255,255,255,0.06);
+        border-radius:20px;padding:28px;
+        border:1px solid rgba(255,255,255,0.12);
+        box-shadow:0 0 50px rgba(0,0,0,0.45);
+        transform:translateY(25px);opacity:0;
+        animation:slideUp .35s ease forwards;
+      ">
+
+      <h2 style="margin-top:0">📘 Adicionar Material</h2>
+      <p style="color:var(--muted);margin-top:-6px;margin-bottom:18px">
+        Preencha as informações do novo material.
+      </p>
+
+      <!-- CAMPOS -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+
+        <div>
+          <label style="color:var(--muted)">Título</label>
+          <input id="bibAddTitulo" type="text" placeholder="Ex.: Estruturas de Dados — PDF"
+            style="width:100%;margin-top:4px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);
+            background:rgba(255,255,255,0.08);color:var(--text);font-size:0.95rem;outline:none;transition:.25s"
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+        </div>
+
+        <div>
+          <label style="color:var(--muted)">Categoria</label>
+          <select id="bibAddCategoria"
+            style="width:100%;margin-top:4px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);
+            background:rgba(255,255,255,0.08);color:var(--text);outline:none;cursor:pointer"
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+            <option value="">Selecione...</option>
+            <option value="Livro">Livro</option>
+            <option value="PDF">PDF</option>
+            <option value="Vídeo">Vídeo</option>
+            <option value="Link">Link</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="color:var(--muted)">Link ou arquivo</label>
+          <input id="bibAddLink" type="text" placeholder="URL ou caminho do arquivo"
+            style="width:100%;margin-top:4px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);
+            background:rgba(255,255,255,0.08);color:var(--text);outline:none"
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+        </div>
+
+        <div>
+          <label style="color:var(--muted)">Descrição</label>
+          <textarea id="bibAddDesc" placeholder="Informações adicionais..."
+            style="width:100%;margin-top:4px;padding:12px;border-radius:14px;height:90px;
+            border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);
+            color:var(--text);outline:none;transition:.25s"
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+        </div>
+
+      </div>
+
+      <!-- Botões -->
+      <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:24px">
+
+        <button id="bibAddCancel"
+          style="padding:10px 16px;border-radius:12px;
+          background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);
+          color:var(--text);cursor:pointer">
+          Cancelar
+        </button>
+
+        <button id="bibAddSave"
+          style="padding:10px 18px;border-radius:12px;
+          background:linear-gradient(90deg,var(--accent),var(--accent-2));
+          border:0;color:#03221a;font-weight:700;cursor:pointer">
+          Salvar Material
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes slideUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+  </style>
+
+</section>
+
+
+
+      <!-- PROJETOS -->
+      <section id="projetos" class="section">
+        <h1>💡 Projetos</h1>
+        <p style="color:var(--muted)">Gerencie seus projetos e TCC.</p>
+        <div style="margin-top:12px"><small style="color:var(--muted)">Placeholder.</small></div>
+      </section>
+
+      <!-- PROGRESSO -->
+<section id="progresso" class="section">
+  <h1>📈 Progresso Geral</h1>
+  <p style="color:var(--muted)">Resumo automático do avanço no Bacharelado em Engenharia de Software.</p>
+
+  <!-- Painel principal -->
+  <div id="painelProgresso" 
+       style="margin-top:20px;display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+
+    <!-- CARD: Progresso do Curso -->
+    <div class="card" style="padding:20px;">
+      <h2 style="margin:0 0 10px 0;">🎯 Progresso do Curso</h2>
+      <div id="progressPercent" style="font-size:38px;font-weight:700;margin-bottom:6px;">0%</div>
+      <div id="progressInfo" style="color:var(--muted);font-size:14px;">Carregando...</div>
+    </div>
+
+    <!-- CARD: Metas Semanais -->
+    <div class="card" style="padding:20px;">
+      <h2 style="margin:0 0 10px 0;">📝 Metas Semanais</h2>
+      <div id="goalsStats" style="font-size:16px;font-weight:600;margin-bottom:6px;">0 metas</div>
+      <div id="goalsInfo" style="color:var(--muted);font-size:14px;">Nenhuma meta criada ainda</div>
+    </div>
+
+    <!-- CARD: Semestres -->
+    <div class="card" style="padding:20px;">
+      <h2 style="margin:0 0 10px 0;">📚 Desempenho por Semestre</h2>
+      <div id="semesterStats" style="color:var(--muted);font-size:14px;">Carregando...</div>
+    </div>
+
+    <!-- CARD: Acessar Grade Interativa -->
+    <div class="card" style="padding:20px;text-align:center;">
+      <h2 style="margin:0 0 10px 0;">Abrir Grade Interativa</h2>
+      <button onclick="window.location.href='painel_dev.html'" 
+              style="margin-top:10px;padding:10px 16px;border-radius:10px;background:var(--accent);color:#000;border:none;cursor:pointer;font-weight:700;">
+        Abrir Painel Completo
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+
+    </div>
+  </main>
+
+<script>
+/* ================= INITIAL DATA (sample) =================
+   If user hasn't defined `disciplinas` in localStorage, we create a minimal set so the dashboard shows something.
+   You can remove this block in production if you want to start empty.
+*/
+(function seedIfEmpty(){
+  if(!localStorage.getItem("disciplinas")){
+    const sample = {
+      "introducao_engenharia": "andamento",
+      "logica_programacao": "andamento",
+      "matematica_discreta": "nao_iniciada",
+      "fundamentos_computacao": "concluida",
+      "estrutura_dados": "nao_iniciada",
+      "poo": "nao_iniciada",
+      "banco_dados1": "nao_iniciada",
+      "sistemas_operacionais": "nao_iniciada"
+      // ... o restante pode permanecer ausente (assumimos totalCount abaixo)
+    };
+    localStorage.setItem("disciplinas", JSON.stringify(sample));
+    // tempo de estudo example (hours)
+    if(!localStorage.getItem("tempo_estudo")) localStorage.setItem("tempo_estudo","1.5");
+    // metas (example)
+    if(!localStorage.getItem("metas_semana")) localStorage.setItem("metas_semana", JSON.stringify(["Estudar 3h","Finalizar Lógica","Resolver 5 exercícios"]));
+  }
+})();
+
+/* ================= CORE NAVIGATION ================= */
+function setActivePage(page){
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  const el = document.getElementById(page);
+  if(el) el.classList.add("active");
+
+  // update desktop nav
+  document.querySelectorAll(".nav button").forEach(b=>{
+    b.classList.toggle("active", b.dataset.page === page);
+  });
+  // update modal menu
+  document.querySelectorAll(".menu-inner .menu-item").forEach(b=>{
+    b.classList.toggle("active", b.dataset.page === page);
+  });
+  // update top progress small indicator
+  updateTopProgress();
+}
+
+// desktop nav buttons
+document.querySelectorAll(".nav-btn").forEach(btn=>{
+  btn.addEventListener("click", e=>{
+    const page = btn.dataset.page;
+    setActivePage(page);
+  });
+});
+
+
+
+// modal menu (mobile)
+const menuModal = document.getElementById("menuModal");
+const hamburger = document.getElementById("hamburger");
+const closeMenu = document.getElementById("closeMenu");
+
+hamburger.addEventListener("click", openMenu);
+hamburger.addEventListener("keydown", (e)=>{ if(e.key==="Enter") openMenu(); });
+closeMenu.addEventListener("click", closeMenuModal);
+menuModal.addEventListener("click", (e)=>{ if(e.target===menuModal) closeMenuModal(); });
+
+function openMenu(){
+  menuModal.classList.add("open");
+  menuModal.setAttribute("aria-hidden","false");
+  // trap focus quickly (basic)
+  const first = menuModal.querySelector(".menu-item");
+  if(first) first.focus();
+}
+function closeMenuModal(){
+  menuModal.classList.remove("open");
+  menuModal.setAttribute("aria-hidden","true");
+  hamburger.focus();
+}
+
+// modal menu items
+document.querySelectorAll(".menu-item").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    const page = b.dataset.page;
+    setActivePage(page);
+    closeMenuModal();
+  });
+});
+
+/* ================== DASHBOARD LOGIC (USANDO es_course_state_v1) ================== */
+function loadDashboard(){
+
+  const STORAGE_KEY = "es_course_state_v1";
+  const stateRaw = localStorage.getItem(STORAGE_KEY);
+
+  if(!stateRaw){
+    console.warn("Nenhum progresso encontrado no painel_dev.");
+    return;
+  }
+
+  const state = JSON.parse(stateRaw);
+
+  // Flatten: todos os cursos
+  const flat = state.semesters.flat();
+  const total = flat.length;
+  const done = flat.filter(x => x.done).length;
+
+  const pct = Math.round((done / total) * 100);
+
+  // Atualizar barra
+  const bar = document.querySelector(".progress-main > div");
+  bar.style.width = pct + "%";
+
+  const pb = document.querySelector(".progress-main");
+  pb.setAttribute("aria-valuenow", pct);
+
+  document.querySelector(".percent-main").textContent = pct + "% concluído";
+  document.getElementById("top-progress").textContent = pct + "%";
+
+  document.querySelectorAll('.menu-item').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const page = btn.dataset.page;
+    if(page === 'painel-dev'){
+      window.location.href = 'painel_dev.html';
+    }
+  });
+});
+
+
+  /* ================== DISCIPLINAS EM ANDAMENTO ================== */
+  // Encontrar disciplinas NÃO concluídas
+  const andamento = [];
+  state.semesters.forEach((sem, si) => {
+    sem.forEach((disc, di) => {
+      if(!disc.done){
+        andamento.push({ sem: si+1, index: di });
+      }
+    });
+  });
+
+  const tags = document.getElementById("activeTags");
+  if(andamento.length === 0){
+    tags.innerHTML = "<span>Nenhuma disciplina ativa</span>";
+  } else {
+    tags.innerHTML = andamento
+      .slice(0,12)
+      .map(item => `<span>Sem ${item.sem} — Disciplina ${item.index+1}</span>`)
+      .join("");
+  }
+
+  /* ================== PRÓXIMOS ESTUDOS ================== */
+  const proxList = document.getElementById("proxList");
+  if(andamento.length === 0){
+    proxList.innerHTML = "<li>Nenhuma disciplina pendente</li>";
+  } else {
+    proxList.innerHTML = andamento
+      .slice(0,3)
+      .map(item => `<li>Sem ${item.sem} — Disciplina ${item.index+1}</li>`)
+      .join("");
+  }
+
+  /* ================== METAS (mantém sistema antigo) ================== */
+  const metas = JSON.parse(localStorage.getItem("metas_semana") || "[]");
+  const metasList = document.getElementById("metasList");
+  metasList.innerHTML = metas.length
+    ? metas.map(m => `• ${m}`).join("<br>")
+    : "<li>• Defina suas metas</li>";
+
+  /* ================== TEMPO DE ESTUDO (mantém) ================== */
+  const tempoRaw = localStorage.getItem("tempo_estudo") || "0";
+  document.getElementById("tempoEstudo").textContent = formatTempo(tempoRaw);
+}
+
+
+/* ================== DISCIPLINAS GRID POPULATION ================== */
+/* We keep the same order you provided earlier and distribute across 8 semesters */
+const allDisciplines = [
+  // ===== 1º SEMESTRE =====
+  { code:"profissao_esw", title:"Profissão de Engenharia de Software", img:"img/profissao-esw.jpg", sem:1 },
+  { code:"prog_algoritmos_1", title:"Programação e Algoritmos I", img:"img/algoritmos1.jpg", sem:1 },
+  { code:"interpretacao_problemas", title:"Interpretação e Solução de Problemas", img:"img/solucao-problemas.jpg", sem:1 },
+  { code:"logica_intro", title:"Introdução à Lógica para Engenharia de Software", img:"img/logica.jpg", sem:1 },
+  { code:"gestao_conhecimento", title:"Gestão do Conhecimento", img:"img/gestao-conhecimento.jpg", sem:1 },
+  { code:"principios_esw", title:"Princípios de Engenharia de Software", img:"img/principios-esw.jpg", sem:1 },
+  { code:"arquitetura_computadores", title:"Arquitetura de Computadores", img:"img/arquitetura-computadores.jpg", sem:1 },
+  { code:"introducao_pesquisa", title:"Introdução à Pesquisa", img:"img/pesquisa.jpg", sem:1 },
+  { code:"ingles_tecnico", title:"Inglês Técnico para Engenharia de Software", img:"img/ingles-tecnico.jpg", sem:1 },
+
+  // ===== 2º SEMESTRE =====
+  { code:"prog_algoritmos_2", title:"Programação e Algoritmos II", img:"img/algoritmos2.jpg", sem:2 },
+  { code:"soft_skills", title:"Soft Skills e Empregabilidade", img:"img/soft-skills.jpg", sem:2 },
+  { code:"logica_esw", title:"Lógica para Engenharia de Software", img:"img/logica-esw.jpg", sem:2 },
+  { code:"leitura_software", title:"Leitura de Software", img:"img/leitura-software.jpg", sem:2 },
+  { code:"sistemas_operacionais", title:"Sistemas Operacionais", img:"img/sistemas-operacionais.jpg", sem:2 },
+  { code:"algebra_linear", title:"Álgebra Linear para Engenharia de Software", img:"img/algebra-linear.jpg", sem:2 },
+  { code:"gestao_pessoas", title:"Seleção e Gestão de Pessoas", img:"img/gestao-pessoas.jpg", sem:2 },
+
+  // ===== 3º SEMESTRE =====
+  { code:"algoritmos_funcionais", title:"Algoritmos Funcionais e Recursivos", img:"img/algoritmos-funcionais.jpg", sem:3 },
+  { code:"requisitos_software", title:"Requisitos de Software", img:"img/requisitos.jpg", sem:3 },
+  { code:"poo_1", title:"Análise e Projeto Orientados a Objetos I", img:"img/poo1.jpg", sem:3 },
+  { code:"paradigmas_programacao", title:"Paradigmas de Programação", img:"img/paradigmas.jpg", sem:3 },
+  { code:"logica_aplicada", title:"Lógica Aplicada à Computação", img:"img/logica-aplicada.jpg", sem:3 },
+  { code:"seguranca_software", title:"Segurança de Software", img:"img/seguranca-software.jpg", sem:3 },
+  { code:"tecnicas_pesquisa", title:"Técnicas de Pesquisa", img:"img/tecnicas-pesquisa.jpg", sem:3 },
+  { code:"etica_computacao", title:"Ética Aplicada à Computação", img:"img/etica.jpg", sem:3 },
+
+  // ===== 4º SEMESTRE =====
+  { code:"poo_2", title:"Análise e Projeto Orientados a Objetos II", img:"img/poo2.jpg", sem:4 },
+  { code:"estrutura_dados_1", title:"Estrutura de Dados I", img:"img/estrutura-dados1.jpg", sem:4 },
+  { code:"banco_dados", title:"Banco de Dados", img:"img/banco-dados.jpg", sem:4 },
+  { code:"projeto_detalhado", title:"Projeto Detalhado de Software", img:"img/projeto-software.jpg", sem:4 },
+  { code:"empreendedorismo", title:"Empreendedorismo", img:"img/empreendedorismo.jpg", sem:4 },
+  { code:"programacao_oo", title:"Programação Orientada a Objetos", img:"img/programacao-oo.jpg", sem:4 },
+
+  // ===== 5º SEMESTRE =====
+  { code:"processo_software", title:"Processo de Software", img:"img/processo-software.jpg", sem:5 },
+  { code:"estrutura_dados_2", title:"Estrutura de Dados II", img:"img/estrutura-dados2.jpg", sem:5 },
+  { code:"ihc", title:"Interface Humano-Computador", img:"img/ihc.jpg", sem:5 },
+  { code:"gerencia_projetos", title:"Gerência de Projeto de Software", img:"img/gerencia-projetos.jpg", sem:5 },
+  { code:"arquitetura_software", title:"Arquitetura de Software", img:"img/arquitetura-software.jpg", sem:5 },
+  { code:"gerencia_config", title:"Gerência de Configuração", img:"img/gerencia-config.jpg", sem:5 },
+  { code:"qualidade_software", title:"Qualidade de Software", img:"img/qualidade-software.jpg", sem:5 },
+  { code:"estatistica", title:"Estatística", img:"img/estatistica.jpg", sem:5 },
+
+  // ===== 6º SEMESTRE =====
+  { code:"metodos_ferramentas", title:"Métodos e Ferramentas de Engenharia de Software", img:"img/metodos-ferramentas.jpg", sem:6 },
+  { code:"pratica_esw", title:"Prática de Engenharia de Software", img:"img/pratica-esw.jpg", sem:6 },
+  { code:"manutencao_software", title:"Manutenção e Evolução de Software", img:"img/manutencao.jpg", sem:6 },
+  { code:"integracao_aplicacoes", title:"Integração de Aplicações", img:"img/integracao.jpg", sem:6 },
+  { code:"estimativa_custos", title:"Estimativa de Custos em Projetos de Software", img:"img/estimativa-custos.jpg", sem:6 },
+  { code:"dev_mobile", title:"Desenvolvimento de Software para Dispositivos Móveis", img:"img/mobile.jpg", sem:6 },
+  { code:"dev_web", title:"Desenvolvimento de Software para Web", img:"img/web.jpg", sem:6 },
+  { code:"qualidade_confiabilidade", title:"Engenharia da Qualidade e Confiabilidade", img:"img/confiabilidade.jpg", sem:6 },
+
+  // ===== 7º SEMESTRE =====
+  { code:"especificacao_formal", title:"Especificação Formal de Software", img:"img/especificacao-formal.jpg", sem:7 },
+  { code:"testes_automatizados", title:"Testes Automatizados", img:"img/testes.jpg", sem:7 },
+  { code:"tcc_1", title:"Trabalho Final de Curso I", img:"img/tcc1.jpg", sem:7 },
+  { code:"concorrencia", title:"Desenvolvimento de Software para Concorrência", img:"img/concorrencia.jpg", sem:7 },
+  { code:"matematica_computacional", title:"Matemática Computacional", img:"img/matematica-computacional.jpg", sem:7 },
+  { code:"inteligencia_artificial", title:"Inteligência Artificial", img:"img/ia.jpg", sem:7 },
+  { code:"ciencia_dados", title:"Ciência de Dados", img:"img/ciencia-dados.jpg", sem:7 },
+
+  // ===== 8º SEMESTRE =====
+  { code:"computacao_nuvem", title:"Computação em Nuvem", img:"img/cloud.jpg", sem:8 },
+  { code:"redes_neurais", title:"Redes Neurais", img:"img/redes-neurais.jpg", sem:8 },
+  { code:"tcc_2", title:"Trabalho Final de Curso II", img:"img/tcc2.jpg", sem:8 },
+  { code:"persistencia", title:"Desenvolvimento de Software para Persistência", img:"img/persistencia.jpg", sem:8 },
+  { code:"tecnicas_avancadas", title:"Técnicas Avançadas de Construção de Software", img:"img/tecnicas-avancadas.jpg", sem:8 },
+  { code:"estagio", title:"Estágio Supervisionado", img:"img/estagio.jpg", sem:8 }
+];
+
+
+function populateDisciplinas(){
+  for(let i=1;i<=8;i++){
+    const container = document.getElementById("sem"+i);
+    if(!container) continue;
+    container.innerHTML = "";
+    allDisciplines.filter(d => d.sem === i).forEach(d=>{
+      const a = document.createElement("a");
+      a.className = "mod-card";
+      a.href = "#";
+      a.dataset.code = d.code;
+      a.innerHTML = `<img src="${d.img}" alt=""><span>${d.title}</span>`;
+      // click: open discipline (placeholder)
+      a.addEventListener("click", (e)=>{
+        e.preventDefault();
+        // open discipline detail placeholder (can integrate to real pages)
+        alert(`${d.title}\n\nPágina da disciplina (placeholder).`);
+      });
+      container.appendChild(a);
+    });
+  }
+}
+
+/* ================== UTILITIES ================== */
+function formatName(n){
+  return n.replace(/_/g," ").replace(/\b\w/g,l=>l.toUpperCase());
+}
+function formatTempo(raw){
+  // raw could be "1.5" (hours) or "1h 20min" already
+  if(!raw) return "0h";
+  if(raw.includes("h")||raw.includes("min")) return raw;
+  const v = Number(raw);
+  if(isNaN(v)) return raw;
+  const horas = Math.floor(v);
+  const minutos = Math.round((v - horas) * 60);
+  return minutos ? `${horas}h ${minutos}min` : `${horas}h`;
+}
+
+/* ================== TOP PROGRESS UPDATE (small indicator) ================== */
+function updateTopProgress(){
+  const data = JSON.parse(localStorage.getItem("disciplinas") || "{}");
+  const total = 32;
+  const concluidas = Object.values(data).filter(v => v === "concluida").length;
+  const percent = Math.round((concluidas/total)*100);
+  document.getElementById("top-progress").textContent = percent + "%";
+}
+
+/* ================= INIT ================= */
+function init(){
+  populateDisciplinas();
+  loadDashboard();
+  // ensure first nav active state synchronized
+  setActivePage('home');
+}
+init();
+
+/* ============== OPTIONAL: Expose helper to update discipline status ============== */
+/* Use in console or future UI:
+   setStatus('logica_programacao','concluida');
+*/
+window.setStatus = function(code, status){
+  const data = JSON.parse(localStorage.getItem("disciplinas") || "{}");
+  data[code] = status;
+  localStorage.setItem("disciplinas", JSON.stringify(data));
+  loadDashboard();
+  populateDisciplinas();
+};
+
+/* ============================================================
+   CARREGAR progresso.html DENTRO DO SPA
+   ============================================================ */
+
+function loadProgressoPage() {
+  const container = document.getElementById("progresso-container");
+
+  container.innerHTML = `
+    <h1>📈 Progresso</h1>
+    <p style="color:var(--muted)">Carregando progresso...</p>
+  `;
+
+  fetch("progresso.html")
+    .then(response => response.text())
+    .then(html => {
+      container.innerHTML = html;
+
+      // Executa os scripts internos do progresso.html
+      const temp = document.createElement("div");
+      temp.innerHTML = html;
+
+      temp.querySelectorAll("script").forEach(script => {
+        const newScript = document.createElement("script");
+        if (script.src) {
+          newScript.src = script.src;
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
+      });
+    })
+    .catch(() => {
+      container.innerHTML = `
+        <h1>📈 Progresso</h1>
+        <p style="color:red">Erro ao carregar progresso.html</p>
+      `;
+    });
+}
+
+/* ============================================================
+   NAVEGAÇÃO SPA — ADICIONAR CHAMADA PARA O PROGRESSO
+   ============================================================ */
+
+document.querySelectorAll(".nav-btn, .menu-item").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const page = btn.dataset.page;
+
+    // Alterna seções
+    document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(page).classList.add("active");
+
+    // Sidebar active
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    document.querySelector(`.nav-btn[data-page='${page}']`)?.classList.add("active");
+
+    // Menu mobile active
+    document.querySelectorAll(".menu-item").forEach(b => b.classList.remove("active"));
+    document.querySelector(`.menu-item[data-page='${page}']`)?.classList.add("active");
+
+    // Se a página for PROGRESSO → carregar progresso.html
+    if (page === "progresso") {
+      loadProgressoPage();
+    }
+  });
+});
+
+/* ============================================================
+   PAINEL DE CONTROLE — CURSOS COMPLEMENTARES
+   ============================================================ */
+
+async function loadCursosComplementaresPainel() {
+  // 1. Ler cursos diretamente do arquivo cursos.html
+  const resposta = await fetch("cursos.html");
+  const html = await resposta.text();
+
+  // Criar DOM temporária
+  const temp = document.createElement("div");
+  temp.innerHTML = html;
+
+  // Extrair lista de cursos do script do cursos.html
+  const script = temp.querySelector("script").textContent;
+
+  // extrair lista "courses = [ ... ]"
+  let listaCursos = [];
+  try {
+    const match = script.match(/const courses = (.*?];)/s);
+    if (match) listaCursos = eval(match[1]);
+  } catch (e) {
+    console.error("Erro ao ler cursos:", e);
+  }
+
+  // Progresso salvo no navegador
+  const progresso = JSON.parse(localStorage.getItem("cursos_extra_progresso")) || {};
+
+  // Gerar estatísticas
+  let iniciados = 0;
+  let totalHoras = 0;
+  const iniciadosLista = [];
+
+  listaCursos.forEach(curso => {
+    if (progresso[curso.id]) {
+      iniciados++;
+      iniciadosLista.push(curso);
+      // extrair "7 horas" → 7
+      const h = Number(curso.duration.replace(/\D/g, ""));
+      totalHoras += h;
+    }
+  });
+
+  // Atualizar painel
+  document.getElementById("cc_total_iniciados").textContent = iniciados;
+  document.getElementById("cc_total_horas").textContent = totalHoras + "h";
+
+  const mini = document.getElementById("cc_mini_cards");
+  mini.innerHTML = "";
+
+  if (iniciadosLista.length === 0) {
+    mini.innerHTML = `<span style="color:var(--muted)">Nenhum curso iniciado ainda</span>`;
+    return;
+  }
+
+  iniciadosLista.forEach(c => {
+    const card = document.createElement("div");
+    card.style = `
+      background:var(--card);
+      padding:10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.04);
+      width:160px;
+      cursor:pointer;
+      text-align:center;
+    `;
+    card.innerHTML = `
+      <img src="${c.thumb}" style="width:100%;height:80px;object-fit:cover;border-radius:8px">
+      <div style="margin-top:6px;font-size:14px">${c.title}</div>
+    `;
+
+    // clique abre o curso na página principal
+    card.onclick = () => {
+      window.open("cursos.html?id=" + c.id, "_blank");
+    };
+
+    mini.appendChild(card);
+  });
+}
+
+// Carregar quando entrar na aba Cursos
+document.querySelector('[data-page="cursos"]').addEventListener("click", loadCursosComplementaresPainel);
+
+/* ============================================================
+   CALENDÁRIO ACADÊMICO — SISTEMA COMPLETO
+   ============================================================ */
+
+function loadCalendario() {
+  const lista = document.getElementById("calEventos");
+  const empty = document.getElementById("calEmpty");
+  const filtroMes = document.getElementById("calFiltroMes");
+
+  let eventos = JSON.parse(localStorage.getItem("calendario_academico") || "[]");
+
+  // Preencher filtro de meses
+  const meses = [
+    "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+    "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+  ];
+
+  filtroMes.innerHTML = `<option value="all">Todos os meses</option>`;
+  meses.forEach((m, i) => {
+    filtroMes.innerHTML += `<option value="${i}">${m}</option>`;
+  });
+
+  function render() {
+    lista.innerHTML = "";
+
+    let filtrados = eventos.filter(ev => {
+      if (filtroMes.value === "all") return true;
+      const mesEv = new Date(ev.data).getMonth();
+      return mesEv == filtroMes.value;
+    });
+
+    // Exibir ou ocultar mensagem vazia
+    empty.style.display = filtrados.length ? "none" : "block";
+
+    // Ordenar por data
+    filtrados.sort((a, b) => new Date(a.data) - new Date(b.data));
+
+    // Renderizar
+    filtrados.forEach(ev => {
+      const card = document.createElement("div");
+      card.style = `
+        padding:16px;
+        background:var(--glass);
+        border-radius:14px;
+        border:1px solid rgba(255,255,255,0.08);
+      `;
+
+      const dataObj = new Date(ev.data);
+      const dia = dataObj.getDate().toString().padStart(2, "0");
+      const mesNome = meses[dataObj.getMonth()];
+
+      card.innerHTML = `
+        <h3 style="margin:0">${ev.titulo}</h3>
+        <p style="color:var(--muted);margin:2px 0 8px 0">${dia} de ${mesNome}</p>
+        <p style="line-height:1.4">${ev.desc || ""}</p>
+      `;
+
+      lista.appendChild(card);
+    });
+  }
+
+  filtroMes.onchange = render;
+  render();
+}
+
+/* ============================================================
+   MODAL — ADICIONAR EVENTO
+   ============================================================ */
+
+function initCalendarioModal() {
+  const modal = document.getElementById("calAddModal");
+  const open = document.getElementById("calAddOpen");
+  const cancel = document.getElementById("calAddCancel");
+  const save = document.getElementById("calAddSave");
+
+  const titulo = document.getElementById("calTitulo");
+  const data = document.getElementById("calData");
+  const desc = document.getElementById("calDesc");
+
+  open.onclick = () => {
+    modal.style.display = "flex";
+    titulo.value = "";
+    data.value = "";
+    desc.value = "";
+  };
+
+  cancel.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  save.onclick = () => {
+    if (!titulo.value.trim() || !data.value.trim()) {
+      alert("Título e data são obrigatórios!");
+      return;
+    }
+
+    const eventos = JSON.parse(localStorage.getItem("calendario_academico") || "[]");
+
+    eventos.push({
+      titulo: titulo.value.trim(),
+      data: data.value,
+      desc: desc.value.trim()
+    });
+
+    localStorage.setItem("calendario_academico", JSON.stringify(eventos));
+
+    modal.style.display = "none";
+    loadCalendario();
+  };
+
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+}
+
+/* Ativa tudo ao clicar na aba Calendário */
+document.querySelector('[data-page="calendario"]').addEventListener("click", loadCalendario);
+document.querySelector('[data-page="calendario"]').addEventListener("click", initCalendarioModal);
+
+
+/* ============================================================
+   BIBLIOTECA — SISTEMA COMPLETO 2.0 PREMIUM
+   ============================================================ */
+
+function loadBiblioteca() {
+  const grid = document.getElementById("bibGrid");
+  const empty = document.getElementById("bibEmpty");
+  const search = document.getElementById("bibSearch");
+  const filter = document.getElementById("bibFilter");
+
+  let materiais = JSON.parse(localStorage.getItem("biblioteca_lista") || "[]");
+
+  // Categorias iniciais
+  const categorias = ["Livro", "PDF", "Vídeo", "Link"];
+  filter.innerHTML = `<option value="all">Todas as categorias</option>`;
+  categorias.forEach(c => {
+    filter.innerHTML += `<option value="${c}">${c}</option>`;
+  });
+
+  function render() {
+    grid.innerHTML = "";
+
+    let lista = materiais.filter(m => {
+      const matchFiltro = filter.value === "all" || m.categoria === filter.value;
+      const matchBusca = m.titulo.toLowerCase().includes(search.value.toLowerCase());
+      return matchFiltro && matchBusca;
+    });
+
+    empty.style.display = lista.length ? "none" : "block";
+
+    lista.forEach((m, i) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.style.cursor = "pointer";
+      card.innerHTML = `
+        <h3>${m.titulo}</h3>
+        <p style="color:var(--muted)">${m.categoria}</p>
+      `;
+      card.onclick = () => openBibModal(i);
+      grid.appendChild(card);
+    });
+  }
+
+  render();
+
+  search.oninput = render;
+  filter.onchange = render;
+
+  // Modal de visualização
+  const modal = document.getElementById("bibModal");
+
+  function openBibModal(i) {
+    const m = materiais[i];
+    document.getElementById("bibModalTitle").textContent = m.titulo;
+    document.getElementById("bibModalCat").textContent = m.categoria;
+    document.getElementById("bibModalDesc").textContent = m.descricao || "Sem descrição.";
+    document.getElementById("bibModalLink").href = m.link;
+
+    modal.style.display = "flex";
+  }
+
+  document.getElementById("bibModalClose").onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
+/* ============================================================
+   MODAL PREMIUM — ADICIONAR MATERIAL
+   ============================================================ */
+
+function initBibAddModal() {
+  const modal = document.getElementById("bibAddModal");
+  const openBtn = document.getElementById("bibAddOpen");
+  const cancelBtn = document.getElementById("bibAddCancel");
+  const saveBtn = document.getElementById("bibAddSave");
+
+  const titulo = document.getElementById("bibAddTitulo");
+  const categoria = document.getElementById("bibAddCategoria");
+  const link = document.getElementById("bibAddLink");
+  const desc = document.getElementById("bibAddDesc");
+
+  openBtn.onclick = () => {
+    modal.style.display = "flex";
+    titulo.value = "";
+    categoria.value = "";
+    link.value = "";
+    desc.value = "";
+  };
+
+  cancelBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  saveBtn.onclick = () => {
+    if (!titulo.value.trim() || !categoria.value.trim() || !link.value.trim()) {
+      alert("Preencha título, categoria e link!");
+      return;
+    }
+
+    const lista = JSON.parse(localStorage.getItem("biblioteca_lista") || "[]");
+
+    lista.push({
+      titulo: titulo.value.trim(),
+      categoria: categoria.value.trim(),
+      link: link.value.trim(),
+      descricao: desc.value.trim()
+    });
+
+    localStorage.setItem("biblioteca_lista", JSON.stringify(lista));
+
+    modal.style.display = "none";
+    loadBiblioteca(); // atualiza instantaneamente
+  };
+
+  // fechar ao clicar fora
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+}
+
+/* Ativa tudo ao abrir a aba */
+document.querySelector('[data-page="biblioteca"]').addEventListener("click", loadBiblioteca);
+document.querySelector('[data-page="biblioteca"]').addEventListener("click", initBibAddModal);
+
+function carregarProgressoCurso() {
+  const raw = localStorage.getItem("es_course_state_v1");
+  if (!raw) return;
+
+  const data = JSON.parse(raw);
+  const flat = data.semesters.flat();
+
+  const total = flat.length;
+  const done = flat.filter(x => x.done).length;
+  const pct = Math.round((done / total) * 100);
+
+  document.getElementById("progressPercent").textContent = pct + "%";
+  document.getElementById("progressInfo").textContent =
+    `${done} de ${total} disciplinas concluídas`;
+}
+
+function carregarMetas() {
+  const raw = localStorage.getItem("es_course_state_v1");
+  if (!raw) return;
+
+  const data = JSON.parse(raw);
+  const goals = data.goals || [];
+
+  const feitas = goals.filter(g => g.done).length;
+
+  document.getElementById("goalsStats").textContent =
+    `${goals.length} metas (${feitas} concluídas)`;
+
+  if (goals.length === 0) {
+    document.getElementById("goalsInfo").textContent = "Nenhuma meta criada ainda.";
+  } else {
+    document.getElementById("goalsInfo").textContent =
+      `Última meta: ${goals[goals.length - 1].text}`;
+  }
+}
+
+function carregarSemestres() {
+  const raw = localStorage.getItem("es_course_state_v1");
+  if (!raw) return;
+
+  const data = JSON.parse(raw);
+  const semesters = data.semesters;
+
+  let melhor = -1, pior = 999;
+  let melhorSem = "", piorSem = "";
+
+  semesters.forEach((sem, i) => {
+    const tot = sem.length;
+    const done = sem.filter(s => s.done).length;
+    const pct = Math.round((done / tot) * 100);
+
+    if (pct > melhor) {
+      melhor = pct;
+      melhorSem = `${i + 1}º semestre (${pct}%)`;
+    }
+    if (pct < pior) {
+      pior = pct;
+      piorSem = `${i + 1}º semestre (${pct}%)`;
+    }
+  });
+
+  document.getElementById("semesterStats").innerHTML =
+    `<b>Mais avançado:</b> ${melhorSem}<br>
+     <b>Mais atrasado:</b> ${piorSem}`;
+}
+
+// Inicializa tudo
+carregarProgressoCurso();
+carregarMetas();
+carregarSemestres();
+</script>
+
+</body>
+</html>

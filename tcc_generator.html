@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerador Automático de TCC — ABNT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ===== ESTILO ===== -->
+<style>
+  :root{
+    --bg:#0b1120;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --accent:#2563eb;
+  }
+
+  body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+
+  .container{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+  }
+
+  .btn{
+    background:var(--accent);
+    color:#fff;
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .btn:hover{ opacity:.8; }
+
+  .card{
+    background:#fff;
+    color:#000;
+    padding:40px;
+    border-radius:12px;
+    margin-top:25px;
+    line-height:1.8;
+    font-size:15px;
+  }
+
+  h1,h2,h3{ margin:0 0 10px 0; }
+  #tccViewer h2{ margin-top:28px; font-size:20px; }
+</style>
+
+<!-- PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+  <h1>📚 Gerador Automático de TCC (ABNT)</h1>
+  <p style="color:var(--muted)">Seu TCC completo é gerado automaticamente com os dados do painel.</p>
+
+  <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap">
+    <button id="gerarTCC" class="btn">Gerar TCC</button>
+    <button id="editarTCC" class="btn" style="display:none">Editar Manualmente</button>
+    <button id="salvarTCC" class="btn" style="display:none">Salvar Versão</button>
+    <button id="exportarPDF" class="btn" style="display:none">Exportar PDF</button>
+  </div>
+
+  <div id="tccViewer" class="card" style="display:none;">
+    <div id="tccContent" contenteditable="false"></div>
+  </div>
+</div>
+
+<!-- ============ COLETA DE DADOS DO SISTEMA =============== -->
+<script>
+function coletarDadosSistema(){
+  return {
+    disciplinas: JSON.parse(localStorage.getItem("disciplinas") || "{}"),
+    estadoCurso: JSON.parse(localStorage.getItem("es_course_state_v1") || "{}"),
+    biblioteca: JSON.parse(localStorage.getItem("biblioteca_lista") || "[]"),
+    calendario: JSON.parse(localStorage.getItem("calendario_academico") || "[]"),
+    cursosExtras: JSON.parse(localStorage.getItem("cursos_extra_progresso") || "[]"),
+    metas: JSON.parse(localStorage.getItem("metas_semana") || "[]"),
+    tempoEstudo: localStorage.getItem("tempo_estudo") || "0",
+
+    // disciplina_<nome> (futuro)
+    pegarDisciplinasIndividuais: () => {
+      const chaves = Object.keys(localStorage).filter(k => k.startsWith("disciplina_"));
+      return chaves.map(k => JSON.parse(localStorage.getItem(k)));
+    }
+  };
+}
+</script>
+
+<!-- ============ MODELO ABNT =============== -->
+<script>
+function modeloABNT(d){
+
+const disciplinasLista = Object.values(d.disciplinas).map(x=>x.nome).join(", ");
+
+return `
+
+<h1 style="text-align:center; margin-top:200px;">
+  PROJETO DE TCC — ENGENHARIA DE SOFTWARE
+</h1>
+
+<div style="page-break-after:always;"></div>
+
+<h1 style="text-align:center; margin-top:200px;">
+  ${disciplinasLista ? "Aprendizagem Acadêmica ao Longo da Formação em Engenharia de Software" : "Trabalho de Conclusão de Curso"}
+</h1>
+
+<div style="page-break-after:always;"></div>
+
+<h2>Resumo</h2>
+<p>
+  Este trabalho apresenta uma síntese do processo de aprendizagem desenvolvido ao longo do curso de Engenharia de Software.
+  Com base nos registros do ambiente acadêmico, analisam-se as disciplinas estudadas, conteúdos abordados, materiais utilizados e evolução
+  acadêmica registrada no sistema. O estudo busca consolidar o conhecimento adquirido e organizar uma visão metodológica e coerente do percurso formativo.
+</p>
+
+<h2>1. Introdução</h2>
+<p>
+  Este Trabalho de Conclusão de Curso tem como finalidade documentar o desenvolvimento do estudante ao longo da formação em Engenharia de Software.
+  As disciplinas estudadas incluem ${disciplinasLista}. O progresso registrado demonstra uma evolução contínua dos conhecimentos teóricos
+  e práticos necessários para atuação profissional na área.
+</p>
+
+<h2>2. Problema</h2>
+<p>
+  Como consolidar, estruturar e apresentar de forma acadêmica todo o conteúdo aprendido durante a formação, garantindo uma visão clara, organizada
+  e metodológica do progresso técnico e teórico obtido ao longo do curso?
+</p>
+
+<h2>3. Justificativa</h2>
+<p>
+  A justificativa para este trabalho reside na necessidade de organização e sistematização do conhecimento adquirido, permitindo uma avaliação
+  completa da formação e a construção de um documento formal que demonstre a evolução acadêmica dentro dos padrões da ABNT.
+</p>
+
+<h2>4. Objetivo Geral</h2>
+<p>
+  Consolidar e apresentar, em formato de TCC, todo o conhecimento adquirido durante a formação em Engenharia de Software.
+</p>
+
+<h2>5. Objetivos Específicos</h2>
+<p>
+  • Descrever as disciplinas cursadas e seus principais conteúdos;<br>
+  • Analisar o desenvolvimento acadêmico por meio dos registros de progresso;<br>
+  • Demonstrar evolução técnica em áreas essenciais da Engenharia de Software;<br>
+  • Relacionar materiais estudados e fundamentos teóricos utilizados;<br>
+  • Apresentar uma síntese metodológica das práticas de estudo adotadas.
+</p>
+
+<h2>6. Fundamentação Teórica</h2>
+<p>
+  A fundamentação teórica baseia-se nos materiais estudados incluídos na biblioteca acadêmica, tais como artigos, livros e conteúdos digitais.
+</p>
+${d.biblioteca.map(item => `
+<p><strong>${item.titulo}</strong> — ${item.descricao || ""}</p>
+`).join("")}
+
+<h2>7. Metodologia</h2>
+<p>
+  A metodologia utilizada constitui-se de estudo contínuo, leitura de materiais, execução de atividades práticas e acompanhamento das disciplinas.
+  Os dados utilizados neste TCC foram extraídos automaticamente do sistema de acompanhamento acadêmico.
+</p>
+
+<h2>8. Desenvolvimento</h2>
+<p>
+  O desenvolvimento do estudo considerou o andamento das disciplinas registradas e o progresso individual do aluno.
+</p>
+${Object.values(d.disciplinas).map(mat => `
+  <h3>${mat.nome}</h3>
+  <p>Progresso: ${mat.porcentagem || 0}%</p>
+`).join("")}
+
+<h2>9. Resultados</h2>
+<p>
+  O aluno registrou um total de ${d.tempoEstudo} horas de estudo e evoluiu academicamente conforme os indicadores do sistema.
+  O progresso geral demonstra consolidação progressiva das habilidades essenciais do curso.
+</p>
+
+<h2>10. Considerações Finais</h2>
+<p>
+  Conclui-se que o acompanhamento sistematizado do desenvolvimento acadêmico permitiu identificar a evolução do estudante ao longo da formação.
+  O presente TCC reúne e estrutura esse conhecimento, demonstrando a trajetória de aprendizagem de forma formal e organizada.
+</p>
+
+<h2>Referências</h2>
+<p>
+  Pressman, R. Engenharia de Software.<br>
+  Sommerville, I. Engenharia de Software.<br>
+  Materiais complementares registrados no sistema acadêmico.
+</p>
+
+`;
+}
+</script>
+
+<!-- ============ SCRIPT PRINCIPAL =============== -->
+<script>
+document.getElementById("gerarTCC").onclick = () => {
+  const dados = coletarDadosSistema();
+  const html = modeloABNT(dados);
+
+  const viewer = document.getElementById("tccViewer");
+  const content = document.getElementById("tccContent");
+
+  content.innerHTML = html;
+  viewer.style.display = "block";
+
+  document.getElementById("editarTCC").style.display = "inline-block";
+  document.getElementById("salvarTCC").style.display = "inline-block";
+  document.getElementById("exportarPDF").style.display = "inline-block";
+};
+
+document.getElementById("editarTCC").onclick = () => {
+  document.getElementById("tccContent").contentEditable = true;
+  alert("Agora você pode editar seu TCC manualmente.");
+};
+
+document.getElementById("salvarTCC").onclick = () => {
+  const texto = document.getElementById("tccContent").innerHTML;
+  localStorage.setItem("tcc_gerado_abnt", texto);
+  alert("TCC salvo com sucesso!");
+};
+
+document.getElementById("exportarPDF").onclick = () => {
+  const el = document.getElementById("tccViewer");
+  html2pdf().set({
+    margin: 1,
+    filename: "TCC_ABNT.pdf",
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
+  }).from(el).save();
+};
+</script>
+
+</body>
+</html>

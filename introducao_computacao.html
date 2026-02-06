@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Introdução à Computação e Engenharia de Software</title>
+
+<style>
+  body {
+    background:#0b1120; color:#e2e8f0; font-family:Arial, sans-serif;
+    margin:0; padding:0;
+  }
+  .container{
+    max-width:900px; margin:40px auto; padding:20px;
+  }
+  h1, h2, h3 { color:#60a5fa; }
+  p, li { line-height:1.6; }
+  .page {
+    display:none;
+    animation: fade .3s ease;
+  }
+  .page.active {
+    display:block;
+  }
+  @keyframes fade {
+    from {opacity:0;}
+    to   {opacity:1;}
+  }
+  .nav-buttons{
+    margin-top:40px;
+    display:flex;
+    justify-content:space-between;
+  }
+  button{
+    background:#1e3a8a;
+    border:none;
+    padding:12px 18px;
+    border-radius:6px;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+  }
+  button:hover{
+    background:#3b82f6;
+  }
+
+  .aulas{
+    background: #fff;
+    margin: 10px;
+    color: #0b1120;
+    padding: 20px;
+    border-radius: 30px;
+    
+  }
+
+  .card{
+    background: #fff;
+    margin: 10px;
+    color: #0b1120;
+    padding: 20px;
+    border-radius: 30px;
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <h1>📘 Introdução à Computação e Engenharia de Software</h1>
+  <p style="color:#94a3b8;">Curso completo — 1º Semestre</p>
+  <hr><br>
+
+  <!-- =====================================================
+       TODAS AS PÁGINAS (AULAS)
+       Cada div.page é uma AULA
+  ====================================================== -->
+
+
+   <!--Previa-->
+  <div class="page active" id="page1">
+        <!-- OBJETIVOS -->
+        <div class="card">
+            <h2>🎯 Objetivos da Disciplina</h2>
+            <ul>
+            <li>Compreender os fundamentos da computação, hardware e software.</li>
+            <li>Entender o papel do Engenheiro de Software e o ciclo de vida do desenvolvimento.</li>
+            <li>Aprender lógica computacional, algoritmos e pensamento computacional.</li>
+            <li>Conhecer processos, metodologias e práticas da Engenharia de Software.</li>
+            <li>Aprender modelagem básica, requisitos e documentação simples.</li>
+            <li>Introdução a Git, GitHub e versionamento.</li>
+            <li>Desenvolver o primeiro mini-projeto da graduação.</li>
+            </ul>
+        </div>
+
+        <!-- CONTEÚDO -->
+        <div class="card">
+            <h2>📚 Conteúdo Programático Completo</h2>
+
+            <!-- Módulo 1 -->
+            <div class="module">
+            <h3 class="module-title">Módulo 1 — Fundamentos da Computação</h3>
+            <ul>
+                <li>O que é Computação e o que significa “computar”.</li>
+                <li>História da computação: Ada Lovelace, Turing, Von Neumann.</li>
+                <li>Representação da informação: bits, bytes, binário, hexadecimal.</li>
+                <li>Arquitetura básica de computadores (CPU, memória, armazenamento).</li>
+                <li>Como um programa é executado no hardware.</li>
+            </ul>
+            </div>
+
+            <!-- Módulo 2 -->
+            <div class="module">
+            <h3 class="module-title">Módulo 2 — Software, Sistemas e Ferramentas</h3>
+            <ul>
+                <li>Software de sistema e software aplicativo.</li>
+                <li>Sistemas Operacionais.</li>
+                <li>Ambiente de desenvolvimento (VSCode, terminal, devtools).</li>
+                <li>Virtualização e containers (conceito).</li>
+            </ul>
+            </div>
+
+            <!-- Módulo 3 -->
+            <div class="module">
+            <h3 class="module-title">Módulo 3 — Pensamento Computacional e Algoritmos</h3>
+            <ul>
+                <li>Abstração, decomposição, padrões.</li>
+                <li>O que é um algoritmo.</li>
+                <li>Pseudocódigo e fluxogramas.</li>
+                <li>Sequência, decisão e repetição.</li>
+                <li>Paradigmas de programação (estruturado, OO, funcional).</li>
+            </ul>
+            </div>
+
+            <!-- Módulo 4 -->
+            <div class="module">
+            <h3 class="module-title">Módulo 4 — Introdução à Engenharia de Software</h3>
+            <ul>
+                <li>O que é Engenharia de Software e seus papéis.</li>
+                <li>Áreas fundamentais (requisitos, design, arquitetura, testes, manutenção).</li>
+                <li>Ciclo de vida do software.</li>
+                <li>Processos e metodologias: Cascata, Incremental, Ágil (Scrum/Kanban).</li>
+            </ul>
+            </div>
+
+            <!-- Módulo 5 -->
+            <div class="module">
+            <h3 class="module-title">Módulo 5 — Requisitos e Modelagem Básica</h3>
+            <ul>
+                <li>Requisitos funcionais e não funcionais.</li>
+                <li>Elicitação básica.</li>
+                <li>Documentos simples de requisitos.</li>
+                <li>Fluxogramas e diagramas simples.</li>
+            </ul>
+            </div>
+
+            <!-- Módulo 6 -->
+            <div class="module">
+            <h3 class="module-title">Módulo 6 — Qualidade e Testes Básicos</h3>
+            <ul>
+                <li>Importância de testes.</li>
+                <li>Tipos de teste (caixa preta, integração, unidade - conceito).</li>
+                <li>Bug report simples.</li>
+            </ul>
+            </div>
+
+            <!-- Módulo 7 -->
+            <div class="module">
+            <h3 class="module-title">Módulo 7 — Versionamento com Git</h3>
+            <ul>
+                <li>Conceitos: commit, branch, merge.</li>
+                <li>GitHub: repositórios, push/pull, issues.</li>
+                <li>Documentação com README.</li>
+            </ul>
+            </div>
+
+            <!-- Módulo 8 -->
+            <div class="module">
+            <h3 class="module-title">Módulo 8 — Ética, Mercado e Carreira</h3>
+            <ul>
+                <li>Ética profissional na computação.</li>
+                <li>Privacidade, segurança e responsabilidade legal.</li>
+                <li>Carreiras da Computação e Engenharia de Software.</li>
+            </ul>
+            </div>
+
+        </div>
+
+        <!-- PROJETO FINAL -->
+        <div class="card">
+            <h2>🧪 Projeto Final — Mini Sistema</h2>
+            <div class="project-box">
+            <p>O aluno aplicará todos os conceitos da disciplina criando um pequeno sistema completo.</p>
+
+            <h3>Entregáveis:</h3>
+            <ul>
+                <li>Documento simples de requisitos</li>
+                <li>Fluxograma do sistema</li>
+                <li>Prototipagem simples (opcional)</li>
+                <li>Repositório Git completo</li>
+                <li>Código funcional (HTML/JS ou Python)</li>
+                <li>Casos de teste básicos</li>
+                <li>Apresentação do projeto</li>
+            </ul>
+
+            <h3>Exemplos de projetos:</h3>
+            <ul>
+                <li>Cadastro de clientes</li>
+                <li>Lista de tarefas (TODO)</li>
+                <li>Agenda de contatos com armazenamento local</li>
+                <li>Simulador de caixa eletrônico</li>
+            </ul>
+            </div>
+        </div>
+        <div class="nav-buttons">
+      <span></span>
+      <button onclick="nextPage()">Próxima Aula →</button>
+    </div>
+  </div>
+  
+
+
+  <!-- AULA 1 -->
+  <div class="page" id="page2">
+
+    <div class="aulas">
+        <h2>Aula 1 — O que é Computação?</h2>
+        <p>Nesta aula você entenderá o que é computação, como ela surgiu, suas áreas e como impacta o mundo moderno.</p>
+
+        <h3>Conteúdo:</h3>
+        <ul>
+        <li>Definição de Computação</li>
+        <li>História dos computadores</li>
+        <li>Evolução das gerações computacionais</li>
+        <li>Perspectiva moderna: computação ubíqua</li>
+        </ul>
+    </div>
+    <div class="nav-buttons">
+      <button onclick="prevPage()">← Aula Anterior</button>
+      <button onclick="nextPage()">Próxima Aula →</button>
+    </div>
+  </div>
+
+  <!-- AULA 2 -->
+  <div class="page" id="page3">
+    <div class="aulas">
+    <h2>Aula 2 — Hardware e Software</h2>
+    <p>Aqui você aprenderá a diferença entre hardware, software e como eles trabalham juntos dentro de um sistema computacional.</p>
+
+    <h3>Conteúdo:</h3>
+    <ul>
+      <li>Hardware: CPU, memória, I/O, armazenamento</li>
+      <li>Software: sistema operacional, drivers, aplicativos</li>
+      <li>Níveis de abstração</li>
+      <li>Como o computador executa programas</li>
+    </ul>
+    </div>
+    <div class="nav-buttons">
+      <button onclick="prevPage()">← Aula Anterior</button>
+      <button onclick="nextPage()">Próxima Aula →</button>
+    </div>
+  </div>
+
+  <!-- AULA 3 -->
+  <div class="page" id="page4">
+    <h2>Aula 3 — Sistemas Operacionais</h2>
+    <p>Você entenderá como funciona um SO e por que ele é essencial para qualquer dispositivo digital.</p>
+
+    <h3>Conteúdo:</h3>
+    <ul>
+      <li>Funções principais do SO</li>
+      <li>Gerenciamento de processos</li>
+      <li>Gerenciamento de memória</li>
+      <li>Sistemas de arquivos</li>
+      <li>Linux, Windows e Android</li>
+    </ul>
+
+    <div class="nav-buttons">
+      <button onclick="prevPage()">← Aula Anterior</button>
+      <button onclick="nextPage()">Próxima Aula →</button>
+    </div>
+  </div>
+
+  <!-- AULA 4 -->
+  <div class="page" id="page5">
+    <h2>Aula 4 — O que é Engenharia de Software?</h2>
+    <p>Aqui começa a parte mais importante da matéria: fundamentos da Engenharia de Software.</p>
+
+    <h3>Conteúdo:</h3>
+    <ul>
+      <li>Definição e objetivos da Engenharia de Software</li>
+      <li>Problemas que ela resolve</li>
+      <li>O que é um software de qualidade</li>
+      <li>O papel do engenheiro de software</li>
+    </ul>
+
+    <div class="nav-buttons">
+      <button onclick="prevPage()">← Aula Anterior</button>
+      <button onclick="nextPage()">Próxima Aula →</button>
+    </div>
+  </div>
+
+  <!-- AULA 5 -->
+  <div class="page" id="page6">
+    <h2>Aula 5 — Ciclo de Vida de Software</h2>
+    <p>Você conhecerá as etapas que definem o desenvolvimento de qualquer software.</p>
+
+    <h3>Conteúdo:</h3>
+    <ul>
+      <li>Levantamento de requisitos</li>
+      <li>Análise e projeto</li>
+      <li>Implementação</li>
+      <li>Testes</li>
+      <li>Implantação e manutenção</li>
+      <li>Modelos de ciclo de vida (Waterfall, Iterativo, Ágil)</li>
+    </ul>
+
+    <div class="nav-buttons">
+      <button onclick="prevPage()">← Aula Anterior</button>
+      <button onclick="nextPage()">Próxima Aula →</button>
+    </div>
+  </div>
+
+  <!-- AULA 6 -->
+  <div class="page" id="page7">
+    <h2>Aula 6 — Arquitetura de Computadores</h2>
+    <p>Como funciona um computador “por dentro”, desde a CPU até o armazenamento.</p>
+
+    <h3>Conteúdo:</h3>
+    <ul>
+      <li>CPU: ULA, registradores, clock</li>
+      <li>Memória RAM</li>
+      <li>Barramentos</li>
+      <li>Entrada e saída</li>
+      <li>Armazenamento: HD, SSD, NVMe</li>
+    </ul>
+
+    <div class="nav-buttons">
+      <button onclick="prevPage()">← Aula Anterior</button>
+      <button onclick="nextPage()">Próxima Aula →</button>
+    </div>
+  </div>
+
+  <!-- AULA 7 -->
+  <div class="page" id="page8">
+    <h2>Aula 7 — Redes de Computadores</h2>
+    <p>Noções básicas sobre como os computadores se comunicam.</p>
+
+    <h3>Conteúdo:</h3>
+    <ul>
+      <li>LAN, WAN, Internet</li>
+      <li>Protocolos (TCP/IP, HTTP, DNS)</li>
+      <li>Endereços IP e roteamento</li>
+      <li>Cliente/Servidor</li>
+    </ul>
+
+    <div class="nav-buttons">
+      <button onclick="prevPage()">← Aula Anterior</button>
+      <button onclick="nextPage()">Próxima Aula →</button>
+    </div>
+  </div>
+
+  <!-- AULA 8 -->
+  <div class="page" id="page9">
+    <h2>Aula 8 — Carreira em TI e Áreas da Computação</h2>
+    <p>Panorama das profissões do mercado e como evoluir na área.</p>
+
+    <h3>Conteúdo:</h3>
+    <ul>
+      <li>Desenvolvimento Web</li>
+      <li>Engenharia de Software</li>
+      <li>Dados e Inteligência Artificial</li>
+      <li>Segurança da Informação</li>
+      <li>Infraestrutura/DevOps</li>
+      <li>Mobile</li>
+      <li>UX/UI</li>
+    </ul>
+
+    <div class="nav-buttons">
+      <button onclick="prevPage()">← Aula Anterior</button>
+      <span></span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ====================== SCRIPT ===================== -->
+<script>
+  let currentPage = 1;
+  const totalPages = 9;
+
+  function showPage(n){
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelector(`#page${n}`).classList.add('active');
+  }
+
+  function nextPage(){
+    if(currentPage < totalPages){
+      currentPage++;
+      showPage(currentPage);
+    }
+  }
+
+  function prevPage(){
+    if(currentPage > 1){
+      currentPage--;
+      showPage(currentPage);
+    }
+  }
+</script>
+
+</body>
+</html>
