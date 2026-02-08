@@ -208,6 +208,118 @@
     main{padding:16px}
   }
 
+  /* =========================
+   MOBILE FIRST OVERRIDES
+   ========================= */
+@media (max-width: 768px){
+
+  /* ===== BODY / LAYOUT ===== */
+  body{
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  main{
+    height: auto;
+    padding: 14px;
+  }
+
+  .container{
+    padding: 0;
+  }
+
+  /* ===== TOPBAR ===== */
+  .topbar{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar{
+    display: none;
+  }
+
+  /* ===== HOME HEADER ===== */
+  .home-header h1{
+    font-size: 20px;
+  }
+
+  .home-header p{
+    font-size: 14px;
+  }
+
+  /* ===== DASHBOARD ===== */
+  .dashboard{
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .card{
+    padding: 16px;
+  }
+
+  .card.big,
+  .card.wide{
+    grid-column: span 1;
+  }
+
+  .big-number{
+    font-size: 22px;
+  }
+
+  /* ===== LISTAS ===== */
+  .modern-list li{
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  /* ===== TAGS ===== */
+  .tags span,
+  .active-tags span{
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  /* ===== GRID DE DISCIPLINAS ===== */
+  .modulos-grid{
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-bottom: 12px;
+  }
+
+  .mod-card img{
+    height: 150px;
+  }
+
+  .mod-card span{
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  /* ===== SEMESTRE ===== */
+  .semestre-title{
+    font-size: 16px;
+    margin: 22px 0 10px;
+  }
+
+  /* ===== MENU MODAL ===== */
+  .menu-modal{
+    padding: 16px;
+  }
+
+  .menu-inner{
+    padding: 16px;
+  }
+
+  .menu-inner button{
+    font-size: 17px;
+    padding: 14px;
+  }
+}
+
+
   @media (max-width:520px){
     .home-header h1{font-size:20px}
     .card.big,.card.wide{grid-column:span 1}
@@ -1526,3 +1638,4 @@ carregarSemestres();
 
 </body>
 </html>
+
