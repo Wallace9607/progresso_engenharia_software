@@ -66,6 +66,134 @@
 
     /* responsive */
     @media (max-width:980px){.container{grid-template-columns:1fr;}.grid-semesters{grid-template-columns:1fr}}
+    /* =========================
+   MOBILE OVERRIDES
+   ========================= */
+@media (max-width: 768px){
+
+  /* ===== BODY ===== */
+  body{
+    padding:16px;
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .logo svg{
+    width:42px;
+    height:42px;
+  }
+
+  h1{
+    font-size:18px;
+  }
+
+  p.lead{
+    font-size:12px;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  /* ===== SIDEBAR (vira card) ===== */
+  .sidebar{
+    padding:14px;
+    border-radius:16px;
+  }
+
+  .big-progress{
+    gap:14px;
+  }
+
+  .progress-ring{
+    width:82px;
+    height:82px;
+    font-size:14px;
+  }
+
+  .meta small{
+    font-size:12px;
+  }
+
+  /* ===== GOALS ===== */
+  .goals{
+    padding:12px;
+  }
+
+  .goal-item{
+    font-size:12px;
+  }
+
+  /* ===== CONTROLS ===== */
+  .controls{
+    gap:6px;
+  }
+
+  button.btn{
+    font-size:13px;
+    padding:8px 10px;
+  }
+
+  /* ===== MAIN ===== */
+  main{
+    min-height:auto;
+  }
+
+  /* ===== GRID SEMESTERS ===== */
+  .grid-semesters{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .semester{
+    padding:12px;
+  }
+
+  .semester h2{
+    font-size:14px;
+  }
+
+  .semester .sub{
+    font-size:11px;
+  }
+
+  /* ===== COURSES ===== */
+  .course{
+    padding:10px;
+    gap:8px;
+  }
+
+  .course .meta strong{
+    font-size:13px;
+  }
+
+  .course .meta small{
+    font-size:11px;
+  }
+
+  .course .actions{
+    gap:6px;
+  }
+
+  .pill{
+    font-size:11px;
+    padding:5px 7px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    font-size:12px;
+    text-align:center;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -372,4 +500,5 @@ const curriculum = [
     window.addEventListener('keydown', (e)=>{ if(e.key==='e' && (e.ctrlKey||e.metaKey)){ e.preventDefault(); document.getElementById('export-btn').click(); } })
   </script>
 </body>
+
 </html>clique no
