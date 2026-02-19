@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atividade - Gestão do Conhecimento</title>
+
+<style>
+:root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --text:#e6eef6;
+    --muted:#9aa4b2;
+    --accent:#6ee7b7;
+    --danger:#ef4444;
+    --success:#22c55e;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body{
+    background:var(--bg);
+    font-family:system-ui, -apple-system, sans-serif;
+    color:var(--text);
+    padding:40px 20px;
+}
+
+/* CONTAINER */
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+/* BOTÃO VOLTAR */
+.back-btn{
+    display:inline-block;
+    margin-bottom:25px;
+    text-decoration:none;
+    color:var(--muted);
+    transition:.2s;
+}
+
+.back-btn:hover{
+    color:var(--accent);
+}
+
+/* CARD */
+.card{
+    background:linear-gradient(145deg,var(--card),#0e1628);
+    padding:30px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.card h1{
+    margin-bottom:15px;
+    color:var(--accent);
+}
+
+.card p{
+    margin-bottom:12px;
+    line-height:1.6;
+    color:var(--muted);
+}
+
+/* STATUS */
+.status{
+    margin-top:20px;
+    padding:12px 18px;
+    border-radius:10px;
+    display:inline-block;
+    font-weight:600;
+}
+
+.pendente{
+    background:rgba(239,68,68,0.15);
+    color:var(--danger);
+}
+
+.concluida{
+    background:rgba(34,197,94,0.15);
+    color:var(--success);
+}
+
+/* BOTÃO */
+.btn{
+    margin-top:20px;
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    background:var(--accent);
+    color:#000;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* RESPONSIVO */
+@media(max-width:600px){
+    body{ padding:20px 15px; }
+    .card{ padding:20px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="../gestao_conhecimento.html" class="back-btn">← Voltar para a matéria</a>
+
+<div class="card">
+    <h1>Atividade 01 – Sociedade do Conhecimento</h1>
+
+    <p><strong>Data:</strong> 10/02/2026</p>
+
+    <p>
+        Desenvolver uma análise sobre como a sociedade do conhecimento 
+        transformou as organizações modernas.
+    </p>
+
+    <p>
+        O texto deve conter:
+    </p>
+
+    <ul style="margin-left:20px; color:var(--muted);">
+        <li>Definição de sociedade do conhecimento</li>
+        <li>Impacto econômico</li>
+        <li>Impacto tecnológico</li>
+        <li>Conclusão crítica</li>
+    </ul>
+
+    <div id="statusBox" class="status pendente">
+        Status: Pendente
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="toggleStatus()">
+        Marcar como concluída
+    </button>
+
+</div>
+
+</div>
+
+<script>
+const activityId = "gc_atividade_01";
+
+function loadStatus(){
+    const saved = localStorage.getItem(activityId);
+    const statusBox = document.getElementById("statusBox");
+    const button = document.querySelector(".btn");
+
+    if(saved === "concluida"){
+        statusBox.classList.remove("pendente");
+        statusBox.classList.add("concluida");
+        statusBox.innerText = "Status: Concluída";
+        button.innerText = "Marcar como pendente";
+    }
+}
+
+function toggleStatus(){
+    const statusBox = document.getElementById("statusBox");
+    const button = document.querySelector(".btn");
+
+    if(statusBox.classList.contains("pendente")){
+        statusBox.classList.remove("pendente");
+        statusBox.classList.add("concluida");
+        statusBox.innerText = "Status: Concluída";
+        button.innerText = "Marcar como pendente";
+        localStorage.setItem(activityId,"concluida");
+    }else{
+        statusBox.classList.remove("concluida");
+        statusBox.classList.add("pendente");
+        statusBox.innerText = "Status: Pendente";
+        button.innerText = "Marcar como concluída";
+        localStorage.setItem(activityId,"pendente");
+    }
+}
+
+loadStatus();
+</script>
+
+</body>
+</html>

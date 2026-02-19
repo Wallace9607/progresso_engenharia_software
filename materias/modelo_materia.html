@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelo de Matéria</title>
+
+<style>
+:root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --text:#e6eef6;
+    --muted:#9aa4b2;
+    --accent:#6ee7b7;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+body{
+    font-family:Inter, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    min-height:100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+    width:250px;
+    background:var(--card);
+    padding:25px 15px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    border-right:1px solid rgba(255,255,255,0.05);
+}
+
+.sidebar h2{
+    color:var(--accent);
+    margin-bottom:10px;
+}
+
+.nav-item{
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
+    color:var(--muted);
+    transition:.2s;
+}
+
+.nav-item:hover{
+    background:rgba(110,231,183,0.08);
+    color:var(--accent);
+}
+
+.nav-item.active{
+    background:rgba(110,231,183,0.15);
+    color:var(--accent);
+}
+
+/* ===== CONTEÚDO ===== */
+.main{
+    flex:1;
+    padding:40px;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.card{
+    background:var(--card);
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+h1{
+    margin-bottom:20px;
+    color:var(--accent);
+}
+
+h3{
+    margin:15px 0 8px;
+    color:var(--accent);
+}
+
+p{
+    margin-bottom:10px;
+    line-height:1.6;
+    color:var(--muted);
+}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:768px){
+    body{ flex-direction:column; }
+    .sidebar{
+        width:100%;
+        flex-direction:row;
+        overflow-x:auto;
+    }
+    .nav-item{
+        white-space:nowrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Gestão do Conhecimento</h2>
+
+    <div class="nav-item active" onclick="showSection('home')">🏠 Home</div>
+    <div class="nav-item" onclick="showSection('visao')">📋 Visão Geral</div>
+    <div class="nav-item" onclick="showSection('atividades')">📝 Atividades</div>
+    <div class="nav-item" onclick="showSection('trabalhos')">📂 Trabalhos</div>
+    <div class="nav-item" onclick="showSection('conteudo')">📚 Conteúdo de Aula</div>
+    <div class="nav-item" onclick="showSection('bibliografia')">📖 Bibliografia</div>
+</div>
+
+<div class="main">
+
+    <!-- HOME -->
+    <div id="home" class="section active">
+        <h1>Sobre a Matéria</h1>
+
+        <div class="card">
+            <h3>O que é?</h3>
+            <p>Disciplina voltada ao estudo da criação, compartilhamento e gestão do conhecimento dentro das organizações.</p>
+
+            <h3>O que estuda?</h3>
+            <p>Modelos de gestão, inovação, capital intelectual e transformação digital.</p>
+
+            <h3>História / Linha do Tempo</h3>
+            <p>Surge com maior força nos anos 1990 com avanço da economia do conhecimento.</p>
+
+            <h3>Importância na Engenharia de Software</h3>
+            <p>Ajuda equipes a documentar, compartilhar e evoluir conhecimento técnico e organizacional.</p>
+        </div>
+    </div>
+
+    <!-- VISÃO GERAL -->
+    <div id="visao" class="section">
+        <h1>Visão Geral</h1>
+        <div class="card">
+            <p>Aqui ficará o cronograma e plano de ensino fornecido pelo professor.</p>
+        </div>
+    </div>
+
+    <!-- ATIVIDADES -->
+    <div id="atividades" class="section">
+        <h1>Atividades</h1>
+        <div class="card">
+            <p>Lista de atividades realizadas na disciplina.</p>
+        </div>
+    </div>
+
+    <!-- TRABALHOS -->
+    <div id="trabalhos" class="section">
+        <h1>Trabalhos</h1>
+        <div class="card">
+            <p>Trabalhos desenvolvidos durante a matéria.</p>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div id="conteudo" class="section">
+        <h1>Conteúdo de Aula</h1>
+        <div class="card">
+            <p>Resumo das aulas ministradas.</p>
+        </div>
+    </div>
+
+    <!-- BIBLIOGRAFIA -->
+    <div id="bibliografia" class="section">
+        <h1>Bibliografia</h1>
+        <div class="card">
+            <p>Livros e materiais exclusivos da disciplina.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function showSection(id){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

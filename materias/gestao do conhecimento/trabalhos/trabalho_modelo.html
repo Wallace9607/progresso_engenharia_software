@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trabalho - Gestão do Conhecimento</title>
+
+<style>
+:root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --text:#e6eef6;
+    --muted:#9aa4b2;
+    --accent:#6ee7b7;
+    --warning:#f59e0b;
+    --success:#22c55e;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body{
+    background:var(--bg);
+    font-family:system-ui, -apple-system, sans-serif;
+    color:var(--text);
+    padding:40px 20px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:25px;
+    text-decoration:none;
+    color:var(--muted);
+    transition:.2s;
+}
+
+.back-btn:hover{
+    color:var(--accent);
+}
+
+.card{
+    background:linear-gradient(145deg,var(--card),#0e1628);
+    padding:35px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.card h1{
+    margin-bottom:20px;
+    color:var(--accent);
+}
+
+.info{
+    margin-bottom:15px;
+    color:var(--muted);
+}
+
+.section{
+    margin-top:25px;
+}
+
+.section h3{
+    margin-bottom:10px;
+    color:var(--accent);
+}
+
+.section p{
+    color:var(--muted);
+    line-height:1.6;
+}
+
+/* STATUS */
+.status{
+    margin-top:20px;
+    padding:12px 18px;
+    border-radius:10px;
+    display:inline-block;
+    font-weight:600;
+}
+
+.andamento{
+    background:rgba(245,158,11,0.15);
+    color:var(--warning);
+}
+
+.entregue{
+    background:rgba(34,197,94,0.15);
+    color:var(--success);
+}
+
+/* BOTÃO */
+.btn{
+    margin-top:20px;
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    background:var(--accent);
+    color:#000;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+@media(max-width:600px){
+    body{ padding:20px 15px; }
+    .card{ padding:20px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="../index.html" class="back-btn">← Voltar para a matéria</a>
+
+<div class="card">
+
+    <h1>Trabalho 01 – Inovação nas Organizações</h1>
+
+    <div class="info">
+        <strong>Entrega:</strong> 28/04/2026<br>
+        <strong>Tipo:</strong> Grupo<br>
+        <strong>Peso:</strong> 25% da nota
+    </div>
+
+    <div class="section">
+        <h3>Objetivo</h3>
+        <p>
+            Analisar como a gestão do conhecimento influencia os processos
+            de inovação dentro das organizações.
+        </p>
+    </div>
+
+    <div class="section">
+        <h3>Instruções</h3>
+        <p>
+            O trabalho deve conter:
+        </p>
+        <ul style="margin-left:20px; color:var(--muted);">
+            <li>Introdução ao tema</li>
+            <li>Referencial teórico</li>
+            <li>Estudo de caso real</li>
+            <li>Conclusão crítica</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Critérios de Avaliação</h3>
+        <p>
+            Clareza, profundidade da análise, uso de referências,
+            organização e apresentação.
+        </p>
+    </div>
+
+    <div id="statusBox" class="status andamento">
+        Status: Em andamento
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="toggleStatus()">
+        Marcar como entregue
+    </button>
+
+</div>
+
+</div>
+
+<script>
+const trabalhoId = "gc_trabalho_01";
+
+function loadStatus(){
+    const saved = localStorage.getItem(trabalhoId);
+    const statusBox = document.getElementById("statusBox");
+    const button = document.querySelector(".btn");
+
+    if(saved === "entregue"){
+        statusBox.classList.remove("andamento");
+        statusBox.classList.add("entregue");
+        statusBox.innerText = "Status: Entregue";
+        button.innerText = "Marcar como em andamento";
+    }
+}
+
+function toggleStatus(){
+    const statusBox = document.getElementById("statusBox");
+    const button = document.querySelector(".btn");
+
+    if(statusBox.classList.contains("andamento")){
+        statusBox.classList.remove("andamento");
+        statusBox.classList.add("entregue");
+        statusBox.innerText = "Status: Entregue";
+        button.innerText = "Marcar como em andamento";
+        localStorage.setItem(trabalhoId,"entregue");
+    }else{
+        statusBox.classList.remove("entregue");
+        statusBox.classList.add("andamento");
+        statusBox.innerText = "Status: Em andamento";
+        button.innerText = "Marcar como entregue";
+        localStorage.setItem(trabalhoId,"andamento");
+    }
+}
+
+loadStatus();
+</script>
+
+</body>
+</html>

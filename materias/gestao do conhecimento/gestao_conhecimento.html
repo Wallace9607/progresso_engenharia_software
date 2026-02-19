@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelo de Matéria</title>
+
+<style>
+:root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --text:#e6eef6;
+    --muted:#9aa4b2;
+    --accent:#6ee7b7;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+body{
+    margin:0;
+    background: var(--bg);
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ===== SIDEBAR FIXA ===== */
+.sidebar{
+    width:260px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    background: linear-gradient(180deg, #0b1220, #0f1724);
+    border-right:1px solid rgba(255,255,255,0.05);
+    padding:25px 20px;
+    display:flex;
+    flex-direction:column;
+    z-index:1000;
+}
+
+/* Logo ou título */
+.sidebar h2{
+    color: var(--accent);
+    font-size:20px;
+    margin-bottom:30px;
+}
+
+/* Links */
+.sidebar a{
+    text-decoration:none;
+    color:var(--muted);
+    padding:12px 15px;
+    border-radius:10px;
+    margin-bottom:8px;
+    transition: all 0.3s ease;
+    font-size:14px;
+    display:block;
+}
+
+/* Hover */
+.sidebar a:hover{
+    background: rgba(110,231,183,0.1);
+    color: var(--accent);
+}
+
+/* Link ativo */
+.sidebar a.active{
+    background: rgba(110,231,183,0.15);
+    color: var(--accent);
+    font-weight:600;
+}
+
+
+
+.nav-item{
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
+    color:var(--muted);
+    transition:.2s;
+}
+
+.nav-item:hover{
+    background:rgba(110,231,183,0.08);
+    color:var(--accent);
+}
+
+.nav-item.active{
+    background:rgba(110,231,183,0.15);
+    color:var(--accent);
+}
+
+/* ===== CONTEÚDO ===== */
+
+.main-content{
+    margin-left:260px;
+    padding:40px;
+    min-height:100vh;
+}
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.card{
+    background:var(--card);
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.card-link{
+    text-decoration:none;
+    display:block;
+}
+
+.card-click{
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+
+.card-click:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+
+h1{
+    margin-bottom:20px;
+    color:var(--accent);
+}
+
+h3{
+    margin:15px 0 8px;
+    color:var(--accent);
+}
+
+p{
+    margin-bottom:10px;
+    line-height:1.6;
+    color:var(--muted);
+}
+
+/* ===== TÍTULO PRINCIPAL ===== */
+.section h1{
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+/* ===== CARDS ===== */
+.card{
+    background: linear-gradient(145deg, var(--card), #0e1628);
+    padding: 28px;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Linha decorativa lateral */
+.card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    width:4px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent-2));
+    border-radius:4px;
+}
+
+/* Hover moderno */
+.card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+    border: 1px solid rgba(110,231,183,0.2);
+}
+
+/* ===== TÍTULOS DOS CARDS ===== */
+.card h3{
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.card h4{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: var(--accent-2);
+}
+
+/* ===== TEXTOS ===== */
+.card p{
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.card strong{
+    color: #fff;
+}
+
+/* ===== LISTAS ===== */
+.card ul{
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.card ul li{
+    margin-bottom: 8px;
+    color: var(--muted);
+    position: relative;
+}
+
+/* Bolinha moderna */
+.card ul li::marker{
+    color: var(--accent);
+}
+
+/* ===== TABELA CRONOGRAMA ===== */
+.cronograma{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.cronograma th{
+    background: var(--glass);
+    padding: 14px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.cronograma td{
+    padding: 14px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: var(--muted);
+    vertical-align: top;
+    font-size: 14px;
+}
+
+.cronograma tr:hover{
+    background: rgba(255,255,255,0.03);
+}
+/* ===== RESPONSIVO ===== */
+@media(max-width:900px){
+
+    .sidebar{
+        width:200px;
+    }
+
+    .main-content{
+        margin-left:200px;
+        padding:25px;
+    }
+}
+/* ===== RESPONSIVIDADE ===== */
+@media(max-width: 768px){
+
+    .section h1{
+        font-size: 24px;
+    }
+
+    .card{
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .card h3{
+        font-size: 18px;
+    }
+
+    .card p,
+    .card li{
+        font-size: 14px;
+    }
+
+    .cronograma th,
+    .cronograma td{
+        font-size: 13px;
+        padding: 10px;
+    }
+    
+    body{ flex-direction:column; }
+
+
+    .sidebar{
+        position:fixed;
+        width:70px;
+        padding:20px 10px;
+    }
+
+    .sidebar h2{
+        display:none;
+    }
+
+    .nav-item{
+        font-size:12px;
+        text-align:center;
+    }
+
+    .main-content{
+        margin-left:70px;
+        padding:20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Gestão do Conhecimento</h2>
+
+<div class="nav-item active" onclick="showSection('home', this)">🏠 Home</div>
+<div class="nav-item" onclick="showSection('visao', this)">📋 Visão Geral</div>
+
+    <div class="nav-item" onclick="showSection('atividades', this)">📝 Atividades</div>
+    <div class="nav-item" onclick="showSection('trabalhos', this)">📂 Trabalhos</div>
+    <div class="nav-item" onclick="showSection('conteudo', this)">📚 Conteúdo de Aula</div>
+    <div class="nav-item" onclick="showSection('bibliografia', this)">📖 Bibliografia</div>
+</div>
+
+<div class="main-content">
+
+    <!-- HOME -->
+    <div id="home" class="section active">
+        <h1>Sobre a Matéria</h1>
+
+        <div class="card">
+            <h3>O que é?</h3>
+            <p>Disciplina voltada ao estudo da criação, compartilhamento e gestão do conhecimento dentro das organizações.</p>
+
+            <h3>O que estuda?</h3>
+            <p>Modelos de gestão, inovação, capital intelectual e transformação digital.</p>
+
+            <h3>História / Linha do Tempo</h3>
+            <p>Surge com maior força nos anos 1990 com avanço da economia do conhecimento.</p>
+
+            <h3>Importância na Engenharia de Software</h3>
+            <p>Ajuda equipes a documentar, compartilhar e evoluir conhecimento técnico e organizacional.</p>
+        </div>
+    </div>
+
+ <div id="visao" class="section">
+    <h1>Plano de Ensino</h1>
+
+    <!-- 1 IDENTIFICAÇÃO -->
+    <div class="card">
+        <h3>1. Identificação</h3>
+
+        <p><strong>Curso:</strong> Engenharia de Software</p>
+        <p><strong>Unidade/Campus:</strong> Rio Verde</p>
+        <p><strong>Nome da Disciplina:</strong> Gestão do Conhecimento</p>
+        <p><strong>Código da Disciplina:</strong> ESW207</p>
+        <p><strong>Período/Semestre:</strong> 2026/1</p>
+        <p><strong>Carga Horária Total:</strong> Teórica: 72 horas</p>
+        <p><strong>Pré-requisitos:</strong> Não se aplica</p>
+        <p><strong>Natureza da Disciplina:</strong> Obrigatória</p>
+        <p><strong>Modalidade:</strong> Presencial</p>
+        <p><strong>Docente Responsável:</strong> Prof. Me. Emanuel Victor de Moura Oliveira Barros</p>
+    </div>
+
+    <!-- 2 EMENTA -->
+    <div class="card">
+        <h3>2. Ementa</h3>
+        <p>
+            Sociedade do conhecimento. Gestão do capital intelectual/ativos intangíveis.
+            Modelos de gestão e organização baseados em conhecimento.
+            Organização de aprendizagem e aprendizagem organizacional.
+            Tecnologias para gestão do conhecimento. Inovação.
+        </p>
+    </div>
+
+    <!-- 3 OBJETIVOS -->
+    <div class="card">
+        <h3>3. Objetivos</h3>
+
+        <h4>3.1 Objetivo Geral</h4>
+        <p>
+            Compreender e aplicar os princípios da Gestão do Conhecimento nas organizações,
+            desenvolvendo a capacidade de identificar, organizar, compartilhar e utilizar
+            o conhecimento como ativo estratégico para a inovação, a competitividade e a
+            aprendizagem organizacional.
+        </p>
+
+        <h4>3.2 Objetivos Específicos</h4>
+        <ul>
+            <li>Compreender a sociedade do conhecimento e seu impacto nas organizações e na economia.</li>
+            <li>Reconhecer o valor do capital intelectual e dos ativos intangíveis como fatores estratégicos de competitividade.</li>
+            <li>Analisar modelos de gestão baseados em conhecimento.</li>
+            <li>Identificar práticas de organização do conhecimento e processos de aprendizagem organizacional.</li>
+            <li>Compreender o conceito de organização que aprende e sua relação com a inovação.</li>
+            <li>Aplicar tecnologias da informação e comunicação voltadas para a gestão do conhecimento.</li>
+            <li>Desenvolver estratégias para criação, compartilhamento e retenção do conhecimento.</li>
+            <li>Analisar casos reais de gestão do conhecimento.</li>
+            <li>Relacionar gestão do conhecimento à inovação e à tomada de decisão.</li>
+        </ul>
+    </div>
+
+    <!-- 4 CONTEÚDO PROGRAMÁTICO -->
+    <div class="card">
+        <h3>4. Conteúdo Programático</h3>
+
+        <p><strong>Unidade I – Fundamentos da Gestão do Conhecimento</strong></p>
+        <ul>
+            <li>Sociedade do conhecimento</li>
+            <li>Conceitos de dado, informação e conhecimento</li>
+            <li>Capital intelectual e ativos intangíveis</li>
+            <li>Importância estratégica do conhecimento</li>
+            <li>Gestão do conhecimento: conceitos e evolução</li>
+        </ul>
+
+        <p><strong>Unidade II – Modelos, Processos e Tecnologias</strong></p>
+        <ul>
+            <li>Modelos de gestão do conhecimento</li>
+            <li>Processos de criação, compartilhamento, armazenamento e uso do conhecimento</li>
+            <li>Cultura organizacional e gestão do conhecimento</li>
+            <li>Tecnologias para gestão do conhecimento</li>
+            <li>Sistemas de informação e apoio à decisão</li>
+        </ul>
+
+        <p><strong>Unidade III – Aprendizagem Organizacional e Inovação</strong></p>
+        <ul>
+            <li>Organizações que aprendem</li>
+            <li>Aprendizagem organizacional</li>
+            <li>Gestão do conhecimento como base da inovação</li>
+            <li>Tomada de decisão baseada em conhecimento</li>
+            <li>Estudos de casos</li>
+        </ul>
+    </div>
+
+    <!-- 5 METODOLOGIA -->
+    <div class="card">
+        <h3>5. Metodologia de Ensino</h3>
+        <ul>
+            <li>Aulas expositivas dialogadas</li>
+            <li>Atividades práticas</li>
+            <li>Estudos de caso</li>
+            <li>Resolução de problemas</li>
+            <li>Seminários</li>
+            <li>Atividades orientadas</li>
+            <li>Palestras</li>
+            <li>Visitas técnicas</li>
+        </ul>
+    </div>
+
+    <!-- 6 AVALIAÇÃO -->
+    <div class="card">
+        <h3>6. Avaliação da Aprendizagem</h3>
+
+        <p>A avaliação será processual, contínua e somativa, ocorrendo nos momentos G1, G2 e G3.</p>
+
+        <ul>
+            <li>Avaliação teórica – 50%</li>
+            <li>Trabalho individual e/ou em grupo – 25%</li>
+            <li>Atividades avaliativas contínuas – 25%</li>
+        </ul>
+
+        <p><strong>Média Final:</strong> (G1 + G2 + G3) ÷ 3</p>
+    </div>
+
+    <!-- 7 RECURSOS -->
+    <div class="card">
+        <h3>7. Recursos Didáticos</h3>
+        <ul>
+            <li>Sala de aula</li>
+            <li>Recursos audiovisuais</li>
+            <li>Plataformas digitais institucionais</li>
+            <li>Outros recursos pertinentes</li>
+        </ul>
+    </div>
+
+    <!-- 8 BIBLIOGRAFIA -->
+    <div class="card">
+        <h3>8. Bibliografia</h3>
+
+        <h4>8.1 Bibliografia Básica</h4>
+        <ul>
+            <li>ALVARENGA NETO, R. C. D. de. Gestão do conhecimento em organizações. Saraiva, 2008.</li>
+            <li>QUEL, L. F. Gestão de conhecimentos e os desafios da complexidade nas organizações. Saraiva, 2006.</li>
+            <li>ROSINI, A. M.; PALMISANO, A. Administração de sistemas de informação e a gestão do conhecimento. Cengage, 2012.</li>
+            <li>TAKEUCHI, H. Gestão do conhecimento. Bookman, 2008.</li>
+        </ul>
+
+        <h4>8.2 Bibliografia Complementar</h4>
+        <ul>
+            <li>DEL GIUDICE, M.; SCUOTTO, V.; PAPA, A. Knowledge management and AI in Society 5.0. Routledge, 2023.</li>
+            <li>MACHADO, C.; DAVIM, J. P. Knowledge management and learning organizations. Springer, 2021.</li>
+            <li>MOHIUDDIN, M.; AZAD, M. S.; AHMED, S. Recent advances in knowledge management. IntechOpen, 2022.</li>
+        </ul>
+
+        <p><strong>Aprovação:</strong> Coordenação de Curso – Prof. Dra. Fabiana Girotto Ribeiro</p>
+        <p><strong>Data:</strong> 28 de janeiro de 2026</p>
+    </div>
+
+
+
+
+    <!-- CRONOGRAMA -->
+<div class="card">
+    <h3>6. Cronograma</h3>
+
+    <table class="cronograma">
+        <tr>
+            <th>Data</th>
+            <th>Conteúdo Ministrado</th>
+        </tr>
+
+        <tr>
+            <td>03/02</td>
+            <td>Apresentação do conteúdo programático, ementa e avaliação.</td>
+        </tr>
+
+        <tr>
+            <td>10/02</td>
+            <td>Sociedade do conhecimento: transformação das estruturas econômicas, sociais e produtivas, nas quais o conhecimento.</td>
+        </tr>
+
+        <tr>
+            <td>24/02</td>
+            <td>A informação e a tecnologia tornam-se os principais recursos estratégicos para o desenvolvimento.</td>
+        </tr>
+
+        <tr>
+            <td>03/03</td>
+            <td>Inovação: conceito, tipos (incremental, radical e disruptiva) e sua importância como fator de competitividade, sustentabilidade e crescimento organizacional.</td>
+        </tr>
+
+        <tr>
+            <td>10/03</td>
+            <td>Apresentação de Trabalhos</td>
+        </tr>
+
+        <tr>
+            <td>17/03</td>
+            <td>Prova – G1</td>
+        </tr>
+
+        <tr>
+            <td>24/03</td>
+            <td>Gestão do conhecimento: processos de criação, compartilhamento, armazenamento e aplicação do conhecimento nas organizações como base para a tomada de decisão.</td>
+        </tr>
+
+        <tr>
+            <td>31/03</td>
+            <td>Capital intelectual: conjunto de conhecimentos, competências, habilidades e experiências das pessoas, bem como dos sistemas e relacionamentos organizacionais.</td>
+        </tr>
+
+        <tr>
+            <td>07/04</td>
+            <td>Ativos intangíveis: marcas, patentes, reputação, cultura organizacional e outros recursos não físicos que geram valor.</td>
+        </tr>
+
+        <tr>
+            <td>14/04</td>
+            <td>Tecnologias para gestão do conhecimento: sistemas de informação, plataformas colaborativas, inteligência artificial, bancos de dados e ferramentas digitais de apoio à aprendizagem e à inovação.</td>
+        </tr>
+
+        <tr>
+            <td>28/04</td>
+            <td>Apresentação de Trabalhos</td>
+        </tr>
+
+        <tr>
+            <td>05/05</td>
+            <td>Inovamente</td>
+        </tr>
+
+        <tr>
+            <td>12/05</td>
+            <td>Prova – G2</td>
+        </tr>
+
+        <tr>
+            <td>19/05</td>
+            <td>Modelos de gestão baseados em conhecimento: estruturas organizacionais flexíveis, orientadas por informação, inovação e aprendizagem contínua.</td>
+        </tr>
+
+        <tr>
+            <td>26/05</td>
+            <td>Organização que aprende: organizações que estimulam o compartilhamento do conhecimento, a reflexão crítica e a melhoria constante.</td>
+        </tr>
+
+        <tr>
+            <td>02/06</td>
+            <td>Aprendizagem organizacional: processos pelos quais a organização adquire, interpreta, retém e utiliza o conhecimento para adaptação e inovação.</td>
+        </tr>
+
+        <tr>
+            <td>09/06</td>
+            <td>Revisão Geral do Conteúdo</td>
+        </tr>
+
+        <tr>
+            <td>16/06</td>
+            <td>Apresentação de Trabalhos</td>
+        </tr>
+
+        <tr>
+            <td>23/06</td>
+            <td>Prova – G3</td>
+        </tr>
+    </table>
+
+    <p style="margin-top:12px; font-size:13px; color:var(--muted);">
+        * Cronograma sujeito a alterações por demandas da Universidade.
+    </p>
+</div>
+
+
+</div>
+
+
+    <!-- ATIVIDADES -->
+<div id="atividades" class="section">
+    <h1>Atividades</h1>
+
+    <a href="../Trabalhos_Atividades/atividade_sociedade_conhecimento.html" class="card-link">
+        <div class="card card-click">
+            <h3>Atividade 01 – Sociedade do Conhecimento</h3>
+            <p>Análise sobre a transformação econômica baseada no conhecimento.</p>
+            <p><strong>Data:</strong> 10/02/2026</p>
+        </div>
+    </a>
+
+    <a href="../Trabalhos_Atividades/atividade_capital_intelectual.html" class="card-link">
+        <div class="card card-click">
+            <h3>Atividade 02 – Capital Intelectual</h3>
+            <p>Estudo sobre ativos intangíveis nas organizações.</p>
+            <p><strong>Data:</strong> 31/03/2026</p>
+        </div>
+    </a>
+
+</div>
+
+
+    <!-- TRABALHOS -->
+<div id="trabalhos" class="section">
+    <h1>Trabalhos</h1>
+
+    <a href="trabalhos/fichamentoGC.html" class="card-link">
+    <div class="card card-click">
+        <h3>Trabalho 01 – Fichamento Startup</h3>
+        <p>Análise sobre inovação aplicada à empresa Néctar Sistemas.</p>
+        <p><strong>Entrega:</strong> 16/02/2026</p>
+    </div>
+    </a>
+
+    <a href="trabalhos/inovacao.html" class="card-link">
+    <div class="card card-click">
+        <h3>Trabalho 02 – Ideias de Inovação</h3>
+        <p>Apresentação em grupo sobre inovação incremental, radical e disruptiva.</p>
+        <p><strong>Apresentação:</strong> 15 minutos</p>
+    </div>
+    </a>
+
+
+
+    <a href="../Trabalhos_Atividades/trabalho_inovacao.html" class="card-link">
+        <div class="card card-click">
+            <h3>Trabalho 01 – Inovação nas Organizações</h3>
+            <p>Estudo sobre inovação incremental, radical e disruptiva.</p>
+            <p><strong>Entrega:</strong> 28/04/2026</p>
+        </div>
+    </a>
+
+</div>
+
+
+    <!-- CONTEÚDO -->
+<div id="conteudo" class="section">
+    <h1>Conteúdo de Aula</h1>
+
+    <a href="../materias/aula_sociedade_conhecimento.html" class="card-link">
+        <div class="card card-click">
+            <h3>Aula 01 – Sociedade do Conhecimento</h3>
+            <p>Conceitos fundamentais e impacto nas organizações.</p>
+        </div>
+    </a>
+
+    <a href="../materias/aula_gestao_conhecimento.html" class="card-link">
+        <div class="card card-click">
+            <h3>Aula 02 – Gestão do Conhecimento</h3>
+            <p>Processos de criação, compartilhamento e retenção.</p>
+        </div>
+    </a>
+
+</div>
+
+
+    <!-- BIBLIOGRAFIA -->
+    <div id="bibliografia" class="section">
+        <h1>Bibliografia</h1>
+        <div class="card">
+            <p>Livros e materiais exclusivos da disciplina.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function showSection(id, element){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+
+    document.getElementById(id).classList.add('active');
+    element.classList.add('active');
+}
+
+</script>
+
+</body>
+</html>

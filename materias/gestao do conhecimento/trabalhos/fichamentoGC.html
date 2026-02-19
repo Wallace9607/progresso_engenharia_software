@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Fichamento – Gestão do Conhecimento</title>
+
+<style>
+:root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --text:#e6eef6;
+    --muted:#9aa4b2;
+    --accent:#6ee7b7;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+    margin:0;
+    padding:40px 20px;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter, Arial, sans-serif;
+    line-height:1.7;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    background:var(--card);
+    padding:40px;
+    border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+h1{
+    text-align:center;
+    color:var(--accent);
+    margin-bottom:30px;
+}
+
+h2{
+    margin-top:35px;
+    border-left:4px solid var(--accent);
+    padding-left:10px;
+    font-size:18px;
+}
+
+h3{
+    margin-top:20px;
+    color:var(--accent);
+    font-size:15px;
+}
+
+p{
+    margin:10px 0;
+}
+
+strong{
+    color:#fff;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:rgba(255,255,255,0.08);
+    margin:30px 0;
+}
+
+/* ===== FONTES ===== */
+
+ul{
+    list-style:none;
+    padding-left:0;
+    margin-top:15px;
+}
+
+ul li{
+    margin:10px 0;
+    padding:12px 14px;
+    background:rgba(255,255,255,0.03);
+    border-left:4px solid var(--accent);
+    border-radius:8px;
+    transition:all .2s ease;
+}
+
+ul li:hover{
+    background:rgba(110,231,183,0.08);
+    transform:translateX(4px);
+}
+
+ul li a{
+    text-decoration:none;
+    color:var(--accent);
+    font-weight:500;
+    word-break:break-word;
+}
+
+ul li a:hover{
+    text-decoration:underline;
+    opacity:.9;
+}
+
+
+@media (max-width:768px){
+    body{ padding:20px 10px; }
+    .container{ padding:25px; }
+}
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    text-decoration:none;
+    color:var(--muted);
+}
+
+.back-btn:hover{
+    color:var(--accent);
+}
+
+.status{
+    margin:15px 0;
+    padding:10px 16px;
+    border-radius:8px;
+    display:inline-block;
+    font-weight:600;
+}
+
+.andamento{
+    background:rgba(245,158,11,0.15);
+    color:#f59e0b;
+}
+
+.entregue{
+    background:rgba(34,197,94,0.15);
+    color:#22c55e;
+}
+
+.btn{
+    margin-left:15px;
+    padding:8px 14px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+    background:var(--accent);
+    color:#000;
+}
+
+</style>
+</head>
+
+<body>
+<a href="../gestao_conhecimento.html" class="back-btn">← Voltar para a matéria</a>
+
+<div class="container">
+
+<h1>FICHAMENTO – ATIVIDADE</h1>
+<div id="statusBox" class="status andamento">
+    Status: Em andamento
+</div>
+
+<button class="btn" onclick="toggleStatus()">
+    Marcar como entregue
+</button>
+
+<hr>
+
+<p><strong>Disciplina:</strong> Gestão do Conhecimento</p>
+<p><strong>Prof. Me.:</strong> Emanuel Victor de Moura Oliveira Barros</p>
+<p><strong>Data:</strong> 16/02/2026</p>
+
+<hr>
+
+<h2>IDENTIFICAÇÃO (O QUE FOI VISTO)</h2>
+
+<p><strong>Startup escolhida:</strong> Néctar Sistemas de Gestão</p>
+
+<p>
+A Néctar é uma empresa de tecnologia com sede em Rio Verde – GO, voltada para o desenvolvimento de soluções de gestão empresarial para o agronegócio e outros setores produtivos. Seu principal produto é um sistema de ERP especializado que integra funcionalidades de controle financeiro, operacional e logística para empresas cooperativas, agropecuárias, indústrias e outros negócios que precisam otimizar processos e acesso a informações em tempo real.
+</p>
+
+<hr>
+
+<h2>PRINCIPAIS PONTOS</h2>
+
+<p><strong>Área de atuação:</strong> Tecnologia da informação e software de gestão empresarial (ERP).</p>
+<p><strong>Localização:</strong> Rio Verde – Goiás (Setor Morada do Sol).</p>
+<p><strong>Solução oferecida:</strong> Sistema integrado de gestão empresarial para produção, compras, vendas, estoque, finanças e relatórios.</p>
+<p><strong>Público-alvo:</strong> Cooperativas agrícolas, agropecuárias, laticínios, algodoeiras, indústrias e empresas que necessitam de gestão integrada de dados e processos.</p>
+
+<hr>
+
+<h2>OBSERVAÇÕES / EXEMPLOS</h2>
+
+<h3>Apresentação da Startup</h3>
+
+<p><strong>Nome:</strong> Néctar Sistemas de Gestão</p>
+<p><strong>Área:</strong> Tecnologia da informação — software ERP</p>
+<p><strong>Problema que busca resolver:</strong> Falta de integração e automação nos processos empresariais, especialmente no agronegócio, gerando erros e retrabalho.</p>
+<p><strong>Produto oferecido:</strong> Sistema ERP para gestão integrada (financeiro, estoque, compras, vendas e relatórios).</p>
+<p><strong>Público-alvo:</strong> Cooperativas, agroempresas e indústrias que precisam de gestão eficiente e dados em tempo real.</p>
+
+<hr>
+
+<h2>ANÁLISE DOS TIPOS DE INOVAÇÃO</h2>
+
+<h3>Inovação Incremental</h3>
+<p>
+A Néctar promove melhorias contínuas no seu ERP, adicionando novas funcionalidades, atualizando módulos e aperfeiçoando relatórios, aumentando valor sem mudar a essência do produto.
+</p>
+
+<h3>Inovação Radical</h3>
+<p>
+A integração de diferentes setores empresariais em um único sistema representa mudança significativa em relação ao uso de planilhas e controles separados.
+</p>
+
+<h3>Inovação Disruptiva</h3>
+<p>
+A empresa possui potencial disruptivo ao substituir métodos manuais e sistemas fragmentados por uma gestão digital integrada.
+</p>
+
+<p><strong>Conclusão sobre os tipos de inovação:</strong><br>
+A empresa apresenta inovação incremental e radical, com potencial disruptivo em organizações que ainda não utilizam ERP integrado.
+</p>
+
+<hr>
+
+<h2>REFLEXÃO CRÍTICA</h2>
+
+<p>
+A Néctar fortalece o ecossistema tecnológico de Rio Verde ao promover transformação digital no agronegócio, aumentando competitividade e eficiência das empresas locais.
+</p>
+
+<p>
+O incentivo ao uso de tecnologia contribui para modernização dos processos e qualificação dos gestores na utilização de ferramentas digitais.
+</p>
+
+<hr>
+
+<h2>CONCLUSÃO</h2>
+
+<p>
+A Néctar é um exemplo local de empresa que aplica tecnologia para atender demandas reais do setor produtivo, contribuindo para inovação e competitividade regional.
+</p>
+
+<hr>
+
+<h2>FONTES</h2>
+
+<ul>
+<li><a href="https://nectarsistemas.com.br/">Site Oficial da Empresa</a></li>
+
+<li><a href="https://nectarsistemas.com.br/nectar-erp/">Descrição do ERP e funcionalidades detalhadas</a></li>
+<li><a href="https://portal.agrosummit.com.br/public/nectar">Portal Agro Summit perfil da Néctar Sistemas.</a></li>
+</ul>
+
+</div>
+
+<script>
+const trabalhoId = "gc_trabalho_fichamento";
+
+function loadStatus(){
+    const saved = localStorage.getItem(trabalhoId);
+    const statusBox = document.getElementById("statusBox");
+    const button = document.querySelector(".btn");
+
+    if(saved === "entregue"){
+        statusBox.classList.remove("andamento");
+        statusBox.classList.add("entregue");
+        statusBox.innerText = "Status: Entregue";
+        button.innerText = "Marcar como em andamento";
+    }
+}
+
+function toggleStatus(){
+    const statusBox = document.getElementById("statusBox");
+    const button = document.querySelector(".btn");
+
+    if(statusBox.classList.contains("andamento")){
+        statusBox.classList.remove("andamento");
+        statusBox.classList.add("entregue");
+        statusBox.innerText = "Status: Entregue";
+        button.innerText = "Marcar como em andamento";
+        localStorage.setItem(trabalhoId,"entregue");
+    }else{
+        statusBox.classList.remove("entregue");
+        statusBox.classList.add("andamento");
+        statusBox.innerText = "Status: Em andamento";
+        button.innerText = "Marcar como entregue";
+        localStorage.setItem(trabalhoId,"andamento");
+    }
+}
+
+loadStatus();
+</script>
+
+</body>
+</html>
