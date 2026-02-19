@@ -546,7 +546,7 @@
   <div style="margin-top:22px;display:flex;gap:14px;flex-wrap:wrap">
 
     <select id="calFiltroMes"
-      style="padding:10px;border-radius:10px;border:0;background:var(--glass);color:var(--text)">
+      style="padding:10px;border-radius:10px;border:0;background:#6ee7b7;color:#000">
       <option value="all">Todos os meses</option>
     </select>
 
@@ -1104,23 +1104,19 @@ const allDisciplines = [
 ];
 
 
+
+
 function populateDisciplinas(){
   for(let i=1;i<=8;i++){
     const container = document.getElementById("sem"+i);
     if(!container) continue;
     container.innerHTML = "";
     allDisciplines.filter(d => d.sem === i).forEach(d=>{
-      const a = document.createElement("a");
-      a.className = "mod-card";
-      a.href = "#";
-      a.dataset.code = d.code;
-      a.innerHTML = `<img src="${d.img}" alt=""><span>${d.title}</span>`;
-      // click: open discipline (placeholder)
-      a.addEventListener("click", (e)=>{
-        e.preventDefault();
-        // open discipline detail placeholder (can integrate to real pages)
-        alert(`${d.title}\n\nPágina da disciplina (placeholder).`);
-      });
+const a = document.createElement("a");
+a.className = "mod-card";
+a.href = `materias/${d.code}.html`;  // <-- AQUI ESTÁ O LINK REAL
+a.innerHTML = `<img src="${d.img}" alt=""><span>${d.title}</span>`;
+
       container.appendChild(a);
     });
   }
@@ -1638,7 +1634,3 @@ carregarSemestres();
 
 </body>
 </html>
-
-
-
-
