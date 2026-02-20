@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modelo de Matéria</title>
+<title>Gestão do Conhecimento</title>
 
 <style>
 :root{
@@ -12,6 +12,7 @@
     --text:#e6eef6;
     --muted:#9aa4b2;
     --accent:#6ee7b7;
+    --accent-2:#7dedfc;
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
@@ -154,6 +155,97 @@ p{
     letter-spacing: -0.5px;
 }
 
+/* ===== HOME - SOBRE A MATÉRIA ===== */
+
+#home h1{
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Título interno da matéria */
+#home .card h1{
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: var(--accent);
+    -webkit-text-fill-color: initial;
+    background: none;
+}
+
+/* Subtítulos */
+#home .card h3{
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: var(--accent-2);
+    font-weight: 600;
+}
+
+/* Parágrafos */
+#home .card p{
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+/* Destaque */
+#home .card strong{
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Listas */
+#home .card ul{
+    padding-left: 22px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#home .card ul li{
+    margin-bottom: 10px;
+    color: var(--muted);
+}
+
+#home .card ul li::marker{
+    color: var(--accent);
+}
+
+/* ===== TABELA ===== */
+
+#home .card table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--glass);
+    font-size: 14px;
+}
+
+#home .card th{
+    background: rgba(110,231,183,0.08);
+    padding: 14px;
+    text-align: left;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+#home .card td{
+    padding: 14px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: var(--muted);
+}
+
+#home .card tr:hover{
+    background: rgba(255,255,255,0.03);
+}
+
+
+
 /* ===== CARDS ===== */
 .card{
     background: linear-gradient(145deg, var(--card), #0e1628);
@@ -278,6 +370,28 @@ p{
         font-size: 24px;
     }
 
+    
+    #home h1{
+        font-size: 26px;
+    }
+
+    #home .card h1{
+        font-size: 20px;
+    }
+
+    #home .card h3{
+        font-size: 16px;
+    }
+
+    #home .card p,
+    #home .card li{
+        font-size: 14px;
+    }
+
+    #home .card table{
+        font-size: 12px;
+    }
+
     .card{
         padding: 20px;
         border-radius: 14px;
@@ -341,24 +455,95 @@ p{
 
 <div class="main-content">
 
-    <!-- HOME -->
+        <!-- HOME -->
     <div id="home" class="section active">
         <h1>Sobre a Matéria</h1>
 
         <div class="card">
+            <h1>Gestão do Conhecimento</h1>
             <h3>O que é?</h3>
-            <p>Disciplina voltada ao estudo da criação, compartilhamento e gestão do conhecimento dentro das organizações.</p>
+            <p>
+            Na Engenharia de Software, a Gestão do Conhecimento (GC) é a disciplina que foca 
+            em capturar, organizar, armazenar e compartilhar o capital intelectual gerado 
+            durante todo o ciclo de vida de desenvolvimento de software.
+            </p>
 
-            <h3>O que estuda?</h3>
-            <p>Modelos de gestão, inovação, capital intelectual e transformação digital.</p>
+            <p>
+            Imagine que um desenvolvedor sênior deixe a empresa levando consigo todo o 
+            entendimento sobre por que determinada arquitetura foi escolhida. 
+            Sem Gestão do Conhecimento, esse saber se perde. 
+            Com GC, ele está documentado, estruturado e acessível para a equipe.
+            </p>
 
-            <h3>História / Linha do Tempo</h3>
-            <p>Surge com maior força nos anos 1990 com avanço da economia do conhecimento.</p>
+            <h3>Por que é vital na Engenharia de Software?</h3>
+            <p>
+            O desenvolvimento de software é uma atividade intensiva em conhecimento. 
+            O código é apenas o resultado final; o processo envolve decisões técnicas, 
+            experiências acumuladas, erros aprendidos e requisitos que mudam constantemente.
+            </p>
 
-            <h3>Importância na Engenharia de Software</h3>
-            <p>Ajuda equipes a documentar, compartilhar e evoluir conhecimento técnico e organizacional.</p>
+            <h3>Tipos de Conhecimento</h3>
+            <ul>
+            <li><strong>Tácito:</strong> conhecimento pessoal, difícil de formalizar, 
+            como a intuição de um testador para encontrar bugs.</li>
+
+            <li><strong>Explícito:</strong> conhecimento registrado e documentado, 
+            como documentação de API, manuais técnicos e diagramas UML.</li>
+            </ul>
+
+            <h3>Pilares da Gestão do Conhecimento no Software</h3>
+
+            <table border="1" cellpadding="8">
+            <tr>
+            <th>Atividade</th>
+            <th>Descrição no Contexto de Software</th>
+            </tr>
+
+            <tr>
+            <td>Captura</td>
+            <td>Registrar lições aprendidas após uma Sprint Retrospective.</td>
+            </tr>
+
+            <tr>
+            <td>Armazenamento</td>
+            <td>Uso de Wikis, repositórios Git e ferramentas como Jira ou Confluence.</td>
+            </tr>
+
+            <tr>
+            <td>Compartilhamento</td>
+            <td>Pair Programming, Code Reviews e mentorias técnicas.</td>
+            </tr>
+
+            <tr>
+            <td>Aplicação</td>
+            <td>Reuso de componentes, bibliotecas e padrões de projeto.</td>
+            </tr>
+            </table>
+
+            <h3>Principais Benefícios</h3>
+            <ul>
+            <li>Redução de Retrabalho</li>
+            <li>Onboarding acelerado de novos membros</li>
+            <li>Melhoria da qualidade do produto</li>
+            <li>Maior agilidade em metodologias como Scrum</li>
+            </ul>
+
+            <h3>Desafios Comuns</h3>
+            <ul>
+            <li><strong>Cultura:</strong> resistência à documentação.</li>
+            <li><strong>Obsolescência:</strong> manter informações atualizadas exige esforço contínuo.</li>
+            </ul>
+
+            <h3>Tendência Atual</h3>
+            <p>
+            Na Engenharia de Software moderna, destaca-se a prática da 
+            <strong>Documentação Viva (Living Documentation)</strong>, 
+            onde o conhecimento é extraído automaticamente do código, testes 
+            e pipelines de integração contínua.
+            </p>
+            </div>
         </div>
-    </div>
+
 
  <div id="visao" class="section">
     <h1>Plano de Ensino</h1>
