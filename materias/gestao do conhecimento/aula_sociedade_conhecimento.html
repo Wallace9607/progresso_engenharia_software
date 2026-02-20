@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disciplina: Gestão do Conhecimento – Engenharia de Software</title>
+
+<style>
+    body{
+        margin:0;
+        font-family: Arial, Helvetica, sans-serif;
+        background:#0f1724;
+        color:#ffffff;
+        line-height:1.6;
+    }
+
+    .back-btn{
+        display:inline-block;
+        margin:25px;
+        text-decoration:none;
+        color:#9aa4b2;
+    }
+
+    .back-btn:hover{
+        color:var(--accent);
+    }
+
+    .container{
+        max-width:1000px;
+        margin:auto;
+        padding:30px 20px;
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:40px;
+        color:#6ee7b7;
+    }
+
+    h2{
+        margin-top:40px;
+        color:#7dd3fc;
+        border-left:4px solid #6ee7b7;
+        padding-left:10px;
+    }
+
+    h3{
+        margin-top:20px;
+        color:#6ee7b7;
+    }
+
+    p{
+        margin:10px 0;
+        color:#e5e7eb;
+    }
+
+    ul{
+        margin:10px 0 10px 20px;
+    }
+
+    li{
+        margin-bottom:6px;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+        margin:20px 0;
+        background:#0b1220;
+    }
+
+    th, td{
+        border:1px solid #1f2937;
+        padding:10px;
+        text-align:left;
+    }
+
+    th{
+        background:#111827;
+        color:#6ee7b7;
+    }
+
+    .timeline-img{
+    text-align:center;
+    margin:30px 0;
+}
+
+.timeline-img img{
+    width:100%;
+    max-width:1000px;
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+    .card{
+        background:#0b1220;
+        padding:25px;
+        border-radius:12px;
+        margin-bottom:25px;
+        box-shadow:0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .conclusao{
+        background:#111827;
+        padding:20px;
+        border-radius:10px;
+        margin-top:30px;
+    }
+
+    .exemplos-container{
+    margin-top:20px;
+}
+
+.btn-exemplo{
+    background:#6ee7b7;
+    color:#0f1724;
+    border:none;
+    padding:10px 15px;
+    margin:5px 5px 5px 0;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn-exemplo:hover{
+    background:#34d399;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:1000;
+}
+
+.modal.ativo{
+    display:flex;
+}
+.modal-content{
+    background:#111827;
+    width:100%;
+    max-width:700px;
+    max-height:90vh; /* nunca passa da tela */
+    overflow-y:auto; /* ativa rolagem interna */
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    animation:fadeIn 0.3s ease-in-out;
+}
+
+/* Scroll mais bonito */
+.modal-content::-webkit-scrollbar{
+    width:6px;
+}
+
+.modal-content::-webkit-scrollbar-thumb{
+    background:#6ee7b7;
+    border-radius:10px;
+}
+
+@media(max-width:768px){
+    .modal-content{
+        max-height:95vh;
+        padding:20px;
+    }
+}
+
+.fechar{
+    float:right;
+    font-size:22px;
+    cursor:pointer;
+    color:#6ee7b7;
+}
+
+.fechar:hover{
+    color:#34d399;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(-10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+    @media(max-width:768px){
+        body{
+            font-size:14px;
+        }
+        .container{
+            padding:20px 15px;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <a href="../gestao_conhecimento.html" class="back-btn">← Voltar para a matéria</a>
+
+<div class="container">
+
+<h1>Sociedade do Conhecimento</h1>
+
+<div class="card">
+<h2> O QUE É A SOCIEDADE DO CONHECIMENTO?</h2>
+    <div class="timeline-img">
+        <img src="mapamental.png" alt="Linha do Tempo da Gestão do Conhecimento">
+    </div>
+
+
+
+<p>A Sociedade do Conhecimento é um modelo de organização social e econômica em que o principal recurso estratégico deixa de ser a força física ou o capital industrial e passa a ser o conhecimento.</p>
+
+<p>Ela surge como evolução da Sociedade Industrial e da Sociedade da Informação.</p>
+
+<h3>🔎 Características principais:</h3>
+
+<ul>
+<li>O conhecimento é o principal ativo econômico</li>
+<li>Inovação constante</li>
+<li>Aprendizado contínuo (lifelong learning)</li>
+<li>Forte uso de tecnologia</li>
+<li>Trabalho intelectual predominante</li>
+
+<button onclick="abrirModal('ex3')" class="btn-exemplo">
+Aprendizado Contínuo
+</button>
+
+<li>Valorização de criatividade e resolução de problemas</li>
+</ul>
+
+<h2> EVOLUÇÃO HISTÓRICA</h2>
+
+<div class="timeline-img">
+    <img src="linha_tempo_gc.png" alt="Linha do Tempo da Gestão do Conhecimento">
+</div>
+
+<h3>🔹 Revolução Industrial (século XVIII – XIX)</h3>
+<ul>
+<li>Máquina a vapor</li>
+<li>Produção em massa</li>
+<li>Trabalho repetitivo</li>
+<li>Valor = produção física</li>
+</ul>
+
+<h3>🔹 Sociedade da Informação (século XX)</h3>
+<ul>
+<li>Computadores</li>
+<li>Internet</li>
+<li>Armazenamento e circulação de dados</li>
+<li>Valor = acesso à informação</li>
+</ul>
+
+<h3>🔹 Sociedade do Conhecimento (século XXI)</h3>
+<ul>
+<li>Inteligência artificial</li>
+<li>Big Data</li>
+<li>Computação em nuvem</li>
+<li>Valor = capacidade de interpretar, aplicar e inovar a partir da informação</li>
+</ul>
+
+<p>👉 Diferença fundamental:</p>
+
+<p>Na Sociedade da Informação você tem acesso aos dados.<br>
+Na Sociedade do Conhecimento você sabe transformar esses dados em vantagem competitiva.</p>
+
+<h2> O PAPEL DE PETER DRUCKER</h2>
+
+<p>Peter Drucker foi um dos principais teóricos que popularizou o conceito.</p>
+
+<p>Ele introduziu o termo:</p>
+
+<h3>👨‍💻 Trabalhador do Conhecimento</h3>
+
+<p>Profissional que:</p>
+
+<ul>
+<li>Usa o cérebro mais do que a força física</li>
+<li>Resolve problemas complexos</li>
+<li>Toma decisões estratégicas</li>
+<li>Gera inovação</li>
+</ul>
+
+<p>👉 Um desenvolvedor de software é um exemplo clássico de trabalhador do conhecimento.</p>
+
+<h2> SOCIEDADE DA INFORMAÇÃO x SOCIEDADE DO CONHECIMENTO</h2>
+
+<table>
+<tr>
+<th>Sociedade da Informação</th>
+<th>Sociedade do Conhecimento</th>
+</tr>
+<tr>
+<td>Foco na tecnologia</td>
+<td>Foco na inteligência humana</td>
+</tr>
+<tr>
+<td>Dados disponíveis</td>
+<td>Dados transformados em solução</td>
+</tr>
+<tr>
+<td>Acesso à informação</td>
+<td>Aplicação estratégica da informação</td>
+</tr>
+<tr>
+<td>Infraestrutura</td>
+<td>Inovação</td>
+</tr>
+</table>
+
+<h3>💻 Exemplo na Engenharia de Software:</h3>
+
+<ul>
+<li>Ter acesso ao GitHub = Sociedade da Informação</li>
+<li>Saber analisar, entender arquitetura e melhorar código = Sociedade do Conhecimento</li>
+</ul>
+
+<h2> O CONHECIMENTO COMO ATIVO ECONÔMICO</h2>
+
+<p>Antes:</p>
+<ul>
+<li>Terra</li>
+<li>Máquinas</li>
+<li>Fábricas</li>
+</ul>
+
+<p>Hoje:</p>
+<ul>
+<li>Algoritmos</li>
+<li>Patentes</li>
+<li>Dados</li>
+<li>Know-how técnico</li>
+<li>Marca</li>
+<li>Capital intelectual</li>
+</ul>
+
+<h3>📊 Ativos Intangíveis</h3>
+
+<p>Empresas de tecnologia têm maior valor nos ativos intangíveis do que nos físicos.</p>
+
+<p>Exemplo:</p>
+
+<ul>
+<li>Código-fonte</li>
+<li>Modelo de negócio digital</li>
+<li>Banco de dados</li>
+<li>Expertise dos desenvolvedores</li>
+</ul>
+<div class="exemplos-container">
+    <button onclick="abrirModal('ex1')" class="btn-exemplo">Conhecimento como Ativo</button>
+</div>
+<p>👉 Isso explica o valor de mercado altíssimo das empresas de tecnologia.</p>
+
+<h2> CAPITAL INTELECTUAL</h2>
+
+<p>É o conjunto de conhecimentos que gera valor para a organização.</p>
+
+<p>Divide-se em:</p>
+
+<h3>🔹 Capital Humano</h3>
+<p>Conhecimento das pessoas<br>(ex: desenvolvedores, arquitetos de software)</p>
+
+<h3>🔹 Capital Estrutural</h3>
+<p>Processos, documentação, sistemas<br>(ex: repositórios, documentação técnica, base de conhecimento)</p>
+
+<h3>🔹 Capital Relacional</h3>
+<p>Relacionamento com clientes e parceiros<br>(ex: comunidade open source, feedback de usuários)</p>
+
+<h2> TRANSFORMAÇÃO DIGITAL</h2>
+
+<p>Transformação Digital não é apenas usar tecnologia.<br>
+É mudar a cultura organizacional usando tecnologia.</p>
+
+<h3>Componentes principais:</h3>
+
+<h3>🔹 Integração de Sistemas</h3>
+<ul>
+<li>APIs</li>
+<li>Cloud Computing</li>
+<li>Microserviços</li>
+</ul>
+
+<h3>🔹 Automação Inteligente</h3>
+<ul>
+<li>IA</li>
+<li>Machine Learning</li>
+<li>DevOps</li>
+<li>CI/CD</li>
+</ul>
+
+<h3>🔹 Cultura Data-Driven</h3>
+
+<p>Decisões baseadas em métricas:</p>
+<ul>
+<li>KPIs de software</li>
+<li>Métricas ágeis</li>
+<li>Performance</li>
+<li>Dados de usuário</li>
+</ul>
+
+<p>👉 O engenheiro de software precisa entender que tecnologia é meio, não fim.</p>
+
+<h2> BIG TECHS E GESTÃO DO CONHECIMENTO</h2>
+
+<p>As grandes empresas dominam o ciclo da GC:</p>
+
+<ol>
+<li>Capturam dados</li>
+<li>Transformam em informação</li>
+<li>Geram conhecimento</li>
+<li>Aplicam rapidamente</li>
+<li>Inovam</li>
+<li>Repetem o ciclo</li>
+</ol>
+
+<p>Isso gera:</p>
+<ul>
+<li>Escala</li>
+<li>Vantagem competitiva</li>
+<li>Crescimento exponencial</li>
+</ul>
+
+<h2> IMPACTOS NA EDUCAÇÃO</h2>
+
+<p>A educação tradicional baseada em memorização perde espaço.</p>
+
+<p>Agora é necessário:</p>
+
+<ul>
+<li>Aprender a aprender</li>
+<li>Pensamento crítico</li>
+<li>Resolução de problemas</li>
+<li>Trabalho colaborativo</li>
+<li>Comunicação</li>
+<li>Aprendizagem baseada em projetos (PBL)</li>
+</ul>
+
+<button onclick="abrirModal('ex3')" class="btn-exemplo">
+Aprendizado Contínuo
+</button>
+
+<p>Na Engenharia de Software isso aparece em:</p>
+
+<ul>
+<li>Projetos reais</li>
+<li>Hackathons</li>
+<li>Metodologias ágeis</li>
+<li>Trabalho em equipe</li>
+</ul>
+
+<h2> IMPACTOS NA ENGENHARIA DE SOFTWARE</h2>
+
+<p>A Sociedade do Conhecimento exige que o engenheiro:</p>
+
+<ul>
+<li>✔ Documente bem</li>
+<li>✔ Compartilhe conhecimento</li>
+<li>✔ Trabalhe colaborativamente</li>
+<li>✔ Aprenda continuamente</li>
+<li>✔ Use dados para tomar decisões</li>
+<li>✔ Inove constantemente</li>
+</ul>
+<button onclick="abrirModal('ex2')" class="btn-exemplo">
+Inovação
+</button>
+
+<p>Sem Gestão do Conhecimento:</p>
+
+<ul>
+<li>Código se perde</li>
+<li>Equipe depende de uma pessoa</li>
+<li>Conhecimento vai embora com funcionários</li>
+<li>Projetos fracassam</li>
+</ul>
+
+<h2>DESAFIOS DA SOCIEDADE DO CONHECIMENTO</h2>
+
+<ul>
+<li>Excesso de informação (infoxicação)</li>
+<li>Obsolescência rápida</li>
+<li>Necessidade de atualização constante</li>
+<li>Segurança da informação</li>
+<li>Fake news e manipulação de dados</li>
+<li>Desigualdade digital</li>
+</ul>
+
+<h2>CONCLUSÃO E VISÃO ESTRATÉGICA</h2>
+
+<div class="conclusao">
+<p>A Sociedade do Conhecimento representa uma mudança estrutural profunda:</p>
+
+<p>Não vence quem tem mais máquinas.<br>
+Vence quem aprende mais rápido.<br>
+Vence quem compartilha melhor.<br>
+Vence quem transforma conhecimento em inovação.</p>
+<div class="exemplos-container">
+<button onclick="abrirModal('ex5')" class="btn-exemplo">
+Exemplo Completo Integrado
+</button></div>
+<p>Para você como estudante de Engenharia de Software:</p>
+
+<p>👉 Seu maior ativo não é seu notebook.<br>
+👉 É sua capacidade de aprender, analisar e aplicar conhecimento.</p>
+
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="fechar" onclick="fecharModal()">&times;</span>
+        <h3 id="modal-titulo"></h3>
+        <p id="modal-texto"></p>
+    </div>
+</div>
+</div>
+
+<script>
+function abrirModal(tipo){
+    const titulo = document.getElementById("modal-titulo");
+    const texto = document.getElementById("modal-texto");
+    const modal = document.getElementById("modal");
+
+    if(tipo === "ex1"){
+        titulo.innerText = "O que é a Sociedade do Conhecimento";
+
+        texto.innerHTML = `
+        <strong>🔹 Exemplo 1 — Indústria tradicional vs Empresa de software</strong><br><br>
+        Uma fábrica de sapatos depende de máquinas e matéria-prima.<br>
+        Uma empresa de software depende do conhecimento dos desenvolvedores.<br><br>
+        👉 Se os programadores saem da empresa, o maior ativo vai embora junto.<br><br>
+
+        <strong>🔹 Exemplo 2 — Startup de tecnologia</strong><br><br>
+        Uma startup pode não ter prédio próprio, máquinas industriais ou grandes estoques.<br>
+        Mas pode valer milhões porque tem:<br>
+        • Um algoritmo inovador<br>
+        • Um modelo de negócio digital<br>
+        • Conhecimento técnico especializado<br><br>
+        Isso é Sociedade do Conhecimento.
+        `;
+    }
+
+    if(tipo === "ex2"){
+        titulo.innerText = "Inovação Constante";
+
+        texto.innerHTML = `
+        Na Sociedade do Conhecimento, quem para de inovar, morre.<br><br>
+
+        <strong>Exemplo em Engenharia de Software:</strong><br>
+        • Atualizações constantes de aplicativos<br>
+        • Novas versões de frameworks<br>
+        • Evolução de linguagens (novas versões do JavaScript)<br><br>
+
+        Empresas precisam melhorar produtos continuamente para sobreviver.
+        `;
+    }
+
+    if(tipo === "ex3"){
+        titulo.innerText = "Aprendizado Contínuo (Lifelong Learning)";
+
+        texto.innerHTML = `
+        O profissional não pode parar de estudar.<br><br>
+
+        <strong>Exemplo:</strong><br>
+        Um programador que aprendeu apenas uma linguagem há 10 anos e nunca se atualizou provavelmente está defasado.<br><br>
+
+        Hoje é necessário:<br>
+        • Aprender novas tecnologias<br>
+        • Entender IA<br>
+        • Dominar novas arquiteturas<br><br>
+
+        👉 Na Engenharia de Software, o diploma é só o começo.
+        `;
+    }
+
+    if(tipo === "ex4"){
+        titulo.innerText = "Trabalho Intelectual Predominante";
+
+        texto.innerHTML = `
+        O esforço mental vale mais que o esforço físico.<br><br>
+
+        <strong>Exemplos:</strong><br>
+        • Desenvolver um algoritmo<br>
+        • Projetar arquitetura de sistema<br>
+        • Analisar dados<br>
+        • Resolver bugs complexos<br><br>
+
+        O diferencial está na capacidade de pensar.
+        `;
+    }
+
+    if(tipo === "ex5"){
+        titulo.innerText = "Cenário Real";
+
+        texto.innerHTML = `
+        Imagine uma empresa de desenvolvimento de software.<br><br>
+
+        Ela possui:<br>
+        • Poucos bens físicos<br>
+        • Nenhuma fábrica<br>
+        • Nenhum grande estoque<br><br>
+
+        Mas possui:<br>
+        • Desenvolvedores experientes<br>
+        • Base de conhecimento interna<br>
+        • Documentação organizada<br>
+        • Cultura de aprendizado contínuo<br>
+        • Processo de inovação<br><br>
+
+        Essa empresa está totalmente inserida na Sociedade do Conhecimento.
+        `;
+    }
+
+    modal.classList.add("ativo");
+}
+
+function fecharModal(){
+    document.getElementById("modal").classList.remove("ativo");
+}
+
+window.addEventListener("click", function(event){
+    const modal = document.getElementById("modal");
+    if(event.target === modal){
+        modal.classList.remove("ativo");
+    }
+});
+</script>
+</body>
+</html>
