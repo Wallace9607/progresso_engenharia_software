@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Inovação e Gestão do Conhecimento</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#0f172a;
+color:white;
+overflow:hidden;
+}
+
+.presentation{
+position:relative;
+width:100vw;
+height:100vh;
+}
+
+.slide{
+display:none;
+width:100%;
+height:100%;
+padding:80px;
+box-sizing:border-box;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+opacity:0;
+transition:opacity 0.4s ease;
+position:absolute;
+inset:0;
+overflow:hidden;
+}
+
+.slide.active{
+display:flex;
+opacity:1;
+}
+
+.capa{
+position:relative;
+background-image:url("PennWest.jfif");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+.capa::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(
+rgba(0,0,0,0.7),
+rgba(0,0,0,0.8)
+);
+}
+
+.capa h1,
+.capa p{
+position:relative;
+z-index:2;
+text-align:center;
+}
+
+#conclusão{
+position:relative;
+background-image:url("conclusão2.jfif");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+#conclusão::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(
+rgba(0,0,0,0.6),
+rgba(0,0,0,0.6)
+);
+}
+
+#conclusão h1,
+#conclusão h2,
+#conclusão p{
+position:relative;
+z-index:2;
+text-align:center;
+}
+
+.slide.leao {
+  position: relative;
+  background: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("leao\ de\ fundo.jfif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* SLIDE 2 - Inovação Incremental */
+
+.slide.leao2 {
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+    background: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("leao\ de\ fundo.jfif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slide.leao2 h1 {
+  font-size: 2.4rem;
+  margin-bottom: 40px;
+  line-height: 1.2;
+  max-width: 900px;
+}
+
+/* Container do conteúdo */
+.slide.leao2 .content {
+  max-width: 950px;
+}
+
+/* Texto principal */
+.slide.leao2 .text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  opacity: 0.95;
+}
+
+/* Lista */
+.slide.leao2 ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 30px;
+}
+
+.slide.leao2 ul li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+}
+
+/* Marcador customizado */
+.slide.leao2 ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #f4b400; /* pode ajustar para combinar com o leão */
+  font-weight: bold;
+}
+
+/* Último parágrafo com leve destaque */
+.slide.leao2 .text p:last-of-type {
+  font-weight: 500;
+  border-left: 4px solid #f4b400;
+  padding-left: 15px;
+}
+
+
+h1{
+font-size:3rem;
+margin-bottom:20px;
+color:#6ee7b7;
+}
+
+h2{
+font-size:2.3rem;
+margin-bottom:25px;
+}
+
+p{
+font-size:1.2rem;
+line-height:1.6;
+max-width:900px;
+text-align:center;
+}
+
+ul{
+font-size:1.2rem;
+line-height:1.8;
+max-width:900px;
+}
+
+.content{
+display:flex;
+gap:40px;
+align-items:center;
+justify-content:center;
+max-width:1200px;
+}
+
+.text{
+flex:1;
+}
+
+.image-container{
+flex:1;
+display:flex;
+justify-content:center;
+}
+
+.image-container img{
+max-width:100%;
+max-height:400px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.controls{
+position:fixed;
+bottom:20px;
+right:20px;
+z-index:999;
+}
+
+button{
+background:#6ee7b7;
+border:none;
+padding:10px 20px;
+color:#000;
+font-size:18px;
+cursor:pointer;
+margin:5px;
+border-radius:5px;
+font-weight:bold;
+}
+
+button:hover{
+background:#22c55e;
+}
+
+.mapamental{
+    background-image: url(mapamental.png);
+position:relative;
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+.slide.leao .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.slide.leao .text {
+  flex: 1;
+}
+
+.slide.leao .cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.slide.leao .card {
+  background: rgba(255,255,255,0.08);
+  padding: 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.slide.leao .card:hover {
+  transform: translateY(-5px);
+}
+
+.slide.leao .icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.slide.leao .image-container {
+  flex: 1;
+  text-align: center;
+}
+
+.slide.leao .image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.slide.leao .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.slide.leao .text {
+  flex: 1;
+}
+
+.slide.leao .image-container {
+  flex: 1;
+  text-align: center;
+}
+
+.slide.leao .image-container img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="presentation">
+
+<!-- CAPA -->
+<section class="slide active capa">
+<h1>Inovação e Gestão do Conhecimento</h1>
+<p style="font-size:1.4rem; max-width:900px; margin-top:20px; line-height:1.6;">
+"A verdadeira inovação nasce quando o conhecimento
+deixa de ser informação isolada
+e passa a gerar transformação sustentável."
+</p>
+</section>
+
+<!-- SLIDE 1 -->
+<section class="slide">
+    <div class="content">
+<div class="text">
+    <h1>Inovação Incremental</h1>
+<h2>O que é?</h2>
+<p>
+É a melhoria contínua de um produto, serviço ou processo já existente,
+sem ruptura estrutural.
+</p>
+<p>
+Foco em otimização, eficiência e redução de erros.
+</p>
+
+</div>
+
+<div class="image-container">
+<img src="inivação_incremental.png">
+</div>
+</div>
+</section>
+
+<!-- SLIDE 2 -->
+<section class="slide leao2">
+  <h1>Inovação Incremental na Receita Federal do Brasil</h1>
+
+  <div class="content">
+    <div class="text">
+      <p>
+        A inovação incremental na Receita Federal ocorreu por meio de melhorias
+        progressivas nos processos já existentes, com foco na modernização,
+        eficiência operacional e redução da burocracia.
+      </p>
+
+      <ul>
+        <li>Processos originalmente realizados de forma manual</li>
+        <li>Entrega física de formulários e documentos</li>
+        <li>Alto tempo de processamento e custos operacionais elevados</li>
+        <li>Digitalização gradual dos serviços e automação de etapas</li>
+        <li>Melhoria contínua na experiência do contribuinte</li>
+      </ul>
+
+      <p>
+        Em vez de substituir completamente o sistema anterior, a Receita
+        implementou atualizações progressivas, tornando os serviços mais
+        rápidos, acessíveis e seguros ao longo do tempo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide leao">
+
+  <div class="content timeline-slide">
+
+    <div class="text">
+      <h1>Evolução Progressiva</h1>
+
+      <p class="frase-impacto">
+        Melhorias graduais, mantendo a base do sistema tributário.
+      </p>
+    </div>
+
+    <div class="image-container">
+      <img src="linha-tempo.png" alt="Linha do tempo da evolução">
+    </div>
+
+  </div>
+
+</section>
+<!-- SLIDE 4 -->
+<section class="slide leao">
+
+  <div class="content">
+    <div class="image-container">
+      <img src="Relação com a GC.png" alt="Relação com Gestão do Conhecimento">
+    </div>
+    <div class="text">
+
+
+      <p>
+        A modernização demonstra como a Gestão do Conhecimento transforma
+        dados operacionais em inteligência estratégica.
+      </p>
+
+      <ul>
+        <li>Coleta estruturada de dados</li>
+        <li>Cruzamento automatizado de informações</li>
+        <li>Geração de conhecimento estratégico</li>
+        <li>Decisão baseada em análise de risco</li>
+        <li>Fiscalização mais eficiente</li>
+      </ul>
+
+      <p>
+        Organização + análise + aplicação da informação = vantagem estratégica.
+      </p>
+    </div>
+
+
+
+  </div>
+
+</section>
+
+<!-- SLIDE 5 -->
+<!-- SLIDE 5 -->
+<section class="slide leao">
+
+  <div class="content destaque">
+
+    <div class="text">
+
+      <div class="cards">
+
+        <div class="card">
+          <span class="icon">🔄</span>
+          <h3>Conhecimento Retornado</h3>
+          <p>Dados organizados devolvidos ao cidadão</p>
+        </div>
+
+        <div class="card">
+          <span class="icon">✔️</span>
+          <h3>Menos Erros</h3>
+          <p>Redução de inconsistências</p>
+        </div>
+
+        <div class="card">
+          <span class="icon">⚡</span>
+          <h3>Mais Agilidade</h3>
+          <p>Processo simplificado</p>
+        </div>
+
+        <div class="card">
+          <span class="icon">🧠</span>
+          <h3>GC Aplicada</h3>
+          <p>Uso estratégico da informação</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="image-container">
+      <img src="Compartilhamento de Conhecimento.png" alt="Compartilhamento de Conhecimento">
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SLIDE CONCLUSÃO -->
+<section class="slide leao" id="conclusão">
+
+  <div class="content" style="flex-direction: column; text-align: center;">
+
+    <h1>Conclusão</h1>
+
+    <h2 style="margin-top:10px; color:#f4b400;">
+      Inovação Incremental é evolução estratégica.
+    </h2>
+
+    <p style="max-width:800px; margin-top:25px; text-shadow: 
+  0px 2px 6px rgba(0,0,0,0.6),
+  0px 4px 15px rgba(0,0,0,0.5);">
+      Pequenas melhorias contínuas podem gerar grandes impactos
+      em eficiência, qualidade e inteligência organizacional.
+    </p>
+
+    <div style="margin-top:40px; font-size:1.2rem; opacity:0.9;">
+      ✔ Modernização gradual<br>
+      ✔ Uso estratégico da informação<br>
+      ✔ Gestão do Conhecimento aplicada na prática
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SLIDE 6 -->
+<section class="slide">
+<h2>Inovação Radical</h2>
+<ul>
+<li>Mudança estrutural significativa</li>
+<li>Alto impacto organizacional</li>
+<li>Uso de novas tecnologias</li>
+<li>Redefinição de padrões</li>
+</ul>
+</section>
+
+<!-- SLIDE 7 -->
+<section class="slide">
+<h2>Inovação Disruptiva</h2>
+<ul>
+<li>Criação de novo mercado</li>
+<li>Substituição de modelos tradicionais</li>
+<li>Democratização do acesso</li>
+<li>Transformação do comportamento do consumidor</li>
+</ul>
+</section>
+
+<!-- SLIDE FINAL -->
+<section class="slide capa">
+<h1>Conclusão</h1>
+<p>
+A inovação pode ocorrer de forma incremental,
+radical ou disruptiva.
+</p>
+<p>
+A Gestão do Conhecimento é o que sustenta
+todas essas transformações.
+</p>
+</section>
+
+</div>
+
+<div class="controls">
+<button onclick="prevSlide()">◀</button>
+<button onclick="nextSlide()">▶</button>
+</div>
+
+<script>
+
+const slides=Array.from(document.querySelectorAll(".slide"));
+let current=0;
+
+function showSlide(index){
+slides[current].classList.remove("active");
+current=(index+slides.length)%slides.length;
+slides[current].classList.add("active");
+}
+
+function nextSlide(){showSlide(current+1);}
+function prevSlide(){showSlide(current-1);}
+
+document.addEventListener("keydown",function(e){
+if(e.key==="ArrowRight") nextSlide();
+if(e.key==="ArrowLeft") prevSlide();
+});
+
+</script>
+
+</body>
+</html>
