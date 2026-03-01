@@ -113,6 +113,23 @@ ul{
     transform:scale(1.05);
 }
 
+.btn-apresentacao{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:600;
+    text-decoration:none;
+    background:linear-gradient(135deg,#6ee7b7,#22c55e);
+    color:#000;
+    transition:all 0.3s ease;
+}
+
+.btn-apresentacao:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
 @media(max-width:600px){
     body{ padding:20px 15px; }
     .card{ padding:20px; }
@@ -137,6 +154,9 @@ ul{
 <strong>Tempo de apresentação:</strong> 15 minutos<br>
 <strong>Tipo:</strong> Apresentação de ideias
 </div>
+<a href="slide.html" class="btn-apresentacao">
+  ▶ Apresentação
+</a>
 </div>
 <div class="container">
 <div class="card">
@@ -450,4 +470,5 @@ loadStatus();
 
 </body>
 </html>
+
 
