@@ -319,7 +319,95 @@ background-repeat:no-repeat;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
+/* ---- */
 
+.inicio-radical{
+  position:absolute;
+  inset:0;
+  background: url("img/caparadical.jfif") center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:80px;
+  color:white;
+}
+
+/* Overlay mais dramático */
+.inicio-radical .overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    rgba(0,0,0,0.75),
+    rgba(10,10,30,0.75)
+  );
+}
+
+/* Conteúdo */
+.content-radical{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+}
+
+/* Título forte */
+.inicio-radical h1{
+  font-size:3.5rem;
+  margin-bottom:15px;
+  color:#ff4d4d; /* vermelho mais intenso */
+  text-shadow:0 6px 20px rgba(0,0,0,0.6);
+}
+
+/* Subtítulo */
+.inicio-radical h2{
+  font-size:2rem;
+  font-weight:400;
+  margin-bottom:30px;
+  opacity:0.9;
+}
+
+/* Linha decorativa */
+.linha-radical{
+  width:140px;
+  height:4px;
+  background:#ff4d4d;
+  margin:25px auto 35px auto;
+  border-radius:2px;
+}
+
+/* Texto */
+.inicio-radical p{
+  font-size:1.3rem;
+  line-height:1.6;
+  margin-bottom:15px;
+}
+
+/* Destaque final */
+.inicio-radical .destaque{
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+/* =========================
+   SLIDE SOMENTE IMAGEM
+========================= */
+.slide.imagem-total{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:0;
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#000; /* fundo para laterais */
+}
+.slide.imagem-total img{
+  width:100%;
+  height:100%;
+  object-fit: fill; /* ESTICA */
+}
 </style>
 </head>
 
@@ -516,15 +604,65 @@ Foco em otimização, eficiência e redução de erros.
 
 </section>
 
-<!-- SLIDE 6 -->
-<section class="slide">
-<h2>Inovação Radical</h2>
-<ul>
-<li>Mudança estrutural significativa</li>
-<li>Alto impacto organizacional</li>
-<li>Uso de novas tecnologias</li>
-<li>Redefinição de padrões</li>
-</ul>
+<!-- SLIDE  -->
+<section class="slide inicio-radical">
+
+  <div class="overlay"></div>
+
+  <div class="content-radical">
+    <h1>Inovação Radical</h1>
+    <h2>Quando a mudança rompe padrões</h2>
+
+    <div class="linha-radical"></div>
+
+    <p>
+      Transformações profundas que alteram estruturas,
+      mercados e modelos existentes.
+    </p>
+
+    <p class="destaque">
+      Ruptura • Alto Impacto • Nova Lógica de Mercado
+    </p>
+  </div>
+
+</section>
+
+
+
+<section class="slide imagem-total">
+  <img src="img/01.png" alt="">
+</section>
+
+<section class="slide imagem-total">
+  <img src="img/02.png" alt="">
+</section>
+
+<section class="slide imagem-total">
+  <img src="img/03.png" alt="">
+</section>
+
+<section class="slide imagem-total">
+  <img src="img/04.png" alt="">
+</section>
+
+<section class="slide imagem-total">
+  <img src="img/05.png" alt="">
+</section>
+
+<section class="slide imagem-total">
+  <img src="img/06.png" alt="">
+</section>
+
+<section class="slide imagem-total">
+  <img src="img/07.png" alt="">
+</section>
+
+<section class="slide imagem-total">
+  <img src="img/08.png" alt="">
+</section>
+
+<section class="slide imagem-total">
+  <img src="img/09.png" alt="">
 </section>
 
 <!-- SLIDE 7 -->
@@ -580,4 +718,5 @@ if(e.key==="ArrowLeft") prevSlide();
 </script>
 
 </body>
+
 </html>
