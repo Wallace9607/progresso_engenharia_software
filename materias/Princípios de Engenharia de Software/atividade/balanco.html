@@ -232,13 +232,6 @@ font-size:35px;
 color:#38bdf8;
 }
 
-.controls{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-}
-
 .conclusao{
 list-style: none;
 font-size: 20px;
@@ -250,12 +243,20 @@ margin-bottom: 15px;
 background:rgba(255,255,255,0.08);
 }
 
+.controls{
+position:fixed;
+bottom:15px;
+right:15px;
+display:flex;
+gap:6px;
+}
+
 button{
-padding:10px 20px;
-font-size:18px;
-margin:5px;
+padding:6px 12px;
+font-size:14px;
+margin:0;
 border:none;
-border-radius:6px;
+border-radius:5px;
 cursor:pointer;
 background:#38bdf8;
 color:#000;
@@ -264,6 +265,50 @@ font-weight:bold;
 
 button:hover{
 background:#0ea5e9;
+}
+
+@media (max-width:768px){
+
+.slide{
+padding:20px;
+}
+
+.cards{
+flex-direction:column;
+align-items:center;
+}
+
+.card{
+width:90%;
+}
+
+.elicitation{
+flex-direction:column;
+align-items:center;
+}
+
+.elic-card{
+width:90%;
+}
+
+.processo{
+flex-direction:column;
+}
+
+.arrow{
+transform:rotate(90deg);
+}
+
+.controls{
+bottom:10px;
+right:10px;
+}
+
+button{
+padding:6px 10px;
+font-size:14px;
+}
+
 }
 
 </style>
@@ -494,8 +539,8 @@ para identificar boas práticas de construção e segurança.
 </section>
 
 <div class="controls">
-<button onclick="prevSlide()">⬅ Anterior</button>
-<button onclick="nextSlide()">Próximo ➡</button>
+<button onclick="prevSlide()">⬅</button>
+<button onclick="nextSlide()">➡</button>
 </div>
 
 <script>
@@ -541,3 +586,4 @@ prevSlide();
 </body>
 
 </html>
+
