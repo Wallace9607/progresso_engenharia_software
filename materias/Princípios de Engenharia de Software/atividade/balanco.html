@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Balanço em Árvore - Engenharia de Software</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+text-shadow:0 4px 15px rgba(0,0,0,0.9);
+color:#fff;
+overflow:hidden;
+}
+
+.slide{
+position:relative;
+background-image: url(img/balanco.png);
+background-position:center;
+background-size: cover;
+display:none;
+height:100vh;
+width:100vw;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px;
+box-sizing:border-box;
+}
+.slide::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7); /* controla o escurecimento */
+}
+.slide.active{
+display:flex;
+}
+
+.slide h2{
+font-size:40px;
+margin-bottom:30px;
+color:#38bdf8;
+}
+
+.slide p{
+font-size:22px;
+max-width:800px;
+margin:auto;
+margin-bottom:30px;
+line-height:1.6;
+}
+
+.slide ul{
+font-size:22px;
+text-align:left;
+max-width:600px;
+margin:auto;
+line-height:1.8;
+list-style: none;
+}
+
+.slide ul li{
+margin-bottom:12px;
+padding-left:10px;
+border-left:4px solid #38bdf8;
+background:rgba(255,255,255,0.08);
+}
+
+.capa h1{
+font-size:60px;
+margin-bottom:10px;
+color:#f8e538;
+}
+
+.capa h2{
+font-size:34px;
+color:#38bdf8;
+margin-bottom:30px;
+}
+
+.descricao{
+font-size:22px;
+max-width:700px;
+margin:auto;
+margin-bottom:40px;
+line-height:1.6;
+}
+
+.info{
+font-size:18px;
+opacity:0.9;
+margin-top:20px;
+}
+.content{
+position:relative;
+z-index:2;
+
+max-width:900px;
+}
+
+h1{
+font-size:48px;
+margin-bottom:20px;
+
+}
+
+h2{
+font-size:32px;
+margin-bottom:20px;
+color:#38bdf8;
+}
+
+p{
+font-size:20px;
+line-height:1.6;
+}
+
+ul{
+text-align:left;
+font-size:20px;
+line-height:1.6;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+gap:25px;
+justify-content:center;
+margin-top:40px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:10px;
+width:220px;
+backdrop-filter:blur(5px);
+border:1px solid rgba(255,255,255,0.15);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+background:rgba(255,255,255,0.15);
+}
+
+.card h3{
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:16px;
+line-height:1.5;
+}
+
+.elicitation{
+display:flex;
+gap:40px;
+justify-content:center;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.elic-card{
+width:320px;
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,0.15);
+backdrop-filter:blur(5px);
+}
+
+.elic-card h3{
+color:#38bdf8;
+margin-bottom:15px;
+font-size:24px;
+}
+
+.elic-card p{
+font-size:18px;
+margin-bottom:15px;
+line-height:1.5;
+}
+
+.elic-card ul{
+font-size:17px;
+line-height:1.6;
+}
+
+.processo{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:25px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.step{
+width:200px;
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,0.15);
+text-align:center;
+}
+
+.step h3{
+font-size:28px;
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+.step p{
+font-size:18px;
+margin-bottom:8px;
+}
+
+.step span{
+font-size:15px;
+opacity:0.9;
+}
+
+.arrow{
+font-size:35px;
+color:#38bdf8;
+}
+
+.controls{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.conclusao{
+list-style: none;
+font-size: 20px;
+line-height: 1.6;
+}
+
+.conclusao li{
+margin-bottom: 15px;
+background:rgba(255,255,255,0.08);
+}
+
+button{
+    display: none;
+padding:10px 20px;
+font-size:18px;
+margin:5px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+background:#38bdf8;
+color:#000;
+font-weight:bold;
+}
+
+button:hover{
+background:#0ea5e9;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SLIDE 1 -->
+<section class="slide active">
+
+<div class="content capa">
+
+<h1 class="animate__animated animate__fadeInLeft animate__slow	2s">Projeto de Balanço em Árvore</h1>
+
+<h2  class="animate__animated animate__fadeInRight animate__delay-1s">Levantamento de Requisitos</h2>
+
+<p class="descricao animate__animated animate__fadeIn animate__delay-2s">
+Atividade da disciplina de Princípios de Engenharia de Software
+sobre especificação em linguagem natural e técnicas de elicitação.
+</p>
+
+<div class="info">
+<p  class="animate__animated animate__fadeIn animate__delay-3s"><b>Disciplina:</b> Princípios de Engenharia de Software</p>
+<p  class="animate__animated animate__fadeIn animate__delay-4s"><b>Aluno:</b> Wallace Alves de Freitas</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- SLIDE 2 -->
+<section class="slide">
+
+<div class="content">
+
+<h2>Contexto do Projeto</h2>
+
+<p>
+Uma dona de chácara solicitou a construção de um balanço em uma árvore localizada em seu terreno.
+O objetivo é criar um espaço de lazer para crianças que visitam o local.
+</p>
+
+<ul>
+<li>Local: chácara com área arborizada</li>
+<li>Objetivo: criar um brinquedo seguro para crianças</li>
+<li>Instalação: balanço preso a um galho resistente</li>
+</ul>
+
+</div>
+
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide">
+
+<div class="content">
+
+<h2>Especificação em Linguagem Natural</h2>
+
+<p>
+Durante a conversa com a cliente, foram levantadas as seguintes necessidades
+para o balanço na árvore:
+</p>
+
+<ul>
+
+<li>O balanço deve ser instalado em um galho forte da árvore.</li>
+
+<li>Deve utilizar cordas resistentes para suportar o peso dos usuários.</li>
+
+<li>O assento deve ser firme e confortável.</li>
+
+<li>A altura do balanço deve permitir que crianças subam com facilidade.</li>
+
+<li>Os materiais devem ser resistentes ao sol e à chuva.</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<!-- SLIDE 4 -->
+<section class="slide">
+
+<div class="content">
+
+<h2>Principais Requisitos do Balanço</h2>
+
+<div class="cards">
+
+<div class="card animate__animated animate__fadeInLeft  animate__slow	1s">
+<h3>Segurança</h3>
+<p>O balanço deve suportar o peso dos usuários com cordas e fixação resistentes.</p>
+</div>
+
+<div class="card animate__animated animate__fadeInDown  animate__slow	3s">
+<h3>Estrutura</h3>
+<p>Deve ser instalado em um galho forte e estável da árvore.</p>
+</div>
+
+<div class="card animate__animated animate__fadeInRight  animate__slow	1s">
+<h3>Conforto</h3>
+<p>O assento deve ser firme e confortável para as crianças.</p>
+</div>
+
+<div class="card animate__animated animate__fadeInUp  animate__slow	3s">
+<h3>Durabilidade</h3>
+<p>Os materiais devem resistir ao sol, chuva e uso frequente.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SLIDE 5 -->
+<section class="slide">
+
+<div class="content">
+
+<h2>Técnicas de Elicitação de Requisitos</h2>
+
+<div class="elicitation">
+
+<div class="elic-card  animate__animated animate__fadeInLeft  animate__slow	2s">
+
+<h3>Entrevista</h3>
+
+<p>
+Consiste em conversar diretamente com a dona da chácara para entender
+suas necessidades, expectativas e requisitos para o balanço.
+</p>
+
+<ul>
+<li>Identificar necessidades</li>
+<li>Entender expectativas</li>
+<li>Levantar requisitos iniciais</li>
+</ul>
+
+</div>
+
+<div class="elic-card  animate__animated animate__fadeInRight  animate__slow	2s">
+
+<h3>Observação</h3>
+
+<p>
+Consiste em observar balanços semelhantes em parques ou áreas de lazer,
+para identificar boas práticas de construção e segurança.
+</p>
+
+<ul>
+<li>Analisar uso real</li>
+<li>Identificar melhorias</li>
+<li>Validar requisitos</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SLIDE 6 -->
+<section class="slide">
+
+<div class="content">
+
+<h2>Sequência de Uso das Técnicas</h2>
+
+<div class="processo">
+
+<div class="step animate__animated animate__backInLeft">
+<h3>1</h3>
+<p><b>Entrevista</b></p>
+<span>Conversar com a dona da chácara para entender suas necessidades.</span>
+</div>
+
+<div class="arrow animate__animated animate__flipInX animate__delay-1s">
+➜
+</div>
+
+<div class="step animate__animated animate__backInRight animate__delay-2s">
+<h3>2</h3>
+<p><b>Observação</b></p>
+<span>Observar balanços semelhantes para identificar melhorias e boas práticas.</span>
+</div>
+
+<div class="arrow animate__animated animate__flipInX animate__delay-3s">
+➜
+</div>
+
+<div class="step animate__animated animate__backInRight animate__delay-4s">
+<h3>3</h3>
+<p><b>Definição dos Requisitos</b></p>
+<span>Com base nas informações coletadas, definir como o balanço será construído.</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- conclusão -->
+
+<section class="slide">
+
+<div class="content">
+
+<h2>Conclusão</h2>
+
+<ul class="conclusao">
+<li  class="animate__animated animate__fadeInRight animate__delay-1s">A elicitação de requisitos é essencial para compreender as necessidades do usuário.</li>
+
+<li  class="animate__animated animate__fadeInRight animate__delay-2s">As técnicas de entrevista e observação ajudam a coletar informações importantes.</li>
+
+<li  class="animate__animated animate__fadeInRight animate__delay-3s">Com base nesses dados, é possível definir requisitos claros para o projeto.</li>
+
+<li  class="animate__animated animate__fadeInRight animate__delay-4s">Esse processo contribui para o desenvolvimento de uma solução mais adequada e segura.</li>
+</ul>
+
+</div>
+
+</section>
+
+<div class="controls">
+<button onclick="prevSlide()">⬅ Anterior</button>
+<button onclick="nextSlide()">Próximo ➡</button>
+</div>
+
+<script>
+
+let slideIndex = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide(index){
+slides.forEach(slide => slide.classList.remove("active"));
+slides[index].classList.add("active");
+}
+
+function nextSlide(){
+slideIndex++;
+if(slideIndex >= slides.length){
+slideIndex = slides.length - 1;
+}
+showSlide(slideIndex);
+}
+
+function prevSlide(){
+slideIndex--;
+if(slideIndex < 0){
+slideIndex = 0;
+}
+showSlide(slideIndex);
+}
+
+document.addEventListener("keydown", function(e){
+
+if(e.key === "ArrowRight"){
+nextSlide();
+}
+
+if(e.key === "ArrowLeft"){
+prevSlide();
+}
+
+});
+
+</script>
+
+</body>
+</html>

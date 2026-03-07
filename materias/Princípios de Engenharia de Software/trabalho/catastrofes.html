@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Grandes Falhas de Software</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#0f172a;
+color:white;
+overflow:hidden;
+}
+
+body.details-open{
+overflow:hidden;
+}
+
+.presentation{
+position:relative;
+width:100vw;
+height:100vh;
+}
+
+.slide{
+display:none;
+width:100%;
+height:100%;
+padding:80px;
+box-sizing:border-box;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+opacity:0;
+transition:opacity 0.4s ease;
+position:absolute;
+inset:0;
+overflow:hidden;
+}
+
+.slide.active{
+display:flex;
+opacity:1;
+}
+
+.capa{
+position:relative;
+background-image:url("img/error.png");
+background-size:cover;
+background-position:center;
+}
+
+.capa .overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.65);
+display:flex;
+font-size: 20px;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px;
+text-shadow: 2px 4px 8px rgba(0,0,0,0.6);
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:20px;
+    color: #dc2626;
+    text-shadow: 2px 4px 8px rgba(0,0,0,0.6);
+}
+h2{font-size:2.5rem;margin-bottom:30px;}
+ul{font-size:1.3rem;line-height:1.8;}
+
+.controls{
+position:fixed;
+bottom:20px;
+right:20px;
+z-index:999;
+}
+
+.content{
+display:flex;
+gap:40px;
+align-items:center;
+justify-content:center;
+max-width:1200px;
+}
+
+.text{flex:1;}
+
+.image-container{
+flex:1;
+display:flex;
+justify-content:center;
+}
+
+.image-container img{
+max-width:100%;
+max-height:400px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+button{
+background:#2563eb;
+border:none;
+padding:10px 20px;
+color:white;
+font-size:18px;
+cursor:pointer;
+margin:5px;
+border-radius:5px;
+}
+
+button:hover{background:#1d4ed8;}
+
+.details-page{
+position:fixed;
+inset:0;
+background:#020617;
+padding:80px;
+display:none;
+flex-direction:column;
+z-index:9999;
+overflow-y:auto;
+}
+
+.details-page.active{
+display:flex;
+}
+
+.back-btn{
+position:absolute;
+top:20px;
+left:20px;
+background:#dc2626;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="presentation">
+
+<section class="slide active capa">
+<div class="overlay">
+<h1>Grandes Falhas de Software</h1>
+<p>Análise Técnica, Impactos e Lições Aprendidas</p>
+</div>
+</section>
+
+<section class="slide capa">
+<div class="overlay">
+<h1>⚠ ATENÇÃO, DESENVOLVEDORES</h1>
+<p class="subtitle">
+Uma única linha de código pode custar bilhões… ou vidas.
+</p>
+<p class="warning">
+Grandes falhas começam com pequenos descuidos.
+</p>
+</div>
+</section>
+
+<section class="slide" id="boeing-resumo">
+<div class="content">
+<div class="text">
+<h2>Boeing 737 MAX (2018–2019)</h2>
+<ul>
+<li><strong>Erro:</strong> Sistema MCAS dependia de apenas um sensor de ângulo de ataque.</li>
+<li><strong>Custo:</strong> 346 mortes + bilhões em indenizações + paralisação global da frota.</li>
+<li><strong>Como evitar:</strong> Redundância de sensores, validação cruzada de dados e maior transparência na certificação de software crítico.</li>
+</ul>
+<button onclick="openDetails('boeing-detalhe')">
+Ver Acontecimento Completo
+</button>
+</div>
+<div class="image-container">
+<img src="img/B737 Max.png">
+</div>
+</div>
+</section>
+
+<section class="slide" id="blackout-resumo">
+<div class="content">
+<div class="text">
+<h2>Blackout América do Norte (2003)</h2>
+<ul>
+<li><strong>Erro:</strong> Race condition e falha no sistema de alarmes que não notificou operadores.</li>
+<li><strong>Custo:</strong> 50 milhões de pessoas sem energia + prejuízo estimado em US$ 6 bilhões.</li>
+<li><strong>Como evitar:</strong> Monitoramento em tempo real robusto, sistemas redundantes e testes de concorrência rigorosos.</li>
+</ul>
+<button onclick="openDetails('blackout-detalhe')">
+Ver Acontecimento Completo
+</button>
+</div>
+<div class="image-container">
+<img src="img/Blackout América do Norte.png">
+</div>
+</div>
+</section>
+
+<section class="slide" id="y2k-resumo">
+<div class="content">
+<div class="text">
+<h2>Bug do Milênio (Y2K)</h2>
+<ul>
+<li><strong>Erro:</strong> Datas armazenadas com apenas 2 dígitos para o ano.</li>
+<li><strong>Custo:</strong> Risco global de falhas em bancos, sistemas governamentais e infraestrutura + US$ 300 bilhões em correções preventivas.</li>
+<li><strong>Como evitar:</strong> Padronização de dados, planejamento de longo prazo e revisão constante de sistemas legados.</li>
+</ul>
+<button onclick="openDetails('y2k-detalhe')">
+Ver Acontecimento Completo
+</button>
+</div>
+<div class="image-container">
+<img src="img/Le _bug_ de l'an 2000.png">
+</div>
+</div>
+</section>
+
+<section class="slide" id="ariane-resumo">
+<div class="content">
+<div class="text">
+<h2>Ariane 5 – Voo V88 (1996)</h2>
+<ul>
+<li><strong>Erro:</strong> Conversão inadequada de número (float 64 → int 16), causando overflow no sistema inercial.</li>
+<li><strong>Custo:</strong> Explosão após 37 segundos + prejuízo de US$ 370 milhões.</li>
+<li><strong>Como evitar:</strong> Testes específicos para novos contextos de uso, validação de limites numéricos e revisão completa de código reutilizado.</li>
+</ul>
+<button onclick="openDetails('ariane-detalhe')">
+Ver Acontecimento Completo
+</button>
+</div>
+<div class="image-container">
+<img src="img/Ariane 5 – Voo V88.png">
+</div>
+</div>
+</section>
+
+<section class="slide" id="mtgox-resumo">
+<div class="content">
+<div class="text">
+<h2>Mt. Gox (2011–2014)</h2>
+<ul>
+<li><strong>Erro:</strong> Vulnerabilidade de maleabilidade de transação e falhas graves de segurança.</li>
+<li><strong>Custo:</strong> 850.000 Bitcoins perdidos (bilhões de dólares em valores atuais) + falência da empresa.</li>
+<li><strong>Como evitar:</strong> Auditorias de segurança contínuas, armazenamento cold wallet, implementação do SegWit e práticas modernas de cibersegurança.</li>
+</ul>
+<button onclick="openDetails('mtgox-detalhe')">
+Ver Acontecimento Completo
+</button>
+</div>
+<div class="image-container">
+<img src="img/Mt. Gox.png">
+</div>
+</div>
+</section>
+
+<section class="slide">
+<div class="text">
+<h2>Lições Aprendidas</h2>
+<p>
+Grandes falhas de software não acontecem por acaso.
+Elas são resultado de decisões mal planejadas,
+falta de testes ou ausência de segurança.
+</p>
+<ul>
+<li>Redundância em sistemas críticos</li>
+<li>Testes rigorosos e validação constante</li>
+<li>Manutenção contínua de código legado</li>
+<li>Segurança como prioridade desde o início</li>
+</ul>
+<p>
+Engenharia de Software não é apenas sobre código.
+É sobre responsabilidade.
+</p>
+</div>
+</section>
+
+</div>
+
+<div class="controls">
+<button onclick="prevSlide()">◀</button>
+<button onclick="nextSlide()">▶</button>
+</div>
+
+<!-- DETAILS -->
+
+<section class="details-page" id="boeing-detalhe">
+    <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+    
+    <h2 style="color: #d32f2f; border-bottom: 2px solid #d32f2f; padding-bottom: 10px;">A Crise do Boeing 737 MAX (2018-2019)</h2>
+    
+    <p>A história do Boeing 737 entre 2018 e 2019 é marcada por um dos períodos mais sombrios e transformadores da aviação moderna. O foco central foi o <strong>737 MAX</strong>, a quarta geração da aeronave, que passou de "promessa de eficiência" a um pesadelo global de segurança.</p>
+    
+    <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;">
+    
+    <h3 style="color: #1976d2;">1. Cronologia dos Acidentes</h3>
+    <ul style="list-style-type: square;">
+        <li><strong>Voo Lion Air 610 (Outubro de 2018):</strong> Um 737 MAX 8 caiu no Mar de Java, na Indonésia, logo após a decolagem, matando todas as 189 pessoas a bordo.</li>
+        <li><strong>Voo Ethiopian Airlines 302 (Março de 2019):</strong> Apenas cinco meses depois, outro MAX 8 caiu na Etiópia, resultando em 157 vítimas.</li>
+    </ul>
+    <p>A semelhança entre os perfis de voo dos dois acidentes acendeu o alerta vermelho em todo o mundo.</p>
+
+<h3 style="color: #1976d2;">2. O Vilão Técnico: O MCAS</h3>
+<p style="background-color: #fff; padding: 15px; border-left: 5px solid #ff9800;">
+
+As investigações revelaram que o culpado era um sistema de software chamado <strong>MCAS</strong> (Maneuvering Characteristics Augmentation System).<br><br>
+
+<strong>Por que ele existia?</strong> Para acomodar motores maiores e mais eficientes, a Boeing teve que reposicioná-los na asa. Isso mudou o centro de gravidade, tendendo a empinar o nariz do avião.<br><br>
+
+<strong>A falha:</strong> O MCAS deveria empurrar o nariz para baixo automaticamente se sentisse que o avião estava prestes a estolar. No entanto, ele recebia dados de apenas um sensor de "ângulo de ataque". Se esse sensor falhasse, o software forçava o mergulho do avião repetidamente, lutando contra os pilotos.<br><br>
+
+<strong>A omissão:</strong> A Boeing não incluiu detalhes sobre o MCAS nos manuais de treinamento para que a transição dos pilotos do modelo antigo para o novo fosse mais barata e rápida.
+
+</p>
+
+    <h3 style="color: #1976d2;">3. O Grounding Global (Março de 2019)</h3>
+
+<p style="background-color: #fff; padding: 15px; border-left: 5px solid #ff9800;">
+Pela primeira vez na história moderna, quase todos os países do mundo baniram um modelo de aeronave de seus espaços aéreos simultaneamente.<br><br>
+
+A China foi a primeira a suspender os voos.<br>
+A União Europeia e outros países seguiram rapidamente.<br>
+A FAA (EUA) foi a última grande agência a ceder, paralisando a frota mundial de 737 MAX em 13 de março de 2019.
+</p>
+
+<h4 style="margin-top:20px;">Impactos no Setor em 2019</h4>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+    <thead>
+        <tr style="background-color: #eee;">
+            <th style="border: 1px solid #ccc; padding: 10px; text-align: left;">Área Impactada</th>
+            <th style="border: 1px solid #ccc; padding: 10px; text-align: left;">Consequência</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 10px;"><strong>Produção</strong></td>
+            <td style="border: 1px solid #ccc; padding: 10px;">A Boeing acumulou centenas de aviões em estacionamentos, pois não podia entregá-los.</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 10px;"><strong>Companhias Aéreas</strong></td>
+            <td style="border: 1px solid #ccc; padding: 10px;">Empresas como GOL, Southwest e American Airlines tiveram que cancelar milhares de voos.</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 10px;"><strong>Liderança</strong></td>
+            <td style="border: 1px solid #ccc; padding: 10px;">O CEO da Boeing na época, Dennis Muilenburg, foi duramente questionado pelo Congresso dos EUA e eventualmente demitido.</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 10px;"><strong>Confiança</strong></td>
+            <td style="border: 1px solid #ccc; padding: 10px;">A reputação da Boeing e da FAA (pela certificação apressada) foi severamente abalada.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p style="margin-top: 20px; font-style: italic; font-size: 0.9em; color: #666;">
+Nota importante: O Boeing 737 MAX só voltou a voar comercialmente no final de 2020, após extensas atualizações de software, redundância de sensores e novos protocolos de treinamento para pilotos.
+</p>
+
+</div>
+<button class="back-btn" onclick="closeDetails()">⬅ Voltar</button>
+
+</section>
+
+<section class="details-page" id="boeing-detalhe">
+<button class="back-btn" onclick="closeDetails()">⬅ Voltar</button>
+<h1>Boeing 737 MAX</h1>
+</section>
+
+<!-- DETALHES BLACKOUT AMÉRICA DO NORTE-->
+<section class="details-page" id="blackout-detalhe">
+
+<button class="back-btn" onclick="closeDetails()">⬅ Voltar</button>
+
+<div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+
+<h2>O Grande Blackout da América do Norte (2003)</h2>
+
+<p>
+Em 14 de agosto de 2003, um dos maiores apagões da história moderna deixou cerca de 50 milhões de pessoas sem energia elétrica em partes dos Estados Unidos e do Canadá. O evento afetou cidades como Nova York, Detroit, Cleveland e Toronto, causando prejuízos bilionários e interrompendo serviços essenciais como transporte, hospitais e telecomunicações.
+</p>
+
+<hr style="margin:20px 0;">
+
+<h3>1. O Início da Falha</h3>
+
+<p>
+O apagão começou no estado de Ohio, quando linhas de transmissão de alta tensão entraram em contato com árvores devido à falta de poda adequada. Esse contato provocou o desligamento automático de diversas linhas elétricas.
+</p>
+
+<p>
+Normalmente, o sistema elétrico deveria redistribuir a carga automaticamente para evitar sobrecarga em outras linhas. No entanto, isso não ocorreu corretamente.
+</p>
+
+<h3>2. A Falha de Software</h3>
+
+<p>
+O principal problema não foi apenas físico, mas também digital. Um erro no sistema de monitoramento da empresa responsável impediu que os operadores visualizassem em tempo real o colapso progressivo da rede elétrica.
+</p>
+
+<p>
+O sistema conhecido como <strong>Energy Management System (EMS)</strong> possuía uma falha em seu módulo de alarme. Esse erro fez com que os alertas de sobrecarga simplesmente não aparecessem nas telas dos operadores.
+</p>
+
+<p>
+Como resultado:
+</p>
+
+<ul>
+<li>Os operadores não sabiam que várias linhas já estavam fora de operação.</li>
+<li>Não houve redistribuição adequada de carga.</li>
+<li>Outras linhas começaram a sobrecarregar.</li>
+<li>Subestações entraram em efeito cascata de desligamento.</li>
+</ul>
+
+<h3>3. O Efeito Cascata</h3>
+
+<p>
+Em poucos minutos, a falha inicial se espalhou por toda a rede interligada do nordeste dos Estados Unidos e sudeste do Canadá. À medida que cada linha sobrecarregada era desligada automaticamente para evitar danos físicos, mais carga era transferida para outras partes do sistema, ampliando o colapso.
+</p>
+
+<p>
+Esse fenômeno, conhecido como <strong>falha em cascata</strong>, transformou um problema local em uma crise continental.
+</p>
+
+<h3>4. Impactos Imediatos</h3>
+
+<table style="width:100%; border-collapse: collapse;">
+<tr>
+<th style="border:1px solid #ccc; padding:8px;">Área Afetada</th>
+<th style="border:1px solid #ccc; padding:8px;">Consequência</th>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Transporte</td>
+<td style="border:1px solid #ccc; padding:8px;">Metrôs e aeroportos pararam de funcionar.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Hospitais</td>
+<td style="border:1px solid #ccc; padding:8px;">Funcionamento dependente de geradores.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Comunicação</td>
+<td style="border:1px solid #ccc; padding:8px;">Quedas em redes telefônicas e internet.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Economia</td>
+<td style="border:1px solid #ccc; padding:8px;">Prejuízo estimado em bilhões de dólares.</td>
+</tr>
+
+</table>
+
+<h3>5. Lições Aprendidas</h3>
+
+<p>
+Após o incidente, investigações revelaram que a falta de redundância nos sistemas de monitoramento e a ausência de testes adequados no software de alarme foram fatores determinantes para a magnitude do apagão.
+</p>
+
+<p>
+O evento levou à criação de normas mais rígidas para monitoramento em tempo real, automação de redes elétricas e atualização obrigatória de sistemas de supervisão energética.
+</p>
+
+</div>
+
+</section>
+
+<!-- DETALHES BUG DO MILENIO -->
+<section class="details-page" id="y2k-detalhe">
+
+<button class="back-btn" onclick="closeDetails()">⬅ Voltar</button>
+
+<div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+
+<h2>O Bug do Milênio – Y2K (Ano 2000)</h2>
+
+<p>
+O Bug do Milênio, também conhecido como Y2K (Year 2000), foi uma falha potencial em sistemas computacionais que ameaçou causar colapsos globais na virada do ano de 1999 para 2000. O problema estava relacionado à forma como datas eram armazenadas em softwares desenvolvidos décadas antes, especialmente entre as décadas de 1960 e 1980.
+</p>
+
+<hr style="margin:20px 0;">
+
+<h3>1. A Origem do Problema</h3>
+
+<p>
+Nos primeiros sistemas computacionais, a memória era extremamente limitada e cara. Para economizar espaço de armazenamento, muitos programadores optaram por representar o ano utilizando apenas dois dígitos em vez de quatro.
+</p>
+
+<p>
+Por exemplo:
+</p>
+
+<ul>
+<li>1965 era armazenado como 65</li>
+<li>1987 era armazenado como 87</li>
+<li>1999 era armazenado como 99</li>
+</ul>
+
+<p>
+Essa prática funcionava normalmente dentro do século XX, mas criava um problema crítico na virada para o ano 2000.
+</p>
+
+<h3>2. A Falha Técnica</h3>
+
+<p>
+Quando o calendário mudasse de 31/12/1999 para 01/01/2000, muitos sistemas interpretariam o ano "00" como 1900 em vez de 2000.
+</p>
+
+<p>
+Isso poderia gerar erros em:
+</p>
+
+<ul>
+<li>Cálculos de idade</li>
+<li>Datas de vencimento bancário</li>
+<li>Controle de estoque</li>
+<li>Sistemas de seguro</li>
+<li>Sistemas hospitalares</li>
+<li>Controle de tráfego aéreo</li>
+<li>Infraestruturas energéticas</li>
+</ul>
+
+<p>
+Em sistemas críticos, esse erro poderia causar falhas lógicas graves, como datas negativas, encerramento automático de contratos, desligamento de equipamentos ou travamento completo de softwares.
+</p>
+
+<h3>3. Riscos Previstos</h3>
+
+<p>
+Especialistas temiam que sistemas embarcados em usinas nucleares, aeroportos, bancos e redes elétricas falhassem simultaneamente.
+</p>
+
+<p>
+Entre os possíveis impactos estavam:
+</p>
+
+<ul>
+<li>Interrupções no fornecimento de energia</li>
+<li>Falhas em sistemas bancários</li>
+<li>Cancelamento de voos</li>
+<li>Erros em sistemas militares</li>
+<li>Paralisação de indústrias automatizadas</li>
+</ul>
+
+<p>
+O receio era que falhas em cascata ocorressem em infraestruturas interdependentes, ampliando rapidamente os efeitos do erro inicial.
+</p>
+
+<h3>4. Impactos Econômicos e Operacionais</h3>
+
+<table style="width:100%; border-collapse: collapse;">
+<tr>
+<th style="border:1px solid #ccc; padding:8px;">Setor</th>
+<th style="border:1px solid #ccc; padding:8px;">Ação Preventiva</th>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Bancos</td>
+<td style="border:1px solid #ccc; padding:8px;">Atualização de sistemas de transações financeiras.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Aviação</td>
+<td style="border:1px solid #ccc; padding:8px;">Revisão de softwares de navegação e controle.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Energia</td>
+<td style="border:1px solid #ccc; padding:8px;">Testes em redes elétricas e sistemas SCADA.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Governo</td>
+<td style="border:1px solid #ccc; padding:8px;">Auditoria em sistemas públicos e militares.</td>
+</tr>
+
+</table>
+
+<h3>5. A Solução Global</h3>
+
+<p>
+Governos e empresas investiram bilhões de dólares na revisão de códigos legados, substituição de hardware e testes de compatibilidade para garantir que seus sistemas interpretassem corretamente o ano 2000.
+</p>
+
+<p>
+Milhares de programadores foram mobilizados para localizar e corrigir trechos de código que utilizavam datas no formato de dois dígitos.
+</p>
+
+<p>
+Quando o ano 2000 finalmente chegou, a maioria dos sistemas críticos continuou funcionando normalmente, graças às medidas preventivas implementadas ao longo da década de 1990.
+</p>
+
+<p>
+O Y2K tornou-se um dos maiores exemplos da importância da manutenção de software legado e do impacto potencial de decisões técnicas aparentemente simples no longo prazo.
+</p>
+
+</div>
+
+</section>
+
+<!-- DETALHES ARIANE 5-->
+<section class="details-page" id="ariane-detalhe">
+
+<button class="back-btn" onclick="closeDetails()">⬅ Voltar</button>
+
+<div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+
+<h2>Ariane 5 – Voo V88 (1996)</h2>
+
+<p>
+Em 4 de junho de 1996, o primeiro lançamento do foguete Ariane 5 terminou em uma explosão apenas 37 segundos após a decolagem. O evento marcou uma das falhas de software mais caras da história da engenharia aeroespacial, resultando na perda total do veículo e de sua carga útil.
+</p>
+
+<hr style="margin:20px 0;">
+
+<h3>1. Contexto do Projeto</h3>
+
+<p>
+O Ariane 5 foi desenvolvido para substituir o Ariane 4, oferecendo maior capacidade de carga e desempenho aprimorado. Como forma de economizar tempo e custos de desenvolvimento, partes do software do sistema de navegação inercial do Ariane 4 foram reutilizadas na nova versão.
+</p>
+
+<p>
+No entanto, o Ariane 5 possuía características de voo significativamente diferentes, incluindo maior aceleração horizontal logo após o lançamento.
+</p>
+
+<h3>2. A Falha Técnica</h3>
+
+<p>
+O erro ocorreu devido à conversão de um número em ponto flutuante de 64 bits para um número inteiro com sinal de 16 bits.
+</p>
+
+<p>
+Durante o voo, um valor relacionado à velocidade horizontal do foguete excedeu o limite máximo que poderia ser armazenado no formato inteiro de 16 bits.
+</p>
+
+<p>
+Isso causou um overflow aritmético, que gerou uma exceção no sistema de navegação inercial.
+</p>
+
+<p>
+Como consequência:
+</p>
+
+<ul>
+<li>O sistema primário de navegação foi desligado automaticamente.</li>
+<li>O sistema de backup, que utilizava o mesmo software, falhou da mesma forma segundos depois.</li>
+<li>O computador de bordo passou a receber dados inválidos de orientação.</li>
+<li>O sistema de controle interpretou esses dados como comandos legítimos.</li>
+</ul>
+
+<p>
+O foguete então realizou movimentos bruscos e fora do perfil de voo planejado, levando à sua autodestruição pelo sistema de segurança.
+</p>
+
+<h3>3. Impactos da Falha</h3>
+
+<table style="width:100%; border-collapse: collapse;">
+<tr>
+<th style="border:1px solid #ccc; padding:8px;">Área Impactada</th>
+<th style="border:1px solid #ccc; padding:8px;">Consequência</th>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Missão</td>
+<td style="border:1px solid #ccc; padding:8px;">Destruição do foguete 37 segundos após o lançamento.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Carga</td>
+<td style="border:1px solid #ccc; padding:8px;">Perda de quatro satélites científicos a bordo.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Financeiro</td>
+<td style="border:1px solid #ccc; padding:8px;">Prejuízo estimado em aproximadamente US$ 370 milhões.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Programa Espacial</td>
+<td style="border:1px solid #ccc; padding:8px;">Atrasos significativos no cronograma do projeto Ariane 5.</td>
+</tr>
+
+</table>
+
+<h3>4. Causa Raiz</h3>
+
+<p>
+Investigações posteriores revelaram que o módulo de software responsável pela falha não era necessário durante aquela fase do voo, mas permaneceu ativo por ter sido herdado diretamente do Ariane 4.
+</p>
+
+<p>
+Além disso, não havia tratamento adequado de exceções para o erro de conversão numérica, permitindo que a falha se propagasse para outros sistemas críticos.
+</p>
+
+<h3>5. Lições Aprendidas</h3>
+
+<ul>
+<li>Software reutilizado deve ser reavaliado em novos contextos operacionais.</li>
+<li>Limites numéricos devem ser validados em todas as fases do sistema.</li>
+<li>Tratamento de exceções é essencial em sistemas críticos.</li>
+<li>Sistemas redundantes devem ser independentes entre si.</li>
+</ul>
+
+<p>
+O acidente do Ariane 5 tornou-se um caso clássico sobre os riscos da reutilização de software sem adaptação adequada, sendo frequentemente citado em estudos de engenharia de software e segurança de sistemas críticos.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- DETALHES MT. GOX-->
+<section class="details-page" id="mtgox-detalhe">
+
+<button class="back-btn" onclick="closeDetails()">⬅ Voltar</button>
+
+<div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+
+<h2>Mt. Gox (2011–2014)</h2>
+
+<p>
+Entre 2011 e 2014, a Mt. Gox, que já foi a maior corretora de Bitcoin do mundo, tornou-se o centro de uma das maiores falhas de segurança da história dos sistemas financeiros digitais. No auge de sua operação, a plataforma era responsável por aproximadamente 70% de todas as transações de Bitcoin realizadas globalmente.
+</p>
+
+<hr style="margin:20px 0;">
+
+<h3>1. Contexto da Plataforma</h3>
+
+<p>
+A Mt. Gox era uma exchange de criptomoedas sediada no Japão que permitia a compra e venda de Bitcoins por moedas tradicionais. Devido ao crescimento rápido do mercado de criptomoedas e à falta de regulamentação na época, a empresa expandiu sua base de usuários sem implementar mecanismos robustos de segurança e auditoria interna.
+</p>
+
+<p>
+Grande parte dos ativos dos usuários era armazenada em carteiras online ("hot wallets"), que permaneciam conectadas à internet e, portanto, vulneráveis a ataques externos.
+</p>
+
+<h3>2. A Falha Técnica</h3>
+
+<p>
+O principal problema estava relacionado a uma vulnerabilidade conhecida como "maleabilidade de transação".
+</p>
+
+<p>
+Essa falha permitia que atacantes alterassem o identificador único de uma transação (Transaction ID) antes que ela fosse confirmada na blockchain, sem modificar o conteúdo real da transferência.
+</p>
+
+<p>
+Como consequência:
+</p>
+
+<ul>
+<li>O sistema da Mt. Gox interpretava a transação original como não concluída.</li>
+<li>Os usuários mal-intencionados solicitavam o reenvio dos fundos.</li>
+<li>O sistema processava múltiplos pagamentos para a mesma operação.</li>
+<li>Bitcoins eram enviados novamente sem que a plataforma detectasse o erro.</li>
+</ul>
+
+<p>
+Essas falhas ocorreram repetidamente ao longo dos anos, sem que fossem identificadas ou corrigidas adequadamente.
+</p>
+
+<h3>3. Impactos da Falha</h3>
+
+<table style="width:100%; border-collapse: collapse;">
+<tr>
+<th style="border:1px solid #ccc; padding:8px;">Área Impactada</th>
+<th style="border:1px solid #ccc; padding:8px;">Consequência</th>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Usuários</td>
+<td style="border:1px solid #ccc; padding:8px;">Perda de aproximadamente 850.000 Bitcoins.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Financeiro</td>
+<td style="border:1px solid #ccc; padding:8px;">Prejuízo estimado em bilhões de dólares.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Empresa</td>
+<td style="border:1px solid #ccc; padding:8px;">Declaração de falência em fevereiro de 2014.</td>
+</tr>
+
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Mercado</td>
+<td style="border:1px solid #ccc; padding:8px;">Queda significativa na confiança do público em criptomoedas.</td>
+</tr>
+
+</table>
+
+<h3>4. Causa Raiz</h3>
+
+<p>
+Investigações posteriores apontaram que, além da vulnerabilidade técnica, a empresa não possuía controles adequados de segurança, auditorias regulares ou monitoramento eficaz das transações.
+</p>
+
+<p>
+O armazenamento excessivo de fundos em hot wallets facilitou o acesso não autorizado aos ativos digitais ao longo do tempo.
+</p>
+
+<h3>5. Lições Aprendidas</h3>
+
+<ul>
+<li>Implementação de auditorias de segurança contínuas.</li>
+<li>Separação entre hot wallets e cold wallets.</li>
+<li>Monitoramento e validação de transações.</li>
+<li>Tratamento de vulnerabilidades conhecidas em sistemas financeiros.</li>
+</ul>
+
+<p>
+O colapso da Mt. Gox destacou a importância de práticas modernas de cibersegurança em plataformas financeiras digitais e influenciou o desenvolvimento de novos padrões de segurança no mercado de criptomoedas.
+</p>
+
+</div>
+
+</section>
+
+<script>
+
+const slides=Array.from(document.querySelectorAll(".slide"));
+let current=0;
+
+function showSlide(index){
+slides[current].classList.remove("active");
+current=(index+slides.length)%slides.length;
+slides[current].classList.add("active");
+}
+
+function nextSlide(){showSlide(current+1);}
+function prevSlide(){showSlide(current-1);}
+
+function openDetails(id){
+document.body.classList.add("details-open");
+document.querySelectorAll(".details-page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+function closeDetails(){
+document.body.classList.remove("details-open");
+document.querySelectorAll(".details-page").forEach(p=>p.classList.remove("active"));
+}
+
+document.addEventListener("keydown",function(e){
+if(document.body.classList.contains("details-open")) return;
+if(e.key==="ArrowRight") nextSlide();
+if(e.key==="ArrowLeft") prevSlide();
+});
+
+</script>
+
+</body>
+</html>

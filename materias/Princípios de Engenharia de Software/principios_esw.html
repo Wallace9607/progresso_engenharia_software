@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Princípios de Engenharia de Software</title>
+
+<style>
+:root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --text:#e6eef6;
+    --muted:#9aa4b2;
+    --accent:#6ee7b7;
+    --accent-2:#7dedfc;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+body{
+    font-family:Inter, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    min-height:100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+    width:250px;
+    background:var(--card);
+    padding:25px 15px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    border-right:1px solid rgba(255,255,255,0.05);
+}
+
+.sidebar h2{
+    color:var(--accent);
+    margin-bottom:10px;
+}
+
+.nav-item{
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
+    color:var(--muted);
+    transition:.2s;
+}
+
+.nav-item:hover{
+    background:rgba(110,231,183,0.08);
+    color:var(--accent);
+}
+
+.nav-item.active{
+    background:rgba(110,231,183,0.15);
+    color:var(--accent);
+}
+
+/* ===== BOTÃO VOLTAR ===== */
+.back-button{
+    text-decoration:none;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color:#0f1724;
+    padding:12px 15px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:20px;
+    display:block;
+    text-align:center;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover{
+    transform: translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.35);
+}
+
+/* ===== CONTEÚDO ===== */
+.main{
+    flex:1;
+    padding:40px;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.section-title{
+font-size:32px;
+margin-bottom:30px;
+color:#e6eef6;
+font-weight:600;
+}
+
+.home-grid{
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.section-title{
+font-size:32px;
+margin-bottom:30px;
+color:#e6eef6;
+font-weight:600;
+}
+
+.home-container{
+max-width:900px;
+}
+
+.info-card{
+background:#0b1220;
+padding:30px;
+margin-bottom:25px;
+border-radius:10px;
+border-left:6px solid #6ee7b7;
+box-shadow:0 4px 12px rgba(0,0,0,0.25);
+transition:all 0.25s ease;
+}
+
+.info-card:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 22px rgba(0,0,0,0.35);
+}
+
+.info-card h3{
+margin-bottom:12px;
+color:#6ee7b7;
+font-size:20px;
+}
+
+.info-card p{
+color:#cbd5e1;
+line-height:1.6;
+margin-bottom:12px;
+}
+
+.info-card ul{
+list-style:none;
+padding-left:0;
+}
+
+.home-grid .info-card li{
+position:relative;
+padding-left:26px;
+margin-bottom:8px;
+}
+
+.home-grid .info-card li::before{
+content:"•";
+position:absolute;
+left:0;
+color:#6ee7b7;
+font-size:18px;
+}
+
+#visao .info-card li{
+position:relative;
+padding-left:26px;
+margin-bottom:8px;
+}
+
+#visao .info-card li::before{
+content:"•";
+position:absolute;
+left:0;
+color:#6ee7b7;
+font-size:18px;
+}
+
+.sub-list{
+margin-top:6px;
+margin-left:15px;
+}
+
+.sub-list li::before{
+content:"◦";
+color:#94a3b8;
+}
+
+.card{
+    background:var(--card);
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.card-link{
+    text-decoration:none;
+    display:block;
+}
+
+.card-click{
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+
+.card-click:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+h1{
+    margin-bottom:20px;
+    color:var(--accent);
+}
+
+h3{
+    margin:15px 0 8px;
+    color:var(--accent);
+}
+
+p{
+    margin-bottom:10px;
+    line-height:1.6;
+    color:var(--muted);
+}
+
+
+.cronograma{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+font-size:15px;
+}
+
+.cronograma th{
+background:#6ee7b7;
+color:#0f1724;
+text-align:left;
+padding:10px;
+}
+
+.cronograma td{
+padding:10px;
+border-bottom:1px solid #1f2937;
+color:#cbd5e1;
+}
+
+.cronograma tr:hover{
+background:#111827;
+}
+
+.biblio-list{
+list-style:none;
+padding-left:0;
+margin-top:15px;
+}
+
+
+.biblio-list li{
+padding:14px 16px;
+margin-bottom:12px;
+background:#111827;
+border-left:4px solid #6ee7b7;
+border-radius:6px;
+line-height:1.5;
+transition:0.2s;
+
+}
+
+.biblio-list li:hover{
+background:#0f1724;
+transform:translateX(4px);
+}
+
+.biblio-list strong{
+color:#e6eef6;
+font-weight:600;
+}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:768px){
+    body{ flex-direction:column; }
+    .sidebar{
+        width:100%;
+        flex-direction:row;
+        overflow-x:auto;
+    }
+    .nav-item{
+        white-space:nowrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Princípios de Engenharia de Software</h2>
+    <a href="../../index.html" class="back-button">← Início</a>
+
+    <div class="nav-item active" onclick="showSection('home')">🏠 Home</div>
+    <div class="nav-item" onclick="showSection('visao')">📋 Visão Geral</div>
+    <div class="nav-item" onclick="showSection('atividades')">📝 Atividades</div>
+    <div class="nav-item" onclick="showSection('trabalhos')">📂 Trabalhos</div>
+    <div class="nav-item" onclick="showSection('conteudo')">📚 Conteúdo de Aula</div>
+    <div class="nav-item" onclick="showSection('bibliografia')">📖 Bibliografia</div>
+</div>
+
+<div class="main">
+
+<!-- HOME -->
+<!-- HOME -->
+<div id="home" class="section active">
+
+<h1 class="section-title">Sobre a Disciplina</h1>
+
+<div class="home-grid">
+
+<div class="info-card">
+
+<h3>O que é Engenharia de Software?</h3>
+
+<p>
+A Engenharia de Software é a área da Computação responsável pelo
+estudo de métodos, técnicas e ferramentas utilizadas no desenvolvimento
+de sistemas de software de forma organizada, segura e eficiente.
+</p>
+
+<p>
+Ela aplica princípios de engenharia ao processo de criação de software,
+garantindo qualidade, manutenção adequada e evolução contínua
+dos sistemas ao longo do tempo.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>O que a disciplina estuda?</h3>
+
+<p>
+A disciplina apresenta os fundamentos utilizados na construção
+de sistemas de software, abordando desde o levantamento de
+necessidades dos usuários até a organização e estruturação
+de soluções computacionais.
+</p>
+
+<ul>
+<li>Paradigmas da Engenharia de Software</li>
+<li>Processos de desenvolvimento</li>
+<li>Levantamento e análise de requisitos</li>
+<li>Modelagem e especificação de sistemas</li>
+<li>Ferramentas de desenvolvimento</li>
+<li>Qualidade de software</li>
+</ul>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>Objetivo da disciplina</h3>
+
+<p>
+Capacitar o estudante a compreender os princípios da Engenharia
+de Software e aplicá-los na análise, organização e desenvolvimento
+de sistemas computacionais.
+</p>
+
+<p>
+Ao final da disciplina, o aluno deverá ser capaz de identificar
+requisitos, estruturar soluções e compreender os processos
+envolvidos na criação de software.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>Competências desenvolvidas</h3>
+
+<ul>
+<li>Compreensão dos fundamentos da Engenharia de Software</li>
+<li>Identificação e análise de requisitos</li>
+<li>Organização de soluções computacionais</li>
+<li>Conhecimento de paradigmas de desenvolvimento</li>
+<li>Aplicação de critérios de qualidade de software</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- VISÃO GERAL -->
+<div id="visao" class="section">
+
+<h1 class="section-title">Plano de Ensino</h1>
+
+<div class="info-card">
+
+<h3>Carga Horária</h3>
+<p><strong>30 horas</strong> – atividades teóricas e práticas.</p>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>Conteúdo Programático</h3>
+
+<ul>
+<li>História da Engenharia de Software</li>
+<li>Definição de Sistemas, Processos, Projetos e Software</li>
+
+<li>Engenharia de Requisitos
+    <ul class="sub-list">
+        <li>Elicitação</li>
+        <li>Especificação</li>
+        <li>Análise e Validação</li>
+        <li>Gerenciamento</li>
+    </ul>
+</li>
+
+<li>Paradigmas da Engenharia de Software</li>
+<li>Linguagem de Programação</li>
+<li>Qualidade de Software</li>
+
+</ul>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>Metodologia de Ensino</h3>
+
+<ul>
+<li>Aulas expositivas dialogadas</li>
+<li>Uso de ferramentas de modelagem</li>
+<li>Estudo de casos</li>
+<li>Seminários</li>
+<li>Exercícios práticos e debates</li>
+</ul>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>Avaliação</h3>
+
+<ul>
+<li>Provas escritas</li>
+<li>Trabalhos individuais e em grupo</li>
+<li>Avaliações contínuas</li>
+<li>Questões no formato ENADE</li>
+</ul>
+
+</div>
+
+
+<h1 class="section-title">Cronograma de Aulas – 2026</h1>
+
+<div class="info-card">
+
+<table class="cronograma">
+
+<thead>
+<tr>
+<th>Data</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr><td>06/02</td><td>Apresentação da Ementa</td></tr>
+<tr><td>13/02</td><td>História da Engenharia de Software</td></tr>
+<tr><td>20/02</td><td>Requisitos de Software: Conceitos</td></tr>
+<tr><td>27/02</td><td>Engenharia de Requisitos: Elicitação</td></tr>
+<tr><td>06/03</td><td>Atividade Prática</td></tr>
+<tr><td>13/03</td><td>1ª Avaliação</td></tr>
+<tr><td>20/03</td><td>Engenharia de Requisitos: Especificação</td></tr>
+<tr><td>27/03</td><td>Atividade Prática</td></tr>
+<tr><td>10/04</td><td>Paradigmas da Engenharia de Software</td></tr>
+<tr><td>17/04</td><td>Paradigmas: Exemplos</td></tr>
+<tr><td>08/05</td><td>Atividade Prática</td></tr>
+<tr><td>15/05</td><td>2ª Avaliação</td></tr>
+<tr><td>22/05</td><td>Linguagem de Programação: Conceitos</td></tr>
+<tr><td>29/05</td><td>Linguagem de Programação: Sintaxe</td></tr>
+<tr><td>12/06</td><td>Qualidade de Software: Conceitos</td></tr>
+<tr><td>19/06</td><td>Qualidade de Software: Critérios</td></tr>
+<tr><td>26/06</td><td>3ª Avaliação</td></tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+    <!-- ATIVIDADES -->
+    <div id="atividades" class="section">
+        <h1>Atividades</h1>
+
+            <a href="../Princípios de Engenharia de Software/atividade/26.html" class="card-link">
+                <div class="card card-click">
+                    <h3>Lista de Atividades</h3>
+                    <p>Normas da UniRV</p>
+                    <p><strong>Data:</strong> 00/00/0000</p>
+                </div>
+            </a>
+
+            <a href="atividade/projeto_balanco.htm" class="card-link">
+<div class="card card-click">
+<h3>Atividade – Projeto de Balanço em Árvore</h3>
+
+<p>
+Especificação de requisitos e técnicas de elicitação
+utilizando o exemplo de um balanço em uma árvore.
+</p>
+
+<p><strong>Conteúdo:</strong> Engenharia de Requisitos</p>
+<p><strong>Status:</strong> Atividade prática</p>
+
+</div>
+</a>
+    </div>
+
+    <!-- TRABALHOS -->
+    <div id="trabalhos" class="section">
+        <h1>Trabalhos</h1>
+
+            <a href="trabalho/catastrofes.html" class="card-link">
+    <div class="card card-click">
+        <h3>Trabalho 01 – Catastrofes</h3>
+        <p>Análise sobre Catastrofes encadeadas pro erros de Software.</p>
+        <p><strong>Entrega:</strong> 20/02/2026</p>
+    </div>
+    </a>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div id="conteudo" class="section">
+        <h1>Conteúdo de Aula</h1>
+        <div class="card">
+            <p>Resumo das aulas ministradas.</p>
+        </div>
+    </div>
+
+<!-- BIBLIOGRAFIA -->
+<div id="bibliografia" class="section">
+
+<h1 class="section-title">Bibliografia</h1>
+
+<div class="info-card">
+
+<h3>Bibliografia Básica</h3>
+
+<ul class="biblio-list">
+
+<li>
+<strong>PRESSMAN, Roger S.</strong><br>
+Engenharia de Software.
+</li>
+
+<li>
+<strong>SOMERVILLE, Ian.</strong><br>
+Engenharia de Software.
+</li>
+
+<li>
+<strong>PAULA FILHO, Wilson de Pádua.</strong><br>
+Engenharia de Software: Fundamentos, Métodos e Padrões.
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="info-card">
+
+<h3>Bibliografia Complementar</h3>
+
+<ul class="biblio-list">
+
+<li>
+<strong>PETERS, James F.</strong><br>
+Engenharia de Software.
+</li>
+
+<li>
+<strong>WAZLAWICK, Raul.</strong><br>
+Engenharia de Software: Conceitos e Práticas.
+</li>
+
+<li>
+<strong>VAZQUEZ, Carlos.</strong><br>
+Engenharia de Requisitos.
+</li>
+
+<li>
+<strong>SWEBOK.</strong><br>
+IEEE Software Engineering Body of Knowledge.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+function showSection(id){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
