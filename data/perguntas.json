@@ -1,0 +1,2026 @@
+{
+"Profissão de Engenharia de Software":[
+
+{
+"pergunta":"Qual é o principal objetivo da Engenharia de Software?",
+"alternativas":[
+"Desenvolver hardware de computadores",
+"Criar softwares de forma sistemática e eficiente",
+"Fabricar componentes eletrônicos",
+"Gerenciar redes de computadores"
+],
+"correta":1
+},
+
+{
+"pergunta":"A Engenharia de Software surgiu principalmente para resolver qual problema?",
+"alternativas":[
+"Falta de computadores",
+"Crescimento da internet",
+"Crise do software devido a projetos mal sucedidos",
+"Falta de linguagens de programação"
+],
+"correta":2
+},
+
+{
+"pergunta":"Qual profissional é responsável por projetar, desenvolver e manter sistemas de software?",
+"alternativas":[
+"Engenheiro civil",
+"Engenheiro de software",
+"Administrador de redes",
+"Designer gráfico"
+],
+"correta":1
+},
+
+{
+"pergunta":"O que é um software?",
+"alternativas":[
+"Parte física do computador",
+"Conjunto de programas e dados",
+"Um tipo de hardware",
+"Um dispositivo eletrônico"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas atividades faz parte da Engenharia de Software?",
+"alternativas":[
+"Análise de requisitos",
+"Pintura de computadores",
+"Montagem de placas eletrônicas",
+"Fabricação de chips"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual documento descreve o que o sistema deve fazer?",
+"alternativas":[
+"Manual do usuário",
+"Documento de requisitos",
+"Relatório financeiro",
+"Plano de marketing"
+],
+"correta":1
+},
+
+{
+"pergunta":"O que são requisitos de software?",
+"alternativas":[
+"Instruções para instalar programas",
+"Especificações do que o sistema deve realizar",
+"Comandos do sistema operacional",
+"Peças de hardware"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas opções representa um exemplo de software?",
+"alternativas":[
+"Teclado",
+"Mouse",
+"Sistema Operacional",
+"Placa-mãe"
+],
+"correta":2
+},
+
+{
+"pergunta":"Qual característica é importante em um software de qualidade?",
+"alternativas":[
+"Ser difícil de usar",
+"Ter alta confiabilidade",
+"Ser muito grande",
+"Consumir muita memória"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas áreas faz parte da Engenharia de Software?",
+"alternativas":[
+"Testes de software",
+"Pintura industrial",
+"Manutenção mecânica",
+"Construção civil"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa manutenção de software?",
+"alternativas":[
+"Excluir programas antigos",
+"Atualizar e corrigir sistemas após sua entrega",
+"Desligar computadores",
+"Comprar novos computadores"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas etapas ocorre antes do desenvolvimento do software?",
+"alternativas":[
+"Teste final",
+"Análise de requisitos",
+"Implantação",
+"Manutenção"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas é uma habilidade importante para um engenheiro de software?",
+"alternativas":[
+"Comunicação e trabalho em equipe",
+"Apenas saber matemática",
+"Saber montar computadores",
+"Saber desenhar"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa ciclo de vida do software?",
+"alternativas":[
+"Tempo de vida do computador",
+"Conjunto de etapas do desenvolvimento de software",
+"Duração da bateria",
+"Tempo de compilação"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas atividades envolve verificar se o software funciona corretamente?",
+"alternativas":[
+"Testes de software",
+"Compra de hardware",
+"Instalação elétrica",
+"Manutenção de rede"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é um dos desafios da Engenharia de Software?",
+"alternativas":[
+"Produzir software confiável e dentro do prazo",
+"Construir prédios",
+"Fabricar computadores",
+"Montar redes elétricas"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual documento ajuda a planejar o desenvolvimento do software?",
+"alternativas":[
+"Plano de projeto",
+"Manual do teclado",
+"Nota fiscal",
+"Contrato de internet"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa qualidade de software?",
+"alternativas":[
+"Software que ocupa muito espaço",
+"Software que atende às necessidades do usuário",
+"Software caro",
+"Software difícil de usar"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas tecnologias é usada para desenvolver software?",
+"alternativas":[
+"Linguagens de programação",
+"Chave de fenda",
+"Placa de vídeo",
+"Monitor"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções representa um exemplo de sistema de software?",
+"alternativas":[
+"Sistema bancário online",
+"Teclado mecânico",
+"Cabo de rede",
+"Fonte de alimentação"
+],
+"correta":0
+}
+
+],
+
+
+
+"Programação e Algoritmos I":[
+
+{
+"pergunta":"O que é um algoritmo?",
+"alternativas":[
+"Sequência lógica de passos para resolver um problema",
+"Um tipo de computador",
+"Um programa já compilado",
+"Uma linguagem de programação"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual estrutura representa uma decisão em um algoritmo?",
+"alternativas":[
+"Sequencial",
+"Condicional",
+"Repetição",
+"Entrada"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual estrutura permite repetir um conjunto de instruções várias vezes?",
+"alternativas":[
+"Condicional",
+"Sequencial",
+"Repetição",
+"Entrada de dados"
+],
+"correta":2
+},
+
+{
+"pergunta":"Qual destas opções representa uma linguagem de programação?",
+"alternativas":[
+"HTML",
+"JavaScript",
+"Windows",
+"Mouse"
+],
+"correta":1
+},
+
+{
+"pergunta":"O que é uma variável em programação?",
+"alternativas":[
+"Um valor que não muda",
+"Um espaço na memória para armazenar dados",
+"Um tipo de computador",
+"Um programa completo"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual operador é usado para atribuir valor a uma variável?",
+"alternativas":[
+"+",
+"=",
+"==",
+"!="
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destes tipos de dados representa números inteiros?",
+"alternativas":[
+"string",
+"boolean",
+"int",
+"char"
+],
+"correta":2
+},
+
+{
+"pergunta":"Qual destes valores representa um tipo booleano?",
+"alternativas":[
+"10",
+"true",
+"'A'",
+"3.14"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas estruturas é usada para tomada de decisão?",
+"alternativas":[
+"for",
+"if",
+"while",
+"loop"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas opções representa um exemplo de entrada de dados?",
+"alternativas":[
+"Ler valor digitado pelo usuário",
+"Mostrar mensagem na tela",
+"Calcular soma",
+"Encerrar programa"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa saída de dados?",
+"alternativas":[
+"Receber dados do teclado",
+"Apagar dados",
+"Exibir informações ao usuário",
+"Armazenar dados na memória"
+],
+"correta":2
+},
+
+{
+"pergunta":"Qual destas estruturas é usada para repetir comandos um número definido de vezes?",
+"alternativas":[
+"if",
+"for",
+"switch",
+"input"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas opções representa um comentário em programação?",
+"alternativas":[
+"Texto ignorado pelo compilador usado para explicar o código",
+"Uma variável",
+"Um tipo de dado",
+"Um operador matemático"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual operador representa soma?",
+"alternativas":[
+"+",
+"-",
+"*",
+"/"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções representa uma comparação?",
+"alternativas":[
+"+",
+"=",
+"==",
+"*"
+],
+"correta":2
+},
+
+{
+"pergunta":"Qual estrutura é executada enquanto uma condição for verdadeira?",
+"alternativas":[
+"while",
+"if",
+"switch",
+"case"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é pseudocódigo?",
+"alternativas":[
+"Uma linguagem de programação oficial",
+"Uma forma simplificada de escrever algoritmos",
+"Um tipo de hardware",
+"Um compilador"
+],
+"correta":1
+},
+
+{
+"pergunta":"Qual destas opções representa um algoritmo correto?",
+"alternativas":[
+"Passos organizados para resolver um problema",
+"Um computador",
+"Um tipo de rede",
+"Um sistema operacional"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções representa uma operação lógica?",
+"alternativas":[
+"AND",
+"+",
+"-",
+"/"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é o objetivo da programação?",
+"alternativas":[
+"Criar instruções que o computador possa executar",
+"Construir computadores",
+"Montar redes físicas",
+"Criar peças eletrônicas"
+],
+"correta":0
+}
+
+],
+
+
+"Interpretação e Solução de Problemas":[
+
+{
+"pergunta":"O que significa interpretar um problema?",
+"alternativas":[
+"Compreender corretamente a situação apresentada",
+"Copiar o enunciado",
+"Ignorar informações",
+"Memorizar números"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é o primeiro passo para resolver um problema?",
+"alternativas":[
+"Entender o problema",
+"Executar cálculos",
+"Escrever a resposta",
+"Testar soluções"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é uma estratégia de resolução de problemas?",
+"alternativas":[
+"Um método organizado para encontrar uma solução",
+"Um erro no cálculo",
+"Uma resposta pronta",
+"Uma fórmula obrigatória"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas habilidades é importante para resolver problemas?",
+"alternativas":[
+"Raciocínio lógico",
+"Memorização sem compreensão",
+"Copiar respostas",
+"Ignorar informações"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa analisar um problema?",
+"alternativas":[
+"Examinar suas partes para compreender melhor",
+"Copiar o enunciado",
+"Eliminar dados",
+"Alterar o problema"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que são dados de um problema?",
+"alternativas":[
+"As informações fornecidas no enunciado",
+"A resposta final",
+"O título do exercício",
+"O nome do autor"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa formular uma hipótese?",
+"alternativas":[
+"Propor uma possível solução",
+"Excluir informações",
+"Copiar o problema",
+"Memorizar dados"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual etapa envolve verificar se a solução encontrada está correta?",
+"alternativas":[
+"Validação da solução",
+"Leitura do problema",
+"Escolha do título",
+"Resumo do texto"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa decompor um problema?",
+"alternativas":[
+"Dividir o problema em partes menores",
+"Excluir informações",
+"Memorizar dados",
+"Escrever um resumo"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções representa um exemplo de problema?",
+"alternativas":[
+"Uma situação que precisa de solução",
+"Uma resposta pronta",
+"Um resultado final",
+"Uma explicação completa"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas habilidades ajuda na interpretação de problemas?",
+"alternativas":[
+"Leitura atenta",
+"Ignorar detalhes",
+"Memorizar respostas",
+"Evitar análise"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa identificar o objetivo de um problema?",
+"alternativas":[
+"Saber o que deve ser resolvido",
+"Memorizar números",
+"Excluir dados",
+"Alterar o enunciado"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções representa um erro comum ao resolver problemas?",
+"alternativas":[
+"Não entender o enunciado",
+"Analisar dados",
+"Verificar resultados",
+"Planejar solução"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa planejar a solução de um problema?",
+"alternativas":[
+"Definir etapas para resolver o problema",
+"Apagar dados",
+"Ignorar informações",
+"Memorizar resultados"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas ferramentas pode ajudar na solução de problemas?",
+"alternativas":[
+"Diagramas",
+"Ignorar dados",
+"Memorizar respostas",
+"Excluir etapas"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa testar uma solução?",
+"alternativas":[
+"Verificar se a resposta funciona na prática",
+"Excluir dados",
+"Copiar a resposta",
+"Ignorar o problema"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções representa pensamento crítico?",
+"alternativas":[
+"Analisar e avaliar informações antes de decidir",
+"Memorizar respostas",
+"Copiar textos",
+"Ignorar dados"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa raciocínio lógico?",
+"alternativas":[
+"Capacidade de organizar ideias e chegar a conclusões corretas",
+"Memorizar números",
+"Ignorar detalhes",
+"Copiar respostas"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções ajuda a evitar erros na solução de problemas?",
+"alternativas":[
+"Revisar a solução",
+"Ignorar resultados",
+"Memorizar respostas",
+"Excluir dados"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é o objetivo final da solução de problemas?",
+"alternativas":[
+"Encontrar uma solução correta e eficiente",
+"Memorizar respostas",
+"Copiar soluções",
+"Evitar análise"
+],
+"correta":0
+}
+
+],
+
+
+"Introdução à Lógica para Engenharia de Software":[
+
+{
+"pergunta":"O que é lógica na computação?",
+"alternativas":[
+"O estudo do raciocínio correto e das regras de inferência",
+"Um tipo de linguagem de programação",
+"Um software de edição de texto",
+"Um sistema operacional"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é uma proposição lógica?",
+"alternativas":[
+"Uma frase declarativa que pode ser verdadeira ou falsa",
+"Uma pergunta aberta",
+"Um comando de computador",
+"Uma frase sem sentido"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções é um exemplo de proposição lógica?",
+"alternativas":[
+"2 + 2 = 4",
+"Qual é seu nome?",
+"Feche a porta",
+"Talvez amanhã chova"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual operador lógico representa a negação?",
+"alternativas":[
+"NÃO",
+"E",
+"OU",
+"SE...ENTÃO"
+],
+"correta":0
+},
+
+{
+"pergunta":"O operador lógico 'E' retorna verdadeiro quando:",
+"alternativas":[
+"Todas as proposições são verdadeiras",
+"Apenas uma proposição é verdadeira",
+"Todas são falsas",
+"Nenhuma proposição existe"
+],
+"correta":0
+},
+
+{
+"pergunta":"O operador lógico 'OU' retorna verdadeiro quando:",
+"alternativas":[
+"Pelo menos uma proposição é verdadeira",
+"Todas são falsas",
+"Apenas uma é falsa",
+"Nenhuma é verdadeira"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é uma tabela verdade?",
+"alternativas":[
+"Uma tabela que mostra todos os resultados possíveis de uma expressão lógica",
+"Uma planilha de dados",
+"Uma tabela de multiplicação",
+"Uma lista de variáveis"
+],
+"correta":0
+},
+
+{
+"pergunta":"Se P é verdadeiro e Q é falso, qual o resultado de P E Q?",
+"alternativas":[
+"Falso",
+"Verdadeiro",
+"Indefinido",
+"Nulo"
+],
+"correta":0
+},
+
+{
+"pergunta":"Se P é verdadeiro e Q é falso, qual o resultado de P OU Q?",
+"alternativas":[
+"Verdadeiro",
+"Falso",
+"Nulo",
+"Indefinido"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa a implicação lógica (SE P ENTÃO Q)?",
+"alternativas":[
+"Se P for verdadeiro, então Q também deve ser verdadeiro",
+"P e Q são sempre falsos",
+"P nunca depende de Q",
+"Q sempre é falso"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual símbolo é frequentemente usado para representar a negação?",
+"alternativas":[
+"¬",
+"+",
+"=",
+"%"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual símbolo é usado para representar o operador lógico 'E'?",
+"alternativas":[
+"∧",
+"∨",
+"¬",
+"→"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual símbolo representa o operador lógico 'OU'?",
+"alternativas":[
+"∨",
+"∧",
+"¬",
+"→"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual símbolo representa a implicação lógica?",
+"alternativas":[
+"→",
+"∧",
+"∨",
+"¬"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas áreas usa fortemente lógica?",
+"alternativas":[
+"Programação",
+"Pintura",
+"Música",
+"Escultura"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é raciocínio lógico?",
+"alternativas":[
+"Processo de pensar de forma estruturada para chegar a conclusões",
+"Memorizar respostas",
+"Copiar textos",
+"Evitar análise"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas situações representa lógica na programação?",
+"alternativas":[
+"Uso de condições como IF e ELSE",
+"Escrever um texto",
+"Editar imagens",
+"Criar apresentações"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa algoritmo?",
+"alternativas":[
+"Sequência de passos para resolver um problema",
+"Um tipo de computador",
+"Um sistema operacional",
+"Um banco de dados"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas estruturas representa decisão em programação?",
+"alternativas":[
+"IF",
+"PRINT",
+"INPUT",
+"VAR"
+],
+"correta":0
+},
+
+{
+"pergunta":"Por que a lógica é importante na Engenharia de Software?",
+"alternativas":[
+"Ajuda a criar soluções corretas e eficientes para problemas computacionais",
+"Serve apenas para matemática",
+"Não tem relação com programação",
+"É usada apenas em física"
+],
+"correta":0
+}
+
+],
+
+
+"Gestão do Conhecimento":[
+
+{
+"pergunta":"O que é gestão do conhecimento?",
+"alternativas":[
+"Processo de criar, compartilhar e utilizar conhecimento dentro de uma organização",
+"Armazenar arquivos em um computador",
+"Controlar apenas documentos físicos",
+"Gerenciar redes sociais"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é o objetivo principal da gestão do conhecimento?",
+"alternativas":[
+"Melhorar o uso do conhecimento para gerar valor",
+"Guardar documentos antigos",
+"Controlar apenas dados financeiros",
+"Eliminar informações da empresa"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é conhecimento explícito?",
+"alternativas":[
+"Conhecimento que pode ser documentado e compartilhado facilmente",
+"Conhecimento impossível de explicar",
+"Conhecimento que existe apenas na mente das pessoas",
+"Conhecimento secreto"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é conhecimento tácito?",
+"alternativas":[
+"Conhecimento baseado na experiência pessoal",
+"Conhecimento registrado em livros",
+"Conhecimento armazenado em banco de dados",
+"Conhecimento publicado em artigos"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes é um exemplo de conhecimento explícito?",
+"alternativas":[
+"Manual técnico",
+"Experiência pessoal",
+"Intuição",
+"Habilidade prática"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes é um exemplo de conhecimento tácito?",
+"alternativas":[
+"Experiência profissional adquirida com o tempo",
+"Documento PDF",
+"Relatório empresarial",
+"Manual técnico"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual ferramenta pode ajudar na gestão do conhecimento?",
+"alternativas":[
+"Sistemas de gestão de documentos",
+"Jogos eletrônicos",
+"Aplicativos de música",
+"Editores de imagem"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa compartilhar conhecimento?",
+"alternativas":[
+"Distribuir informações e experiências entre pessoas",
+"Guardar informações em segredo",
+"Excluir dados",
+"Evitar comunicação"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes elementos é importante para a gestão do conhecimento?",
+"alternativas":[
+"Cultura organizacional colaborativa",
+"Falta de comunicação",
+"Isolamento entre equipes",
+"Ocultação de informações"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é aprendizagem organizacional?",
+"alternativas":[
+"Processo pelo qual uma organização desenvolve e melhora seu conhecimento",
+"Treinamento apenas individual",
+"Memorização de regras",
+"Uso de um único software"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas práticas ajuda na gestão do conhecimento?",
+"alternativas":[
+"Documentar processos",
+"Ignorar experiências",
+"Excluir dados",
+"Evitar comunicação"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é capital intelectual?",
+"alternativas":[
+"Conjunto de conhecimentos e habilidades de uma organização",
+"Dinheiro guardado em banco",
+"Equipamentos de informática",
+"Infraestrutura física"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes componentes faz parte do capital intelectual?",
+"alternativas":[
+"Conhecimento dos colaboradores",
+"Equipamentos eletrônicos",
+"Móveis do escritório",
+"Documentos impressos"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas práticas pode melhorar o compartilhamento de conhecimento?",
+"alternativas":[
+"Reuniões e treinamentos",
+"Isolamento entre equipes",
+"Ocultação de informações",
+"Falta de comunicação"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é um banco de conhecimento?",
+"alternativas":[
+"Repositório de informações e experiências organizacionais",
+"Conta bancária da empresa",
+"Arquivo pessoal",
+"Lista de contatos"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas tecnologias pode apoiar a gestão do conhecimento?",
+"alternativas":[
+"Sistemas de informação",
+"Calculadoras simples",
+"Aplicativos de música",
+"Jogos online"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes fatores pode dificultar a gestão do conhecimento?",
+"alternativas":[
+"Falta de compartilhamento de informações",
+"Trabalho em equipe",
+"Treinamento contínuo",
+"Documentação adequada"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas práticas contribui para o aprendizado organizacional?",
+"alternativas":[
+"Treinamento e capacitação",
+"Ignorar erros",
+"Evitar comunicação",
+"Excluir informações"
+],
+"correta":0
+},
+
+{
+"pergunta":"Por que a gestão do conhecimento é importante nas organizações?",
+"alternativas":[
+"Ajuda a melhorar decisões e inovação",
+"Serve apenas para guardar documentos",
+"Não tem impacto na empresa",
+"Substitui funcionários"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é um benefício da gestão do conhecimento?",
+"alternativas":[
+"Melhoria na eficiência e inovação",
+"Redução da comunicação",
+"Perda de informações",
+"Isolamento de equipes"
+],
+"correta":0
+}
+
+],
+
+
+"Princípios de Engenharia de Software":[
+
+{
+"pergunta":"O que é Engenharia de Software?",
+"alternativas":[
+"Aplicação de princípios de engenharia para o desenvolvimento de software",
+"Uso de computadores apenas para jogos",
+"Programação sem planejamento",
+"Instalação de sistemas operacionais"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é o objetivo principal da Engenharia de Software?",
+"alternativas":[
+"Produzir software de qualidade de forma eficiente",
+"Criar apenas programas simples",
+"Usar qualquer método de programação",
+"Evitar planejamento"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é ciclo de vida do software?",
+"alternativas":[
+"Conjunto de etapas do desenvolvimento até a manutenção do software",
+"Apenas a fase de programação",
+"O tempo que o computador fica ligado",
+"O tempo de execução de um programa"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas fases faz parte do ciclo de vida do software?",
+"alternativas":[
+"Análise de requisitos",
+"Instalação de hardware",
+"Limpeza do computador",
+"Troca de teclado"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa requisito de software?",
+"alternativas":[
+"Necessidade ou funcionalidade que o sistema deve atender",
+"Peça de hardware do computador",
+"Tipo de linguagem de programação",
+"Manual de instalação"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é qualidade de software?",
+"alternativas":[
+"Grau em que o software atende aos requisitos e expectativas",
+"Apenas a aparência do sistema",
+"O tamanho do código",
+"A velocidade da internet"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa modularidade em software?",
+"alternativas":[
+"Dividir o sistema em partes menores e independentes",
+"Criar apenas um único arquivo",
+"Escrever todo o código em uma função",
+"Evitar organização do código"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas práticas melhora a qualidade do software?",
+"alternativas":[
+"Testes de software",
+"Ignorar erros",
+"Evitar documentação",
+"Programar sem planejamento"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é manutenção de software?",
+"alternativas":[
+"Modificar e corrigir o sistema após sua entrega",
+"Apagar o programa",
+"Trocar o computador",
+"Excluir arquivos do sistema"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções representa um princípio importante da Engenharia de Software?",
+"alternativas":[
+"Planejamento antes da implementação",
+"Programar sem análise",
+"Ignorar requisitos",
+"Evitar testes"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa reutilização de software?",
+"alternativas":[
+"Aproveitar componentes existentes em novos sistemas",
+"Criar tudo do zero sempre",
+"Excluir códigos antigos",
+"Evitar bibliotecas"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas atividades ocorre antes da programação?",
+"alternativas":[
+"Levantamento de requisitos",
+"Manutenção",
+"Correção de erros",
+"Atualização do sistema"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é documentação de software?",
+"alternativas":[
+"Registro de informações sobre o sistema e seu funcionamento",
+"Excluir arquivos antigos",
+"Criar apenas comentários no código",
+"Remover funcionalidades"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas práticas ajuda na manutenção do software?",
+"alternativas":[
+"Código bem organizado",
+"Código sem estrutura",
+"Ausência de comentários",
+"Falta de planejamento"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é teste de software?",
+"alternativas":[
+"Processo de verificar se o sistema funciona corretamente",
+"Excluir partes do código",
+"Apagar arquivos do sistema",
+"Alterar hardware"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas características representa um software de qualidade?",
+"alternativas":[
+"Confiabilidade",
+"Instabilidade",
+"Falta de organização",
+"Ausência de testes"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é engenharia de requisitos?",
+"alternativas":[
+"Processo de identificar e documentar necessidades do sistema",
+"Instalar programas",
+"Criar hardware",
+"Editar imagens"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas metodologias é usada no desenvolvimento de software?",
+"alternativas":[
+"Ágil",
+"Musical",
+"Artística",
+"Culinária"
+],
+"correta":0
+},
+
+{
+"pergunta":"Por que o planejamento é importante no desenvolvimento de software?",
+"alternativas":[
+"Ajuda a reduzir erros e organizar o desenvolvimento",
+"Não tem impacto no projeto",
+"Aumenta o número de erros",
+"Elimina a necessidade de testes"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas práticas é recomendada na Engenharia de Software?",
+"alternativas":[
+"Trabalho em equipe e colaboração",
+"Trabalho isolado sem comunicação",
+"Evitar documentação",
+"Ignorar testes"
+],
+"correta":0
+}
+
+],
+
+
+"Arquitetura de Computadores":[
+
+{
+"pergunta":"O que é arquitetura de computadores?",
+"alternativas":[
+"Organização e funcionamento dos componentes de um computador",
+"Um tipo de software de edição",
+"Um sistema operacional",
+"Uma linguagem de programação"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual componente é responsável por executar instruções no computador?",
+"alternativas":[
+"CPU",
+"Memória RAM",
+"HD",
+"Monitor"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa CPU?",
+"alternativas":[
+"Unidade Central de Processamento",
+"Central de Programação Universal",
+"Controle Principal de Usuário",
+"Comando de Processamento Único"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é a função principal da memória RAM?",
+"alternativas":[
+"Armazenar temporariamente dados e programas em execução",
+"Guardar arquivos permanentemente",
+"Executar instruções",
+"Controlar dispositivos externos"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual dispositivo é usado para armazenamento permanente de dados?",
+"alternativas":[
+"HD ou SSD",
+"Memória RAM",
+"Cache",
+"Registrador"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é memória cache?",
+"alternativas":[
+"Memória rápida usada para acelerar o acesso da CPU aos dados",
+"Memória usada para backup",
+"Memória externa",
+"Memória apenas para vídeo"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes componentes permite a comunicação entre CPU, memória e dispositivos?",
+"alternativas":[
+"Barramento",
+"Monitor",
+"Teclado",
+"Mouse"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual tipo de barramento transporta dados entre componentes?",
+"alternativas":[
+"Barramento de dados",
+"Barramento de energia",
+"Barramento de áudio",
+"Barramento gráfico"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é a função da Unidade Lógica e Aritmética (ULA)?",
+"alternativas":[
+"Realizar operações matemáticas e lógicas",
+"Armazenar arquivos",
+"Controlar dispositivos externos",
+"Exibir imagens"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que são registradores?",
+"alternativas":[
+"Pequenas memórias dentro da CPU usadas para armazenar dados temporários",
+"Dispositivos de entrada",
+"Tipos de discos rígidos",
+"Programas de computador"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual dispositivo é considerado de entrada?",
+"alternativas":[
+"Teclado",
+"Monitor",
+"Impressora",
+"Alto-falante"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual dispositivo é considerado de saída?",
+"alternativas":[
+"Monitor",
+"Teclado",
+"Mouse",
+"Scanner"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é um sistema binário?",
+"alternativas":[
+"Sistema de numeração baseado em 0 e 1",
+"Sistema de numeração decimal",
+"Sistema de numeração hexadecimal",
+"Sistema de numeração romano"
+],
+"correta":0
+},
+
+{
+"pergunta":"Por que os computadores utilizam o sistema binário?",
+"alternativas":[
+"Porque os circuitos eletrônicos trabalham com dois estados: ligado e desligado",
+"Porque é mais fácil para humanos",
+"Porque usa mais números",
+"Porque ocupa mais espaço"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é clock do processador?",
+"alternativas":[
+"Sinal que determina a velocidade de execução das instruções",
+"Relógio do sistema operacional",
+"Tempo de acesso à internet",
+"Tempo de inicialização do computador"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual unidade mede a frequência do clock?",
+"alternativas":[
+"Hertz (Hz)",
+"Byte",
+"Metro",
+"Volt"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é arquitetura Von Neumann?",
+"alternativas":[
+"Modelo de computador onde dados e instruções compartilham a mesma memória",
+"Tipo de sistema operacional",
+"Linguagem de programação",
+"Dispositivo de armazenamento"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes é um dispositivo de armazenamento externo?",
+"alternativas":[
+"Pen drive",
+"Registrador",
+"Memória cache",
+"ULA"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa bit?",
+"alternativas":[
+"Menor unidade de informação em um computador",
+"Tipo de memória",
+"Unidade de armazenamento grande",
+"Dispositivo de entrada"
+],
+"correta":0
+},
+
+{
+"pergunta":"Quantos bits formam um byte?",
+"alternativas":[
+"8",
+"4",
+"16",
+"32"
+],
+"correta":0
+}
+
+],
+
+
+"Introdução à Pesquisa":[
+
+{
+"pergunta":"O que é pesquisa científica?",
+"alternativas":[
+"Um processo sistemático de investigação para gerar conhecimento",
+"Uma opinião pessoal sobre um tema",
+"Uma conversa informal",
+"Um resumo de um livro"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é o objetivo principal da pesquisa científica?",
+"alternativas":[
+"Produzir conhecimento confiável",
+"Copiar informações da internet",
+"Produzir textos longos",
+"Repetir ideias de outros autores"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual etapa ocorre primeiro em uma pesquisa?",
+"alternativas":[
+"Escolha do problema ou tema",
+"Coleta de dados",
+"Análise de resultados",
+"Conclusão"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é um problema de pesquisa?",
+"alternativas":[
+"Uma pergunta que a pesquisa busca responder",
+"Um erro no texto",
+"Um software defeituoso",
+"Uma dificuldade de leitura"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes elementos faz parte de um projeto de pesquisa?",
+"alternativas":[
+"Objetivos",
+"Preço do computador",
+"Manual do software",
+"Placa de vídeo"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que são objetivos de pesquisa?",
+"alternativas":[
+"As metas que o estudo pretende alcançar",
+"O número de páginas do trabalho",
+"O valor do projeto",
+"A lista de referências"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é metodologia em uma pesquisa?",
+"alternativas":[
+"O conjunto de métodos utilizados para realizar o estudo",
+"O título do trabalho",
+"O resumo do texto",
+"O nome do autor"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções representa uma fonte científica?",
+"alternativas":[
+"Artigo acadêmico",
+"Postagem em rede social",
+"Comentário em vídeo",
+"Mensagem de aplicativo"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é uma hipótese?",
+"alternativas":[
+"Uma suposição que será testada na pesquisa",
+"Um erro no trabalho",
+"Uma conclusão final",
+"Um tipo de computador"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas etapas envolve coletar informações para a pesquisa?",
+"alternativas":[
+"Coleta de dados",
+"Conclusão",
+"Revisão final",
+"Publicação"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é revisão bibliográfica?",
+"alternativas":[
+"Estudo de trabalhos já publicados sobre o tema",
+"Apagar partes do texto",
+"Trocar o título da pesquisa",
+"Criar um novo computador"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes documentos apresenta resultados de uma pesquisa?",
+"alternativas":[
+"Artigo científico",
+"Manual de usuário",
+"Contrato de trabalho",
+"Lista de compras"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa citar um autor?",
+"alternativas":[
+"Indicar a fonte da informação utilizada",
+"Copiar texto sem referência",
+"Inventar um autor",
+"Excluir informações do texto"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas práticas deve ser evitada em pesquisas acadêmicas?",
+"alternativas":[
+"Plágio",
+"Citação",
+"Referência bibliográfica",
+"Leitura científica"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que é plágio?",
+"alternativas":[
+"Usar ideias de outra pessoa sem dar crédito",
+"Escrever um artigo científico",
+"Publicar um trabalho acadêmico",
+"Realizar uma pesquisa"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas opções representa uma etapa final da pesquisa?",
+"alternativas":[
+"Conclusão",
+"Definição do tema",
+"Revisão bibliográfica",
+"Formulação do problema"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destas ferramentas pode ser usada para organizar referências?",
+"alternativas":[
+"Gerenciador de referências",
+"Editor de imagens",
+"Calculadora",
+"Planilha financeira"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual destes tipos de pesquisa envolve coleta de dados diretamente da realidade?",
+"alternativas":[
+"Pesquisa de campo",
+"Pesquisa teórica",
+"Pesquisa bibliográfica",
+"Pesquisa documental"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa análise de dados?",
+"alternativas":[
+"Interpretar informações coletadas na pesquisa",
+"Copiar dados de um site",
+"Excluir resultados",
+"Modificar dados sem justificativa"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é a importância da ética na pesquisa?",
+"alternativas":[
+"Garantir integridade e respeito na produção científica",
+"Diminuir o tamanho do trabalho",
+"Aumentar o número de páginas",
+"Substituir referências"
+],
+"correta":0
+}
+
+],
+
+
+"Inglês Técnico para Engenharia de Software":[
+
+{
+"pergunta":"O que significa a palavra 'software' em inglês técnico?",
+"alternativas":[
+"Programas e sistemas que executam no computador",
+"Peças físicas do computador",
+"Cabos de rede",
+"Memória física"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'hardware'?",
+"alternativas":[
+"Componentes físicos do computador",
+"Programas de computador",
+"Arquivos digitais",
+"Linguagens de programação"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é o significado da palavra 'bug' na área de software?",
+"alternativas":[
+"Erro ou falha no programa",
+"Atualização do sistema",
+"Novo recurso do software",
+"Ferramenta de programação"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'debug'?",
+"alternativas":[
+"Corrigir erros no código",
+"Executar um programa",
+"Instalar software",
+"Criar banco de dados"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'database'?",
+"alternativas":[
+"Banco de dados",
+"Sistema operacional",
+"Editor de código",
+"Processador"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'user' em sistemas de software?",
+"alternativas":[
+"Usuário do sistema",
+"Programador do sistema",
+"Servidor de rede",
+"Administrador de hardware"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'source code'?",
+"alternativas":[
+"Código fonte do programa",
+"Código binário",
+"Código criptografado",
+"Código de acesso"
+],
+"correta":0
+},
+
+{
+"pergunta":"Qual é o significado de 'compile'?",
+"alternativas":[
+"Transformar código fonte em código executável",
+"Executar o programa",
+"Apagar código",
+"Criar banco de dados"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'deploy' no desenvolvimento de software?",
+"alternativas":[
+"Publicar ou disponibilizar um sistema",
+"Excluir o sistema",
+"Editar o código",
+"Instalar hardware"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'framework'?",
+"alternativas":[
+"Conjunto de ferramentas que auxilia no desenvolvimento de software",
+"Tipo de computador",
+"Banco de dados",
+"Sistema operacional"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'backend'?",
+"alternativas":[
+"Parte do sistema responsável pela lógica e processamento",
+"Interface visual do usuário",
+"Hardware do computador",
+"Editor de texto"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'frontend'?",
+"alternativas":[
+"Parte visual com a qual o usuário interage",
+"Banco de dados do sistema",
+"Processador do computador",
+"Sistema operacional"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'server'?",
+"alternativas":[
+"Computador que fornece serviços para outros sistemas",
+"Editor de código",
+"Usuário do sistema",
+"Programa de design"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'client' em redes de computadores?",
+"alternativas":[
+"Computador ou programa que solicita serviços ao servidor",
+"Computador que fornece serviços",
+"Banco de dados",
+"Sistema operacional"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'login'?",
+"alternativas":[
+"Processo de acesso ao sistema usando credenciais",
+"Instalação de software",
+"Atualização de sistema",
+"Execução de programa"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'password'?",
+"alternativas":[
+"Senha de acesso",
+"Usuário do sistema",
+"Programa executável",
+"Arquivo de configuração"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'update'?",
+"alternativas":[
+"Atualização de software",
+"Exclusão de dados",
+"Criação de hardware",
+"Execução de programa"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'download'?",
+"alternativas":[
+"Transferir dados da internet para o computador",
+"Enviar arquivos para internet",
+"Executar um programa",
+"Excluir arquivos"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'upload'?",
+"alternativas":[
+"Enviar dados do computador para a internet",
+"Baixar arquivos da internet",
+"Executar software",
+"Excluir dados"
+],
+"correta":0
+},
+
+{
+"pergunta":"O que significa 'developer'?",
+"alternativas":[
+"Profissional que desenvolve software",
+"Usuário do sistema",
+"Técnico de hardware",
+"Administrador de rede"
+],
+"correta":0
+}
+
+]
+}
